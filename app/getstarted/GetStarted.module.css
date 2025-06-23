@@ -1,0 +1,10 @@
+.grid {
+  width: 320px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 27px;
+  margin: 32px 0 100px;
+}
+.getStarted button {
+  width: 201px;
+}

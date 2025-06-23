@@ -1,0 +1,28 @@
+.grid {
+  width: 288px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+  margin-top: 32px;
+}
+
+@media screen and (min-width: 600px) {
+  .grid {
+    width: unset;
+    grid-template-columns: repeat(2, 288px);
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .grid {
+    width: unset;
+    grid-template-columns: repeat(2, 288px);
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .grid {
+    grid-template-columns: repeat(3, 288px);
+  }
+}

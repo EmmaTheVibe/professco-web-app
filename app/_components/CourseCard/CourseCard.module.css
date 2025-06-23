@@ -1,0 +1,140 @@
+.courseCard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.preview {
+  width: 100%;
+  height: 157px;
+}
+.thumbnail {
+  width: 100%;
+  height: inherit;
+}
+.courseInfo {
+  padding: 14px;
+}
+.courseTitle {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: bold;
+  margin-bottom: 6px;
+  height: 57px;
+  width: 256px;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+.line {
+  width: 100%;
+  display: flex;
+  margin-bottom: 8px;
+  justify-content: space-between;
+}
+.courseType {
+  width: 69px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ebfff3;
+  color: #00903b;
+  border-radius: 4px;
+}
+.courseType p {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: bold;
+}
+.coursePrice {
+  padding: 3px 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-peach);
+  border-radius: 4px;
+}
+.coursePrice p {
+  /* font-size: 14px;
+  line-height: 20px; */
+  color: var(--primary-orange);
+}
+.rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.blackstar {
+  width: 13.28px;
+  height: 12.54px;
+  margin-right: 3px;
+}
+.courseDesc {
+  color: #6b6f80;
+  font-size: 14px;
+  line-height: 20px;
+  display: -webkit-box;
+  width: 256px;
+  height: 40px;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+.tags {
+  display: flex;
+  margin: 14px 0 16px;
+}
+.tag {
+  margin-right: 4px;
+  border-radius: 2px;
+  padding: 4px 8px;
+}
+.tag p {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: bold;
+  color: #1f2937;
+}
+.cart {
+  height: 20px;
+  width: 19.89px;
+  margin-left: 10px;
+}
+
+.btn {
+  width: 100%;
+  height: 40px;
+}
+
+@media screen and (min-width: 400px) {
+  .courseTitle,
+  .courseDesc {
+    width: 270px;
+  }
+}
+@media screen and (min-width: 850px) {
+  .courseTitle,
+  .courseDesc {
+    width: 250px;
+  }
+}
+
+/* .truncate {
+  display: -webkit-box;
+  width: 250px;
+  line-clamp: 2;
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal; 
+} */

@@ -1,0 +1,36 @@
+.footer {
+  background-image: url(@/public/images/bottombg.svg);
+  background-size: cover;
+  background-position: center;
+  padding: 42px 0 34px;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.footer p {
+  margin-bottom: 8px;
+  text-align: center;
+}
+.txt {
+  font-size: 12px;
+  line-height: 18px;
+  width: 295px;
+}
+.footer button {
+  border-radius: 4px;
+  border: 1px solid #dcdee6;
+  background-color: #ffffff;
+  width: 198px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary-orange);
+  font-family: var(--font-noto-sans), sans-serif;
+  font-weight: 600;
+}
+.footer button p {
+  margin-bottom: 0;
+}

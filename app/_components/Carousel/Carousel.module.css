@@ -1,0 +1,67 @@
+.carouselWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 48px;
+}
+.carousel {
+  width: 304px;
+  /* overflow: hidden; */
+  /* display: flex;
+  position: relative; */
+  border-radius: 8px;
+  /* margin-bottom: 42px; */
+  /* gap: 10px; */
+}
+.card {
+  /* width: 100%; */
+  /* display: block; */
+  flex-grow: 0;
+  flex-shrink: 0;
+  /* transition: all 0.4s ease-in-out; */
+  border-radius: 8px;
+  margin: 0 0 20px;
+}
+
+.lecturer {
+  width: 100%;
+  height: 312px;
+}
+.cardInfo {
+  background-color: #ffffff;
+  padding: 22px 16px;
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #e5e7eb;
+  transition: background 0.4s ease-in-out;
+}
+.activeDot {
+  background-color: #1f2937;
+}
+
+@media screen and (min-width: 1000px) {
+  .carouselWrapper {
+    margin-top: 0;
+  }
+  .carousel {
+    width: calc(304px * 2);
+  }
+  .card {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .card {
+    width: unset;
+  }
+}
+
+@media screen and (min-width: 1540px) {
+  .carousel {
+    width: calc(304px * 3);
+  }
+}

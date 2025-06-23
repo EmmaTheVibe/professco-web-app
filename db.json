@@ -1,0 +1,592 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA1 Fundamentals of Business Economics",
+      "courseType": "ICAN",
+      "courseRating": 2.8,
+      "noOfReviews": 1,
+      "courseDesc": "What you'll learn: Microeconomic and Institutional Context of Business lorem loremwkdhcbdhjcbvjhsbscwhcbhbhcbjsxnjssnjsjxnsjxnsjnsj",
+      "courseTags": [{ "tagName": "New", "tagColor": "#FCCF4A" }]
+    },
+    {
+      "id": 2,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA2 Fundamentals of Business Economics",
+      "courseType": "ICAN",
+      "courseRating": 3.5,
+      "noOfReviews": 10,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Special Offer", "tagColor": "#CCC2FF" },
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 3,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA3 Fundamentals of Business Economics",
+      "courseType": "ICAN",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 4,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA4 Fundamentals of Business Economics",
+      "courseType": "ICAN",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 5,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA5 Fundamentals of Business Economics",
+      "courseType": "ICAN",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "Special Offer", "tagColor": "#CCC2FF" }
+      ]
+    },
+    {
+      "id": 6,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA6 Fundamentals of Business Economics",
+      "courseType": "ICAN",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [{ "tagName": "Bestseller", "tagColor": "#9FF9AF" }]
+    },
+    {
+      "id": 7,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA7 Fundamentals of Business Economics",
+      "courseType": "ACCA",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "Special Offer", "tagColor": "#CCC2FF" },
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 8,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA8 Fundamentals of Business Economics",
+      "courseType": "ACCA",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [{ "tagName": "Special Offer", "tagColor": "#CCC2FF" }]
+    },
+    {
+      "id": 9,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "ACCA",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "Special Offer", "tagColor": "#CCC2FF" },
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 10,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "ACCA",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [{ "tagName": "New", "tagColor": "#FCCF4A" }]
+    },
+    {
+      "id": 11,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "ACCA",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "Special Offer", "tagColor": "#CCC2FF" },
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 12,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "ACCA",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 13,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CFA",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [{ "tagName": "New", "tagColor": "#FCCF4A" }]
+    },
+    {
+      "id": 14,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CFA",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [{ "tagName": "Bestseller", "tagColor": "#9FF9AF" }]
+    },
+    {
+      "id": 15,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CFA",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "Special Offer", "tagColor": "#CCC2FF" },
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 16,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CFA",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [{ "tagName": "Special Offer", "tagColor": "#CCC2FF" }]
+    },
+    {
+      "id": 17,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CFA",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "Special Offer", "tagColor": "#CCC2FF" },
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 18,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CFA",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "Special Offer", "tagColor": "#CCC2FF" }
+      ]
+    },
+    {
+      "id": 19,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CIMA",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "Special Offer", "tagColor": "#CCC2FF" },
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 20,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CIMA",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 21,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CIMA",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [{ "tagName": "New", "tagColor": "#FCCF4A" }]
+    },
+    {
+      "id": 22,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CIMA",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "Special Offer", "tagColor": "#CCC2FF" }
+      ]
+    },
+    {
+      "id": 23,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CIMA",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Special Offer", "tagColor": "#CCC2FF" },
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 24,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CIMA",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "Special Offer", "tagColor": "#CCC2FF" },
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 25,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CITN",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 26,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CITN",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Special Offer", "tagColor": "#CCC2FF" },
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 27,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CITN",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "Special Offer", "tagColor": "#CCC2FF" }
+      ]
+    },
+    {
+      "id": 28,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CITN",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 29,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CITN",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [{ "tagName": "Special Offer", "tagColor": "#CCC2FF" }]
+    },
+    {
+      "id": 30,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CITN",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "Special Offer", "tagColor": "#CCC2FF" },
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 31,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CIS",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [{ "tagName": "New", "tagColor": "#FCCF4A" }]
+    },
+    {
+      "id": 32,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CIS",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [{ "tagName": "New", "tagColor": "#FCCF4A" }]
+    },
+    {
+      "id": 33,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CIS",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "Special Offer", "tagColor": "#CCC2FF" }
+      ]
+    },
+    {
+      "id": 34,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CIS",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [{ "tagName": "Bestseller", "tagColor": "#9FF9AF" }]
+    },
+    {
+      "id": 35,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CIS",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 36,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CIS",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 37,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "ATS",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [{ "tagName": "Bestseller", "tagColor": "#9FF9AF" }]
+    },
+    {
+      "id": 38,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "ATS",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Special Offer", "tagColor": "#CCC2FF" },
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 39,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "ATS",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 40,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "ATS",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [{ "tagName": "Special Offer", "tagColor": "#CCC2FF" }]
+    },
+    {
+      "id": 41,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "ATS",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "Special Offer", "tagColor": "#CCC2FF" }
+      ]
+    },
+    {
+      "id": 42,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "ATS",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "Special Offer", "tagColor": "#CCC2FF" }
+      ]
+    },
+    {
+      "id": 43,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CIPM",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "Special Offer", "tagColor": "#CCC2FF" },
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 44,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CIPM",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [{ "tagName": "Bestseller", "tagColor": "#9FF9AF" }]
+    },
+    {
+      "id": 45,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CIPM",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Special Offer", "tagColor": "#CCC2FF" },
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    },
+    {
+      "id": 46,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CIPM",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "Special Offer", "tagColor": "#CCC2FF" }
+      ]
+    },
+    {
+      "id": 47,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CIPM",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [{ "tagName": "New", "tagColor": "#FCCF4A" }]
+    },
+    {
+      "id": 48,
+      "courseThumbnail": "/images/courseThumbnail.png",
+      "courseTitle": "BA9 Fundamentals of Business Economics",
+      "courseType": "CIPM",
+      "courseRating": 4.8,
+      "noOfReviews": 150,
+      "courseDesc": "What you'll learn: Macroeconomic and Institutional Context of Business...",
+      "courseTags": [
+        { "tagName": "Bestseller", "tagColor": "#9FF9AF" },
+        { "tagName": "New", "tagColor": "#FCCF4A" }
+      ]
+    }
+  ]
+}

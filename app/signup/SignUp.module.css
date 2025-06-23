@@ -1,0 +1,66 @@
+.signup {
+  min-height: 100vh;
+  background-color: #fcfcfc;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.main {
+  padding: 136px 0 0;
+  margin-bottom: 96px;
+}
+
+.frame {
+  margin-top: 26px;
+}
+.signup h1 {
+  margin: 16px 0;
+  font-size: 30px;
+  line-height: 38px;
+}
+
+.boxB {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (min-width: 850px) {
+  .frame {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    margin-top: 40px;
+  }
+
+  .signup h1 {
+    font-size: 36px;
+    line-height: 44px;
+    width: 317px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .frame {
+    align-items: center;
+  }
+  .desc {
+    width: 280px;
+  }
+  .grad {
+    width: 300px;
+    height: 200px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .signup h1 {
+    width: 340px;
+  }
+
+  .grad {
+    width: 480px;
+    height: 342.86px;
+  }
+}

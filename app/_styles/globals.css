@@ -1,0 +1,318 @@
+@font-face {
+  font-family: "AvertaLight";
+  src: url("/fonts/Averta/AvertaStd-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "AvertaRegular";
+  src: url("/fonts/Averta/AvertaStd-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "AvertaSemibold";
+  src: url("/fonts/Averta/AvertaStd-Semibold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "AvertaBold";
+  src: url("/fonts/Averta/AvertaStd-Bold.ttf") format("truetype");
+}
+
+:root {
+  --primary-white-50: #ffffff;
+  --primary-white-100: #fcfcfc;
+
+  --primary-orange: #e65539;
+
+  --primary-peach: #e6553914;
+
+  --primary-black-50: #000000;
+
+  --border-color: #d0d5dd;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--primary-white-100);
+  font-family: "AvertaRegular", sans-serif;
+  color: #1f2937;
+}
+.lightFont {
+  font-family: "AvertaLight", sans-serif;
+}
+.semiboldFont {
+  font-family: "AvertaSemibold", sans-serif;
+}
+.boldFont {
+  font-family: "AvertaBold", sans-serif;
+}
+
+main,
+section,
+nav {
+  width: 100%;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0px;
+  border-bottom: 1px solid #e3e7ef;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  background-color: var(--primary-white-50);
+}
+section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.container {
+  width: 320px;
+  /* border: 1px solid red; */
+}
+
+p {
+  font-size: 16px;
+  line-height: 24px;
+}
+a {
+  text-decoration: none;
+}
+input,
+textarea {
+  background: none;
+  border: none;
+  font-family: "Averta", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+}
+input:focus {
+  border: none;
+  outline: none;
+}
+input:-webkit-autofill {
+  background-color: var(--primary-white-50) !important;
+  color: #0f172a !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+input[type="checkbox"] {
+  appearance: none;
+  border-radius: 6px;
+  border: 1.5px solid var(--border-color);
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+}
+
+input[type="checkbox"]:checked {
+  background: var(--primary-white-50);
+  border-color: var(--primary-orange);
+}
+
+input[type="checkbox"]::before {
+  content: "✔";
+  font-size: 12px;
+  color: var(--primary-orange);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+input[type="checkbox"]:checked::before {
+  display: block;
+}
+
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* 3. Create a custom radio button appearance using a pseudo-element */
+input[type="radio"]::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--border-color);
+  border-radius: 50%;
+  background-color: var(--primary-white-50);
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+}
+
+input[type="radio"]:checked::before {
+  border-color: var(--primary-orange);
+  background-color: var(--primary-white-50);
+}
+
+input[type="radio"]:checked::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px; /* Size of the inner dot */
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--primary-orange);
+  transform: translate(-50%, -50%);
+  transition: all 0.2s ease-in-out;
+}
+
+input[type="radio"]:focus-visible::before {
+  outline: 2px solid var(--primary-orange);
+  outline-offset: 2px;
+}
+
+textarea:focus {
+  border: none;
+  outline: none;
+}
+textarea:-webkit-autofill {
+  background-color: #fff !important;
+  color: #0f172a !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+select:focus {
+  border: none;
+  outline: none;
+  font-family: "Averta", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+button {
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  font-family: var(--font-noto);
+  font-weight: 600;
+  width: 100%;
+  height: 48px;
+  cursor: pointer;
+}
+
+.filled {
+  background-color: var(--primary-orange);
+  color: var(--primary-white-50);
+  border: none;
+}
+
+.outlined {
+  background: none;
+  border: 1.6px solid var(--primary-orange);
+  color: var(--primary-orange);
+}
+
+.bare {
+  background: none;
+  border: none;
+  color: var(--primary-orange);
+}
+
+.btn-dark {
+  background-color: var(--primary-black-50);
+  border: none;
+  color: var(--primary-white-50);
+}
+
+.slick-slide > div {
+  margin: 0 10px;
+}
+.slick-dots {
+  position: relative !important;
+  bottom: unset !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center;
+}
+.slick-dots li {
+  margin: 0px !important;
+}
+.slick-dots li button::before {
+  transition: opacity 0.3s ease;
+}
+
+.slick-dots li.slick-active button::before {
+  transform: scale(1);
+}
+
+@media screen and (min-width: 400px) {
+  .container {
+    width: 340px;
+    /* border: 1px solid red; */
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .container {
+    width: 480px;
+    /* border: 1px solid red; */
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .container {
+    width: 590px;
+    /* border: 1px solid red; */
+  }
+}
+
+@media screen and (min-width: 850px) {
+  .container {
+    width: 848px;
+    /* border: 1px solid red; */
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .container {
+    width: 980px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .container {
+    width: 1180px;
+  }
+  button {
+    height: 56px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .container {
+    width: 1380px;
+  }
+}
+
+@media screen and (min-width: 1540px) {
+  .container {
+    width: 1519px;
+  }
+}

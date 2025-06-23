@@ -1,0 +1,76 @@
+.nav {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #d1d5db;
+}
+
+.courseNav {
+  display: flex;
+  /* justify-content: center;
+    align-items: center; */
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+}
+.courseNav::-webkit-scrollbar {
+  display: none;
+}
+
+.tabs {
+  /* height: 56px; */
+  padding: 16px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+}
+
+.tabItem {
+  margin: 0 10px;
+  padding: 0 10px;
+  /* margin: 0 5px;
+  padding: 0 5px; */
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease;
+  color: #9ca3af;
+  font-weight: 600;
+  text-align: center;
+  flex-shrink: 1;
+  white-space: nowrap;
+}
+
+.tabItem p {
+  width: fit-content;
+}
+.firstTabItem {
+  margin: 0 10px 0 0;
+  /* margin: 0 5px 0 0; */
+  /* padding: 0 10px 0 0; */
+}
+.activeTabItem {
+  color: #1f2937;
+}
+
+.slider {
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+  background-color: var(--primary-orange);
+  transition: all 0.3s ease;
+}
+
+@media screen and (min-width: 850px) {
+  /* .courseNav {
+    justify-content: center;
+  } */
+}
+
+@media screen and (min-width: 1000px) {
+  .courseNav {
+    justify-content: flex-start;
+  }
+}

@@ -1,0 +1,86 @@
+.notifs {
+  position: relative;
+  width: fit-content;
+}
+.chip {
+  position: absolute;
+  right: -7px;
+  top: -5.9px;
+  z-index: -1;
+}
+.notif {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 141.65px;
+  height: 26.96px;
+  border-radius: 3.84px;
+  margin-bottom: 3.2px;
+  padding: 10px;
+}
+.push {
+  transform: translateX(32px);
+  box-shadow: 30px 2px 30px 1px rgba(29, 32, 37, 0.1);
+}
+.third {
+  box-shadow: 17px 9px 30px 1px rgba(29, 32, 37, 0.2);
+}
+.name {
+  font-size: 5.38px;
+  line-height: 6.3px;
+}
+.date {
+  font-size: 4.61px;
+  line-height: 5.4px;
+}
+.circle {
+  width: 11.52px;
+  height: 11.52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 3px;
+}
+.circle img {
+  width: 10px;
+  height: 4.27px;
+  transform: translateX(-0.3px);
+}
+
+@media screen and (min-width: 1200px) {
+  .notif {
+    width: 289px;
+    height: 48px;
+    border-radius: 8.41px;
+    margin-bottom: 7px;
+  }
+  .chip {
+    width: 26px;
+    height: 26px;
+    right: -14px;
+    top: -11px;
+  }
+  .circle {
+    height: 25.22px;
+    width: 25.22px;
+    margin-right: 11.77px;
+  }
+  .circle img {
+    width: 11.35px;
+    height: 7.15px;
+  }
+  .name {
+    font-size: 11.77px;
+    line-height: 13.79px;
+    margin-bottom: 1.81px;
+  }
+  .date {
+    font-size: 10.09px;
+    line-height: 11.82px;
+  }
+  .avatar {
+    width: 20.18px;
+    height: 20.18px;
+  }
+}

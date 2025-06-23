@@ -1,0 +1,147 @@
+/* components/Skeleton/Skeleton.module.css */
+
+/* Keyframe animation for the shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+/* Base style for the entire skeleton card, matching .courseCard */
+.skeletonCard {
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 8px;
+  overflow: hidden;
+  /* background-color: #f5f5f5; */
+}
+
+/* Common shimmer background for all inner skeleton elements */
+.skeletonCard {
+  /* background: linear-gradient(to right, #f0f0f0 8%, #ffffff 18%, #f0f0f0 33%); */
+  background-size: 800px 104px;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px; /* General rounded corners for placeholders */
+}
+
+/* Mimicking .preview */
+.skeletonPreview {
+  width: 100%;
+}
+
+/* Mimicking .thumbnail (image placeholder) */
+.skeletonThumbnail {
+  width: 100%;
+  padding-bottom: 56.25%;
+}
+
+.skeletonCourseTitle,
+.skeletonThumbnail,
+.skeletonCourseType,
+.skeletonCoursePrice,
+.skeletonRating,
+.skeletonCourseDesc,
+.skeletonTag,
+.skeletonButton {
+  background: linear-gradient(to right, #f0f0f0 8%, #fcfcfc 18%, #f0f0f0 33%);
+  background-size: 800px 104px;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 8px;
+}
+
+/* Mimicking .courseInfo */
+.skeletonCourseInfo {
+  padding: 14px; /* Matches .courseInfo padding */
+  display: flex;
+  flex-direction: column;
+}
+
+.skeletonCourseTitle {
+  height: 57px;
+  width: 100%;
+  margin-bottom: 6px;
+  background-color: #e0e0e0;
+  animation-delay: 0.3s;
+}
+
+/* Mimicking .line */
+.skeletonLine {
+  width: 100%;
+  display: flex;
+  margin-bottom: 8px; /* Matches .line margin-bottom */
+  justify-content: space-between;
+}
+
+/* Mimicking .courseType */
+.skeletonCourseType,
+.skeletonCoursePrice {
+  width: 69px; /* Matches .courseType width */
+  height: 28px; /* Matches .courseType height */
+  animation-delay: 0.5s;
+}
+
+.skeletonRating {
+  margin-bottom: 16px; /* Matches .rating margin-bottom */
+  width: 60%;
+  height: 14px;
+  animation-delay: 0.7s;
+}
+
+/* Placeholder for blackstar image */
+.skeletonStar {
+  width: 13.28px; /* Matches .blackstar width */
+  height: 12.54px; /* Matches .blackstar height */
+  background-color: #e0e0e0;
+  border-radius: 2px; /* Small rounded corners for star placeholder */
+}
+
+/* Placeholder for rating text (e.g., "4.5 (100 reviews)") */
+.skeletonReviewText {
+  width: 120px; /* Approx width for rating text */
+  height: 14px; /* Matches font-size 14px */
+  background-color: #e0e0e0;
+}
+
+/* Mimicking .courseDesc */
+.skeletonCourseDesc {
+  height: 40px; /* Matches height of 2 lines from .courseDesc */
+  width: 100%; /* Matches width of .courseDesc */
+  animation-delay: 0.3s;
+}
+
+/* Mimicking .tags */
+.skeletonTags {
+  display: flex;
+  margin: 14px 0 16px; /* Matches .tags margin */
+  gap: 4px; /* Mimics margin-right on individual .tag */
+}
+
+/* Mimicking individual .tag */
+.skeletonTag {
+  border-radius: 2px; /* Matches .tag border-radius */
+  padding: 4px 8px; /* Matches .tag padding */
+  width: 60px; /* Example width for a tag */
+  height: 26px; /* Example height for a tag */
+  animation-delay: 0.5s;
+}
+
+/* Mimicking .btn (Purchase Course button) */
+.skeletonButton {
+  width: 100%; /* Matches .btn width */
+  height: 40px; /* Matches .btn height */
+  margin-top: 0; /* No margin-top if the button is the last element in courseInfo */
+  animation-delay: 1s;
+}
+
+/* Generic text line placeholders for various heights/widths if needed, but above are more specific */
+.skeletonTextLineLong,
+.skeletonTextLineMedium,
+.skeletonTextLineShort,
+.skeletonTextLineMicro {
+  /* Common styles for all text line placeholders, shimmer is applied by parent .skeletonCard > div div */
+  border-radius: 4px; /* Slightly rounded ends for text lines */
+}

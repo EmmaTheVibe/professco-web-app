@@ -1,0 +1,21 @@
+.heading {
+  margin-bottom: 30px;
+  color: var(--primary-orange);
+}
+.option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.option label {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
+.option input {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}

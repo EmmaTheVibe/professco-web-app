@@ -1,0 +1,39 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(0);
+  opacity: 0;
+  background: rgba(233, 234, 242, 0.8);
+  backdrop-filter: blur(8px);
+  transition: opacity 100ms linear, transform 0ms linear 100ms;
+}
+
+.active {
+  transform: scale(1);
+  opacity: 1;
+}
+
+@media screen and (min-width: 1000px) {
+  .overlay {
+    position: relative;
+    /* position: sticky;
+    top: 84px;
+    z-index: 8; */
+    width: fit-content;
+    height: fit-content;
+    transform: scale(1);
+    opacity: 1;
+    background: unset;
+    backdrop-filter: unset;
+    opacity: 1;
+    z-index: unset;
+    border: 1px solid red;
+  }
+}

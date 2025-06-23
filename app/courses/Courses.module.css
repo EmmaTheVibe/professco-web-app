@@ -1,0 +1,13 @@
+.courses {
+  padding-top: 98px;
+}
+.seg {
+  margin-bottom: 50px;
+}
+
+@media screen and (min-width: 1000px) {
+  .seg {
+    margin: 0;
+    border-bottom: 1px solid #cbd5e1;
+  }
+}

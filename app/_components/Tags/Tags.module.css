@@ -1,0 +1,64 @@
+.tagbox {
+  margin-bottom: 12px;
+  display: flex;
+  gap: 8px;
+  width: 320px;
+  font-family: var(--font-noto-sans), sans-serif;
+  font-weight: 500;
+}
+.tagbox p {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.25px;
+}
+.tagline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.txt {
+  padding-top: 6px;
+}
+.tag {
+  padding: 6px 12px;
+  border: 1px solid #dcdee6;
+  border-radius: 40px;
+  color: #6b6f80;
+  cursor: pointer;
+}
+.activeTag {
+  background-color: #f5f8ff;
+  border: none;
+  color: #2960ec;
+}
+
+@media screen and (min-width: 400px) {
+  .tagbox {
+    width: 340px;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .tagbox {
+    width: 480px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .tagbox {
+    width: 590px;
+  }
+}
+
+@media screen and (min-width: 850px) {
+  .tagbox {
+    width: unset;
+  }
+}
+
+/* @media screen and (min-width: 1000px) {
+  .tagbox {
+    width: 100%;
+  }
+} */

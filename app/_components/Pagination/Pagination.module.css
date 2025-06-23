@@ -1,0 +1,14 @@
+.txt {
+  margin: 15px 0 4px 0;
+  font-size: 14px;
+}
+.btnPack {
+  display: flex;
+}
+.pagination button {
+  background: none;
+  border: none;
+  height: unset;
+  width: unset;
+  margin-right: 10px;
+}

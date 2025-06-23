@@ -1,0 +1,189 @@
+.seg {
+  background-color: rgba(53, 153, 68, 0.1);
+  padding-top: 120px;
+}
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.line {
+  display: flex;
+  align-items: center;
+}
+.line p {
+  font-size: 14px;
+  line-height: 0px;
+}
+
+.banner {
+  width: 100%;
+  height: 216px;
+}
+.title {
+  font-size: 30px;
+  line-height: 38px;
+  margin: 20px 0;
+}
+.desc {
+  width: 295px;
+}
+.pricePack {
+  margin: 20px 0 26px;
+}
+.price p {
+  font-size: 24px;
+  line-height: 33.6px;
+  margin-bottom: 10px;
+}
+.btn {
+  width: 201px;
+  margin-bottom: 65px;
+}
+
+.segC {
+  padding: 96px 0;
+  margin: 0 0 96px;
+  border-top: 1px solid #d1d5db;
+  border-bottom: 1px solid #d1d5db;
+}
+.segC h1 {
+  font-size: 30px;
+  line-height: 38px;
+  margin-bottom: 14px;
+}
+.relatedInfo {
+  font-size: 18px;
+  line-height: 28px;
+  width: 317px;
+}
+.bottom {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (min-width: 600px) {
+  .banner {
+    height: 350px;
+  }
+  .top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 850px) {
+  .seg {
+    padding-top: 70px;
+  }
+  .wrapper {
+    flex-direction: row;
+    align-items: center;
+  }
+  .btn {
+    margin-bottom: 0;
+  }
+  .banner {
+    width: 450px;
+    height: 400px;
+    margin-left: 10px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .seg {
+    padding-top: 83.67px;
+  }
+  .wrapper {
+    flex-direction: row;
+    align-items: center;
+  }
+  .btn {
+    margin-bottom: 0;
+  }
+  .banner {
+    width: 550px;
+    height: 465px;
+    margin-left: 10px;
+  }
+
+  .segC {
+    padding: 0;
+    margin: 0;
+  }
+  .segCWrapper {
+    display: flex;
+  }
+  .top {
+    width: 30%;
+    padding-top: 74px;
+    padding-right: 16px;
+    text-align: left;
+    align-items: flex-start;
+  }
+  .relatedInfo {
+    width: 260px;
+  }
+  .bottom {
+    width: 70%;
+    border-left: 1px solid #cbd5e1;
+    padding: 64px 0 56px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .title {
+    font-size: 36px;
+    line-height: 44px;
+  }
+  .desc {
+    font-size: 18px;
+    line-height: 28px;
+    width: 317px;
+  }
+  .pricePack {
+    display: flex;
+    align-items: center;
+  }
+  .price {
+    padding-right: 16px;
+    margin-right: 16px;
+    border-right: 1px solid #1f2937;
+  }
+  .price p {
+    font-size: 24px;
+    line-height: 33.6px;
+    margin: 0;
+  }
+  .banner {
+    width: 658px;
+    height: 484px;
+    margin-left: 20px;
+  }
+
+  .top {
+    width: 35%;
+  }
+  .relatedInfo {
+    width: 317px;
+  }
+  .bottom {
+    width: 65%;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .title {
+    width: 476px;
+  }
+  .top {
+    width: 30%;
+  }
+  .bottom {
+    width: 70%;
+  }
+}
