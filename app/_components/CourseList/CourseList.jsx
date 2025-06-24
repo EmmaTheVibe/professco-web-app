@@ -61,7 +61,6 @@ export default function CourseList({ showAll, courses, loading, count }) {
         )
       : filteredCourses;
 
-  // --- Existing: useEffect for handling clicks outside the sidebar ---
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (

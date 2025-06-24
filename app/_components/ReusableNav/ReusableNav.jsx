@@ -45,7 +45,6 @@ export default function ReusableNav({
     };
   }, [activeTab, tabs]);
 
-  // Initialize active tab from URL on mount
   useEffect(() => {
     if (type === "param" && searchParams.has(paramName)) {
       const urlTab = searchParams.get(paramName);
@@ -56,7 +55,7 @@ export default function ReusableNav({
         setActiveTab(matchingTab);
       }
     } else if (type === "hash" && typeof window !== "undefined") {
-      const hash = window.location.hash.slice(1); // Remove #
+      const hash = window.location.hash.slice(1);
       if (hash) {
         const displayFormat = hash
           .split("-")

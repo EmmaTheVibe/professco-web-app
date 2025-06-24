@@ -15,10 +15,9 @@ function buildQueryParams(params) {
 }
 
 export async function fetchData(endpoint = "", params = {}) {
-  const baseUrl = "https://professco.ng/api";
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   let url = endpoint ? `${baseUrl}/${endpoint}` : baseUrl;
 
-  // If there are parameters, append them to the URL
   const queryString = buildQueryParams(params);
   if (queryString) {
     url += `?${queryString}`;
@@ -51,7 +50,7 @@ export async function fetchData(endpoint = "", params = {}) {
 export async function getSortedCourses({
   examValue = "all",
   page = 1,
-  limit = 12, // Accept limit, default to 12 if not provided
+  limit = 12,
   minAmount = null,
   maxAmount = null,
   minRating = null,
@@ -62,15 +61,13 @@ export async function getSortedCourses({
   try {
     const queryParams = {
       page: page,
-      limit: limit, // Corrected: Use 'limit' for the 'per_page' query param
+      limit: limit,
     };
 
-    // Add exam_bodies if examValue is not "all"
     if (examValue.toLowerCase() !== "all") {
       queryParams.exam_bodies = examValue.toUpperCase();
     }
 
-    // Add Price Filters (Backend-driven when applicable)
     if (minAmount !== null) {
       queryParams.min_amount = minAmount;
     }
@@ -78,18 +75,14 @@ export async function getSortedCourses({
       queryParams.max_amount = maxAmount;
     }
 
-    // Add Rating Filter (Backend-driven)
     if (minRating !== null) {
       queryParams.min_rating = minRating;
     }
 
-    // Add Sort Parameters (Backend-driven)
     queryParams.sort_by = sortBy || "amount";
     queryParams.sort_order = sortOrder || "desc";
 
-    // NEW: Add Tag Filter
     if (tag !== null) {
-      // Only add if tag is not null (i.e., not "all")
       queryParams.tags = tag;
     }
 
@@ -130,52 +123,27 @@ export async function getAllCourses() {
 
 export async function getCourseById(id) {
   try {
-    // Use the fetchData utility for consistency and base URL handling
-    // The endpoint will be 'course/:id' as per your API
     const data = await fetchData(`course/${id}`);
-
-    // Your API directly returns the course object for this endpoint,
-    // unlike the paginated list which had a 'data' array.
-    // So, we can return 'data' directly here.
-
-    // If your API returns a wrapper like { course: { ... } } or { data: { ... } }
-    // you might need to adjust this return statement.
-    // However, for a single resource endpoint, it's common to return the resource directly.
 
     return data;
   } catch (error) {
-    // If fetchData throws an error for 404, it will be caught here.
-    // You can choose to re-throw it, or handle it specifically (e.g., return null for 404).
     console.error(`Failed to fetch course with ID ${id}:`, error);
 
-    // If you want to explicitly return null for a 404, you could modify fetchData
-    // to include the status code in its error, or check the error message.
-    // For now, re-throwing the error is standard for React Query use.
     throw error;
   }
 }
 
 export async function getCoursesByType(courseType, page = 1) {
-  // Added 'page' parameter for pagination
   try {
-    // The 'slug' directly comes from courseType
-    // Ensure courseType is in the correct case for the slug (e.g., 'ICAN' vs 'ican')
-    // Based on previous discussions, it seems your API expects uppercase for exam_bodies.
     const slug = courseType.toUpperCase();
 
-    // Construct the query parameters.
-    // If this endpoint returns a paginated response, we should include 'page' and 'per_page'.
-    // If it doesn't support pagination, you can remove queryParams.
     const queryParams = {
       page: page,
-      per_page: PAGE_SIZE, // Use PAGE_SIZE for the API's 'per_page' parameter
+      per_page: PAGE_SIZE,
     };
 
-    // Use the fetchData utility with the dynamic slug in the path
     const data = await fetchData(`exam_body/${slug}/courses`, queryParams);
 
-    // Assuming this endpoint also returns paginated data in the same format
-    // as /api/course (i.e., { data: [...courses], total: count })
     const courses = data.data || [];
     const count = data.total || 0;
 
@@ -185,7 +153,7 @@ export async function getCoursesByType(courseType, page = 1) {
     };
   } catch (error) {
     console.error(`Failed to fetch courses of type ${courseType}:`, error);
-    throw error; // Re-throw the error
+    throw error;
   }
 }
 

@@ -13,8 +13,6 @@ export default function RelatedCourses({ courseId, courseType }) {
   const { relatedCourses, isLoading, relatedCoursesCount, error } =
     useRelatedCourses(courseType);
 
-  // Filter out the current course (matching courseId) from the relatedCourses.data
-  // Ensure relatedCourses.data exists before attempting to filter
   const courses = relatedCourses.data
     ? relatedCourses.data.filter((course) => course.id !== Number(courseId))
     : [];

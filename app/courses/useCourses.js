@@ -25,16 +25,11 @@ const validPrices = ["free", "paid"];
 
 const validRatings = [0, 1, 2, 3, 4];
 
-const validBackendTags = [
-  "all", // 'all' means no tag filter to backend
-  "special-offer", // CORRECTED: hyphen
-  "new",
-  "best-seller", // CORRECTED: hyphen
-];
+const validBackendTags = ["all", "special-offer", "new", "best-seller"];
 
 const formatTagForBackend = (tagInput) => {
   if (!tagInput || tagInput.toLowerCase() === "all") return null;
-  // CORRECTED: Replace spaces with hyphens. Assumes backend takes hyphenated format.
+
   return tagInput.toLowerCase().replace(/\s+/g, "-");
 };
 
@@ -82,21 +77,15 @@ export default function useCourses() {
   const rawLevels = searchParams.getAll("level").map((l) => l.toLowerCase());
   const levelValues = rawLevels.filter((l) => validLevels.includes(l));
 
-  // NEW: TAG FILTER
-  const rawTagFromUrl = searchParams.get("tags"); // Get the raw value from URL (e.g., "best-seller")
-
-  // Convert the URL tag to the internal backend format (e.g., "best-seller" -> "best-seller")
+  // TAG FILTER
+  const rawTagFromUrl = searchParams.get("tags");
   const formattedTagForInternalUse = formatTagForBackend(rawTagFromUrl);
-
-  // Validate this formatted tag against validBackendTags.
-  // If it's not a valid backend tag, default to "all" internally.
   const tagValue = validBackendTags.includes(
     formattedTagForInternalUse || "all"
   )
-    ? formattedTagForInternalUse // Use the formatted tag if it's valid
-    : "all"; // Otherwise, default to "all" (which translates to null for backend)
+    ? formattedTagForInternalUse
+    : "all";
 
-  // This is the actual value sent to the backend ('special-offer', 'new', 'best-seller' or null for 'all')
   const backendTagParam = tagValue === "all" ? null : tagValue;
 
   // SORTING
@@ -121,7 +110,7 @@ export default function useCourses() {
       levelValues.sort().join(","),
       sortBy,
       sortOrder,
-      tagValue, // NEW: Added tagValue to queryKey
+      tagValue,
     ],
     queryFn: () =>
       getSortedCourses({
@@ -133,7 +122,7 @@ export default function useCourses() {
         minRating,
         sortBy: sortBy,
         sortOrder: sortOrder,
-        tag: backendTagParam, // NEW: Pass the backend-formatted tag
+        tag: backendTagParam,
       }),
   });
 

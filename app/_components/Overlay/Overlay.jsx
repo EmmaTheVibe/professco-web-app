@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import styles from "./Overlay.module.css"; // Import the CSS module
+import styles from "./Overlay.module.css";
 import { useMediaQuery } from "@mui/material";
 
 export default function Overlay({

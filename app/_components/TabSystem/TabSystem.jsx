@@ -11,9 +11,8 @@ import useContexts from "@/app/_utils/useContexts";
 
 export default function TabSystem() {
   const contexts = useContexts();
-  const activeTab = contexts.activeCourseTab; // Assuming activeTabKey is 'activeTab'
+  const activeTab = contexts.activeCourseTab;
 
-  // Function to render the correct component based on activeTab
   const renderTabContent = () => {
     switch (activeTab?.toLowerCase()) {
       case "about":
@@ -27,7 +26,6 @@ export default function TabSystem() {
       case "reviews":
         return <ReviewsTab />;
       default:
-        // Default to "About" tab if no hash or an invalid hash is present
         return <AboutTab />;
     }
   };

@@ -9,7 +9,7 @@ export default function SortBy({ options }) {
   function handleSort(value) {
     const params = new URLSearchParams(searchParams.toString());
     params.set("sortBy", value);
-    params.set("page", 1); // Optional: reset pagination on sort
+    params.set("page", 1);
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   }
 

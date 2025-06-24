@@ -1,14 +1,8 @@
-// components/Skeleton/Skeleton.jsx
 "use client";
 
 import React from "react";
-import styles from "./Skeleton.module.css"; // Import the CSS module
+import styles from "./Skeleton.module.css";
 
-/**
- * Skeleton Component
- * Displays a placeholder loading state that mimics the structure and dimensions
- * of a CourseCard for a seamless loading experience.
- */
 export default function Skeleton() {
   return (
     <div className={styles.skeletonCard}>
