@@ -182,10 +182,6 @@
   .top {
     width: 30%;
     padding-right: 16px;
-    position: sticky;
-    top: 84px;
-    background-color: var(--primary-white-100);
-    z-index: 9;
   }
   .wrapper {
     width: unset;

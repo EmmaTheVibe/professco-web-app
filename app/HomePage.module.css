@@ -506,10 +506,10 @@
   }
   .reviewHero {
     align-items: flex-start;
-    position: sticky;
+    /* position: sticky;
     top: 130px;
-    background: #fff;
-    z-index: 10;
+    background: var(--primary-white-100);
+    z-index: 10; */
   }
 
   .segDFrame h1,
