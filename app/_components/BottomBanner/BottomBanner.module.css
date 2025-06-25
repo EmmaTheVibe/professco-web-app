@@ -1,5 +1,5 @@
 .footer {
-  background-image: url(@/public/images/bottombg.svg);
+  background-image: url(/images/bottombg.svg);
   background-size: cover;
   background-position: center;
   padding: 42px 0 34px;
