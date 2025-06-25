@@ -21,14 +21,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${notoSans.variable}`}>
-        <Providers>
-          <ContextProvider>
-            <Suspense fallback={null}>
+        <Suspense fallback={null}>
+          <Providers>
+            <ContextProvider>
               <HomeNav />
-            </Suspense>
-            {children}
-          </ContextProvider>
-        </Providers>
+              {children}
+            </ContextProvider>
+          </Providers>
+        </Suspense>
       </body>
     </html>
   );
