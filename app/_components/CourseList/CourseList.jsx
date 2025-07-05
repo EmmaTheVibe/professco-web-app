@@ -103,13 +103,9 @@ export default function CourseList({
           >
             <div className={styles.wrapper}>
               <p>Courses</p>
-              {isFetching ? (
-                <div className={styles.headingPlaceholder}></div> // Placeholder for the heading
-              ) : (
-                <h1 className={styles.heading}>
-                  {activeTab} courses from the very best
-                </h1>
-              )}
+              <h1 className={styles.heading}>
+                {activeTab} courses from the very best
+              </h1>
               <p className={`lightFont ${styles.moreInfo}`}>
                 Learn from vetted and certified chartered professionals with
                 proven track records
