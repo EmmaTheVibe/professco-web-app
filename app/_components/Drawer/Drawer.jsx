@@ -57,12 +57,12 @@ export default function Drawer({ openDrawer, setOpenDrawer }) {
               </div>
             </div>
             <div className={styles.btnPack}>
-              <Link href="/signup">
+              <Link href="/signup" onClick={() => setOpenDrawer(false)}>
                 <button className="filled">
                   <p>Sign up</p>
                 </button>
               </Link>
-              <Link href="/login">
+              <Link href="/login" onClick={() => setOpenDrawer(false)}>
                 <button className="outlined">
                   <p>Login</p>
                 </button>
