@@ -38,7 +38,10 @@ export default function useCourses() {
   const queryClient = useQueryClient();
 
   const rawExam = searchParams?.get("exam")?.toLowerCase();
-  const examValue = validExams.includes(rawExam || "") ? rawExam : activeTab;
+  const examValue =
+    activeTab === "all" && rawExam && validExams.includes(rawExam)
+      ? rawExam // Use URL param only if activeTab is default 'all' and URL has a valid exam
+      : activeTab;
 
   const rawPrices = searchParams.getAll("price").map((p) => p.toLowerCase());
   const priceValues = rawPrices.filter((p) => validPrices.includes(p));
