@@ -13,7 +13,13 @@ import Filter from "../Filter/Filter";
 import Overlay from "../Overlay/Overlay";
 import Skeleton from "../Skeleton/Skeleton";
 
-export default function CourseList({ showAll, courses, loading, count }) {
+export default function CourseList({
+  showAll,
+  courses,
+  loading,
+  count,
+  isFetching,
+}) {
   const { activeTab } = useContexts();
   const [query, setQuery] = useState("");
 
@@ -185,7 +191,7 @@ export default function CourseList({ showAll, courses, loading, count }) {
             </Overlay>
 
             <div className={styles.gridWrapperB}>
-              {loading ? (
+              {isFetching ? (
                 <div className={styles.courseGridB}>
                   {Array.from({ length: 6 }).map((_, index) => (
                     <Skeleton key={index} />

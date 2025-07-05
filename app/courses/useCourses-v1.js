@@ -1,10 +1,10 @@
-// app/hooks/useCourses.js
 "use client";
 
 import { getSortedCourses } from "@/app/_lib/data-service";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import useContexts from "@/app/_utils/useContexts";
+
 import PAGE_SIZE from "@/app/_utils/constants";
 
 const validExams = [
@@ -29,6 +29,7 @@ const validBackendTags = ["all", "special-offer", "new", "best-seller"];
 
 const formatTagForBackend = (tagInput) => {
   if (!tagInput || tagInput.toLowerCase() === "all") return null;
+
   return tagInput.toLowerCase().replace(/\s+/g, "-");
 };
 
@@ -37,9 +38,11 @@ export default function useCourses() {
   const { activeTab } = useContexts();
   const queryClient = useQueryClient();
 
+  // EXAM FILTER
   const rawExam = searchParams?.get("exam")?.toLowerCase();
   const examValue = validExams.includes(rawExam || "") ? rawExam : activeTab;
 
+  // PRICE FILTER
   const rawPrices = searchParams.getAll("price").map((p) => p.toLowerCase());
   const priceValues = rawPrices.filter((p) => validPrices.includes(p));
 
@@ -62,6 +65,7 @@ export default function useCourses() {
     applyPriceFilterFrontend = true;
   }
 
+  // RATING FILTER
   const rawRating = searchParams.get("rating");
   const minRating =
     Number.isFinite(Number(rawRating)) &&
@@ -69,9 +73,22 @@ export default function useCourses() {
       ? Number(rawRating)
       : null;
 
+  // LEVEL FILTER
   const rawLevels = searchParams.getAll("level").map((l) => l.toLowerCase());
   const levelValues = rawLevels.filter((l) => validLevels.includes(l));
 
+  // TAG FILTER
+  const rawTagFromUrl = searchParams.get("tags");
+  const formattedTagForInternalUse = formatTagForBackend(rawTagFromUrl);
+  const tagValue = validBackendTags.includes(
+    formattedTagForInternalUse || "all"
+  )
+    ? formattedTagForInternalUse
+    : "all";
+
+  const backendTagParam = tagValue === "all" ? null : tagValue;
+
+  // SORTING
   const sortBy = searchParams.get("sort_by") || null;
   const sortOrder = searchParams.get("sort_order") || (sortBy ? "desc" : null);
 
@@ -80,17 +97,7 @@ export default function useCourses() {
     ? 12
     : Number(searchParams.get("limit"));
 
-  const rawTagFromUrl = searchParams.get("tags");
-  const formattedTagForInternalUse = formatTagForBackend(rawTagFromUrl);
-  const tagValue = validBackendTags.includes(
-    formattedTagForInternalUse || "all"
-  )
-    ? formattedTagForInternalUse
-    : "all";
-  const backendTagParam = tagValue === "all" ? null : tagValue;
-
-  // NEW: Destructure isFetching from useQuery
-  const { isLoading, isFetching, data, error } = useQuery({
+  const { isLoading, data, error } = useQuery({
     queryKey: [
       "courses",
       examValue,
@@ -131,16 +138,17 @@ export default function useCourses() {
     });
   }
 
-  if (levelValues.length > 0) {
-    courses = courses.filter(
-      (course) =>
-        course.level && levelValues.includes(String(course.level).toLowerCase())
-    );
-  }
+  // if (levelValues.length > 0) {
+  //   courses = courses.filter(
+  //     (course) =>
+  //       course.level && levelValues.includes(String(course.level).toLowerCase())
+  //   );
+  // }
 
-  const count = courses.length;
+  const count = courses.length; // Count after frontend filters, if any
 
-  // const pageCount = Math.ceil(backendTotalCount / limit);
+  // PRE-FETCHING NEXT/PREVIOUS PAGES - Use 'limit' for pageCount
+  // const pageCount = Math.ceil(backendTotalCount / limit); // NEW: Use limit here
 
   // if (page < pageCount) {
   //   queryClient.prefetchQuery({
@@ -204,6 +212,5 @@ export default function useCourses() {
   //   });
   // }
 
-  // NEW: Return isFetching along with isLoading
-  return { isLoading, isFetching, error, courses, count: backendTotalCount };
+  return { isLoading, error, courses, count: backendTotalCount };
 }
