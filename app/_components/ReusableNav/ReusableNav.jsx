@@ -45,17 +45,22 @@ export default function ReusableNav({
     };
   }, [activeTab, tabs]);
 
+  // This useEffect is now the SOLE updater of activeTab based on URL
   useEffect(() => {
-    if (type === "param" && searchParams.has(paramName)) {
+    let newActiveTab = null;
+
+    if (type === "param") {
       const urlTab = searchParams.get(paramName);
-      const matchingTab = tabs.find(
-        (tab) => tab.toLowerCase() === urlTab.toLowerCase()
-      );
-      if (matchingTab && matchingTab !== activeTab) {
-        setActiveTab(matchingTab);
+      if (urlTab) {
+        const matchingTab = tabs.find(
+          (tab) => tab.toLowerCase() === urlTab.toLowerCase()
+        );
+        if (matchingTab) {
+          newActiveTab = matchingTab;
+        }
       }
     } else if (type === "hash" && typeof window !== "undefined") {
-      const hash = window.location.hash.slice(1);
+      const hash = window.location.hash.slice(1); // Remove #
       if (hash) {
         const displayFormat = hash
           .split("-")
@@ -66,12 +71,31 @@ export default function ReusableNav({
         const matchingTab = tabs.find(
           (tab) => tab.toLowerCase() === displayFormat.toLowerCase()
         );
-        if (matchingTab && matchingTab !== activeTab) {
-          setActiveTab(matchingTab);
+        if (matchingTab) {
+          newActiveTab = matchingTab;
         }
       }
     }
-  }, [type, paramName, searchParams, tabs, activeTab, setActiveTab]);
+
+    // Default to the first tab if no matching tab found in URL
+    if (!newActiveTab && tabs.length > 0) {
+      newActiveTab = tabs[0];
+    }
+
+    // Only update context if the newActiveTab is different from current activeTab
+    if (newActiveTab && newActiveTab !== activeTab) {
+      setActiveTab(newActiveTab);
+    }
+  }, [
+    type,
+    paramName,
+    searchParams,
+    tabs,
+    activeTab,
+    setActiveTab,
+    pathname,
+    router,
+  ]); // Added pathname, router to dependencies
 
   function handleTab(tab) {
     if (type === "param") {
@@ -80,7 +104,7 @@ export default function ReusableNav({
       params.set(paramName, urlTab);
 
       if (resetPage) {
-        params.set("page", 1);
+        params.set("page", "1"); // Ensure page is reset to string '1'
       }
 
       router.replace(`${pathname}?${params.toString()}`, { scroll: false });
@@ -91,7 +115,8 @@ export default function ReusableNav({
       router.replace(`${pathname}#${hash}`, { scroll: false });
     }
 
-    setActiveTab(tab);
+    // REMOVED: setActiveTab(tab);
+    // The useEffect above will now handle updating activeTab based on the URL change.
   }
 
   return (
