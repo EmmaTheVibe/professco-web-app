@@ -1,4 +1,4 @@
-import { Noto_Sans } from "next/font/google";
+import { Inter, Noto_Sans } from "next/font/google";
 import { Suspense } from "react";
 
 import "@/app/_styles/globals.css";
@@ -11,6 +11,11 @@ const notoSans = Noto_Sans({
   weight: ["400", "500", "600", "700"],
   variable: "--font-noto-sans",
 });
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"], // Adjust weights as needed
+  variable: "--font-inter", // Define as a CSS variable
+});
 
 export const metadata = {
   title: "Professco",
@@ -20,7 +25,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${notoSans.variable}`}>
+      <body className={`${notoSans.variable} ${inter.variable}`}>
         <Suspense fallback={null}>
           <Providers>
             <ContextProvider>

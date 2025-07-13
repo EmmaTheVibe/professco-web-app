@@ -1,14 +1,85 @@
+.pagination {
+  width: 286px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-inter);
+}
 .txt {
-  margin: 15px 0 4px 0;
   font-size: 14px;
+  font-weight: 400;
+  color: var(--primary-black-150);
+  margin: 0 4px;
+  text-align: center;
+}
+.bold {
+  font-weight: 600;
 }
 .btnPack {
   display: flex;
 }
 .pagination button {
   background: none;
-  border: none;
+  border: 1.08px solid var(--border-color);
+  border-radius: 10px;
   height: unset;
   width: unset;
-  margin-right: 10px;
+  color: var(--primary-black-150);
+}
+.prev p,
+.next p {
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 13px;
+}
+.prev p {
+  margin-left: 8.68px;
+}
+.next p {
+  margin-right: 8.68px;
+}
+.prev {
+  padding: 6.67px 6.8px 6.67px 8px;
+}
+.next {
+  padding: 6.67px 8px 6.67px 6.8px;
+}
+
+@media screen and (min-width: 600px) {
+  .pagination {
+    width: 590px;
+  }
+
+  .txt {
+    font-size: 15.18px;
+    line-height: 21.69px;
+  }
+  .prev p,
+  .next p {
+    font-size: 15.18px;
+    line-height: 21.69px;
+  }
+  .prev {
+    padding: 8.67px 15.8px 8.67px 19.7px;
+  }
+  .next {
+    padding: 8.67px 19.7px 8.67px 15.8px;
+  }
+}
+
+@media screen and (min-width: 850px) {
+  .pagination {
+    width: 848px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .pagination {
+    width: 606px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .pagination {
+    width: 870px;
+  }
 }

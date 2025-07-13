@@ -88,7 +88,7 @@
   z-index: 1000;
   transform: translateX(-100%);
   transition: transform 0.3s ease-in-out;
-  padding: 20px;
+  padding: 20px 20px 60px 20px;
 }
 .open {
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
@@ -109,6 +109,9 @@
   display: grid;
   grid-template-columns: repeat(1, 288px);
   gap: 20px;
+}
+.courseGridB {
+  margin-bottom: 21px;
 }
 
 .tagBox {
@@ -149,6 +152,9 @@
   .courseGridB {
     grid-template-columns: repeat(2, 288px);
   }
+  .courseGridB {
+    gap: 14px;
+  }
   .moreInfo {
     width: 480px;
   }
@@ -176,6 +182,9 @@
   .courseGridB {
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
+  }
+  .courseGridB {
+    width: 100%;
   }
   .gridWrapperB {
     /* width: calc(100vw - 262px);
@@ -279,6 +288,9 @@
   .courseGridB {
     grid-template-columns: repeat(2, 288px);
     gap: 30px;
+  }
+  .courseGridB {
+    width: unset;
   }
 }
 

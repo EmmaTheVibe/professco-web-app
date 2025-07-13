@@ -11,7 +11,7 @@ import useContexts from "@/app/_utils/useContexts";
 
 export default function TabSystem() {
   const contexts = useContexts();
-  const activeTab = contexts.activeCourseTab;
+  const activeTab = contexts.activeCourseTab; // This will now be derived from 't' param
 
   const renderTabContent = () => {
     switch (activeTab?.toLowerCase()) {
@@ -26,6 +26,7 @@ export default function TabSystem() {
       case "reviews":
         return <ReviewsTab />;
       default:
+        // Default to "about" if activeCourseTab is not set or invalid
         return <AboutTab />;
     }
   };
@@ -35,9 +36,11 @@ export default function TabSystem() {
       <section className={styles.navbox}>
         <ReusableNav
           tabs={courseDetailTabs}
-          type="hash"
+          // Removed type="hash" as ReusableNav is now param-only
+          paramName="t" // NEW: Explicitly set paramName to "t"
           activeTabKey="activeCourseTab"
           setActiveTabKey="setActiveCourseTab"
+          resetPage={false}
         />
       </section>
 

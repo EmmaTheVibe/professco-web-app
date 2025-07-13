@@ -158,7 +158,6 @@ export default function CourseList({
             </p>
             <div className={styles.tagBox}>
               <Tags />
-              <Pagination count={count} />
             </div>
             <div className={styles.btnB}>
               <button
@@ -191,9 +190,9 @@ export default function CourseList({
             </Overlay>
 
             <div className={styles.gridWrapperB}>
-              {isFetching ? (
+              {loading ? (
                 <div className={styles.courseGridB}>
-                  {Array.from({ length: 6 }).map((_, index) => (
+                  {Array.from({ length: 12 }).map((_, index) => (
                     <Skeleton key={index} />
                   ))}
                 </div>
@@ -209,6 +208,7 @@ export default function CourseList({
                   <Skeleton key={index} />
                 ))}
               </div> */}
+              <Pagination count={count} />
             </div>
           </div>
         </div>

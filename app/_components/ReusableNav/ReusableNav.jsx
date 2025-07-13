@@ -7,8 +7,8 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export default function ReusableNav({
   tabs,
-  type = "param",
-  paramName = "exam",
+  // type prop is no longer needed as it's always 'param'
+  paramName = "exam", // Default paramName
   activeTabKey = "activeTab",
   setActiveTabKey = "setActiveTab",
   resetPage = true,
@@ -45,35 +45,18 @@ export default function ReusableNav({
     };
   }, [activeTab, tabs]);
 
-  // This useEffect is now the SOLE updater of activeTab based on URL
+  // This useEffect is now the SOLE updater of activeTab based on URL param
   useEffect(() => {
     let newActiveTab = null;
 
-    if (type === "param") {
-      const urlTab = searchParams.get(paramName);
-      if (urlTab) {
-        const matchingTab = tabs.find(
-          (tab) => tab.toLowerCase() === urlTab.toLowerCase()
-        );
-        if (matchingTab) {
-          newActiveTab = matchingTab;
-        }
-      }
-    } else if (type === "hash" && typeof window !== "undefined") {
-      const hash = window.location.hash.slice(1); // Remove #
-      if (hash) {
-        const displayFormat = hash
-          .split("-")
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(" ")
-          .replace("Materials", "& Materials");
-
-        const matchingTab = tabs.find(
-          (tab) => tab.toLowerCase() === displayFormat.toLowerCase()
-        );
-        if (matchingTab) {
-          newActiveTab = matchingTab;
-        }
+    // Always assume type is 'param'
+    const urlTab = searchParams.get(paramName);
+    if (urlTab) {
+      const matchingTab = tabs.find(
+        (tab) => tab.toLowerCase() === urlTab.toLowerCase()
+      );
+      if (matchingTab) {
+        newActiveTab = matchingTab;
       }
     }
 
@@ -87,36 +70,28 @@ export default function ReusableNav({
       setActiveTab(newActiveTab);
     }
   }, [
-    type,
-    paramName,
+    paramName, // Only paramName is relevant now
     searchParams,
     tabs,
     activeTab,
     setActiveTab,
     pathname,
     router,
-  ]); // Added pathname, router to dependencies
+  ]);
 
   function handleTab(tab) {
-    if (type === "param") {
-      const urlTab = tab.toLowerCase();
-      const params = new URLSearchParams(searchParams);
-      params.set(paramName, urlTab);
+    // Always assume type is 'param'
+    const urlTab = tab.toLowerCase();
+    const params = new URLSearchParams(searchParams);
+    params.set(paramName, urlTab);
 
-      if (resetPage) {
-        params.set("page", "1"); // Ensure page is reset to string '1'
-      }
-
-      router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-    } else if (type === "hash") {
-      const hash = contexts.formatTabForUrl
-        ? contexts.formatTabForUrl(tab)
-        : tab.toLowerCase().replace(/\s+/g, "-");
-      router.replace(`${pathname}#${hash}`, { scroll: false });
+    // NEW: Only reset page if resetPage is true AND paramName is "exam"
+    if (resetPage && paramName === "exam") {
+      params.set("page", "1"); // Ensure page is reset to string '1'
     }
 
-    // REMOVED: setActiveTab(tab);
-    // The useEffect above will now handle updating activeTab based on the URL change.
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    // REMOVED: setActiveTab(tab); - useEffect will handle this based on URL change.
   }
 
   return (

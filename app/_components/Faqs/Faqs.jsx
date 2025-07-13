@@ -24,9 +24,7 @@ export default function Faqs() {
         >
           <div className={styles.question}>
             <p className="semiboldFont">{faq.question}</p>
-            {/* <p className="icon" onClick={() => handleIsOpen(faq.id)}>
-            {open ? "-" : "+"}
-          </p> */}
+
             <img
               src="/images/faqarrow.svg"
               alt="arrow"
@@ -37,12 +35,6 @@ export default function Faqs() {
               }}
             />
           </div>
-
-          {/* {open && (
-            <div className={styles.answer}>
-              <p>{faq.answer}</p>
-            </div>
-          )} */}
 
           <div className={styles.answer}>
             <p>{faq.answer}</p>

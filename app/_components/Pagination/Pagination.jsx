@@ -15,11 +15,11 @@ export default function Pagination({ count }) {
     ? 1
     : Number(searchParams.get("page"));
 
-  const itemsPerPage = !searchParams.get("limit")
-    ? 12
-    : Number(searchParams.get("limit"));
+  // const itemsPerPage = !searchParams.get("limit")
+  //   ? 12
+  //   : Number(searchParams.get("limit"));
 
-  const pageCount = Math.ceil(count / itemsPerPage);
+  const pageCount = Math.ceil(count / PAGE_SIZE);
 
   function handlePage(pageNumber) {
     const params = new URLSearchParams(searchParams);
@@ -41,26 +41,26 @@ export default function Pagination({ count }) {
 
   return (
     <div className={styles.pagination}>
+      <button
+        onClick={prevPage}
+        disabled={currentPage === 1}
+        className={styles.prev}
+      >
+        <img src="/images/prevarrow.svg" alt="previous" />
+        <p>Previous</p>
+      </button>
       <p className={styles.txt}>
-        <em>
-          Showing <span>{(currentPage - 1) * itemsPerPage + 1}</span> to{" "}
-          <span>
-            {currentPage === pageCount ? count : currentPage * itemsPerPage}
-          </span>{" "}
-          of <span>{count}</span> results
-        </em>
+        Page <span className={styles.bold}>{currentPage}</span> of{" "}
+        <span className={styles.bold}>{pageCount}</span>
       </p>
-      <div className={styles.btnPack}>
-        <button onClick={prevPage} disabled={currentPage === 1}>
-          <HiChevronLeft />
-          <span>Previous</span>
-        </button>
-
-        <button onClick={nextPage} disabled={currentPage === pageCount}>
-          <span>Next</span>
-          <HiChevronRight />
-        </button>
-      </div>
+      <button
+        onClick={nextPage}
+        disabled={currentPage === pageCount}
+        className={styles.next}
+      >
+        <p>Next</p>
+        <img src="/images/nextarrow.svg" alt="next" />
+      </button>
     </div>
   );
 }

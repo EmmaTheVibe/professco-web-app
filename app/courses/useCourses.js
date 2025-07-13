@@ -143,69 +143,69 @@ export default function useCourses() {
 
   const count = courses.length;
 
-  // const pageCount = Math.ceil(backendTotalCount / limit);
+  const pageCount = Math.ceil(backendTotalCount / limit);
 
-  // if (page < pageCount) {
-  //   queryClient.prefetchQuery({
-  //     queryKey: [
-  //       "courses",
-  //       examValue,
-  //       page + 1,
-  //       limit,
-  //       minAmountParam,
-  //       maxAmountParam,
-  //       minRating,
-  //       applyPriceFilterFrontend,
-  //       levelValues.sort().join(","),
-  //       sortBy,
-  //       sortOrder,
-  //       tagValue,
-  //     ],
-  //     queryFn: () =>
-  //       getSortedCourses({
-  //         examValue,
-  //         page: page + 1,
-  //         limit,
-  //         minAmount: minAmountParam,
-  //         maxAmount: maxAmountParam,
-  //         minRating,
-  //         sortBy: sortBy,
-  //         sortOrder: sortOrder,
-  //         tag: backendTagParam,
-  //       }),
-  //   });
-  // }
+  if (page < pageCount) {
+    queryClient.prefetchQuery({
+      queryKey: [
+        "courses",
+        examValue,
+        page + 1,
+        limit,
+        minAmountParam,
+        maxAmountParam,
+        minRating,
+        applyPriceFilterFrontend,
+        levelValues.sort().join(","),
+        sortBy,
+        sortOrder,
+        tagValue,
+      ],
+      queryFn: () =>
+        getSortedCourses({
+          examValue,
+          page: page + 1,
+          limit,
+          minAmount: minAmountParam,
+          maxAmount: maxAmountParam,
+          minRating,
+          sortBy: sortBy,
+          sortOrder: sortOrder,
+          tag: backendTagParam,
+        }),
+    });
+  }
 
-  // if (page > 1) {
-  //   queryClient.prefetchQuery({
-  //     queryKey: [
-  //       "courses",
-  //       examValue,
-  //       page - 1,
-  //       limit,
-  //       minAmountParam,
-  //       maxAmountParam,
-  //       minRating,
-  //       applyPriceFilterFrontend,
-  //       levelValues.sort().join(","),
-  //       sortBy,
-  //       sortOrder,
-  //       tagValue,
-  //     ],
-  //     queryFn: () =>
-  //       getSortedCourses({
-  //         examValue,
-  //         page: page - 1,
-  //         limit,
-  //         minAmount: minAmountParam,
-  //         maxAmount: maxAmountParam,
-  //         minRating,
-  //         sortBy: sortBy,
-  //         sortOrder: sortOrder,
-  //         tag: backendTagParam,
-  //       }),
-  //   });
-  // }
+  if (page > 1) {
+    queryClient.prefetchQuery({
+      queryKey: [
+        "courses",
+        examValue,
+        page - 1,
+        limit,
+        minAmountParam,
+        maxAmountParam,
+        minRating,
+        applyPriceFilterFrontend,
+        levelValues.sort().join(","),
+        sortBy,
+        sortOrder,
+        tagValue,
+      ],
+      queryFn: () =>
+        getSortedCourses({
+          examValue,
+          page: page - 1,
+          limit,
+          minAmount: minAmountParam,
+          maxAmount: maxAmountParam,
+          minRating,
+          sortBy: sortBy,
+          sortOrder: sortOrder,
+          tag: backendTagParam,
+        }),
+    });
+  }
 
   // NEW: Return isFetching along with isLoading
   return { isLoading, isFetching, error, courses, count: backendTotalCount };

@@ -38,7 +38,6 @@ export default async function Page({ params }) {
 
   return (
     <section className={styles.coursepage}>
-      <CourseHashInitializer />
       <section className={styles.seg}>
         <div className="container">
           <div className={styles.wrapper}>
