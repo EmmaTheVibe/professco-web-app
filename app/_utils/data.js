@@ -788,7 +788,7 @@ const examTabs = [
   {
     id: 0,
     name: "ICAN",
-    logo: "/images/icanlogo.svg",
+    logo: "/images/ican-logo.svg",
     description: "Insitute of Chartered Accountants of Nigeria",
     segments: [
       "Strategic Financial Management",
@@ -866,7 +866,7 @@ const examTabs = [
   {
     id: 6,
     name: "ATS",
-    logo: "/images/icanlogo.svg",
+    logo: "/images/ican-logo.svg",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     segments: [
       "Basic Accounting Processes & Systems",
@@ -960,6 +960,44 @@ const faqs = [
     open: false,
   },
 ];
+const courseContent = [
+  {
+    id: 1,
+    open: true,
+  },
+  {
+    id: 2,
+    open: false,
+  },
+  {
+    id: 3,
+    open: false,
+  },
+  {
+    id: 4,
+    open: false,
+  },
+  {
+    id: 5,
+    open: false,
+  },
+  {
+    id: 6,
+    open: false,
+  },
+  {
+    id: 7,
+    open: false,
+  },
+  {
+    id: 8,
+    open: false,
+  },
+  {
+    id: 9,
+    open: false,
+  },
+];
 
 const guideData = [
   {
@@ -1034,4 +1072,5 @@ export {
   formOptions,
   footerOptions,
   articleText,
+  courseContent,
 };

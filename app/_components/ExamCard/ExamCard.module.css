@@ -1,6 +1,6 @@
 .examcard {
   border-radius: 4px;
-  border: 1.6px solid #d1d5db;
+  gap: 16px;
   display: flex;
   align-items: center;
   transition: border 0.1s ease-in-out;
@@ -11,6 +11,9 @@
 }
 .selected {
   border: 1.6px solid #10b981;
+}
+.selected .logobox {
+  border: none;
 }
 .circle {
   background-color: #01c04f;
@@ -24,10 +27,18 @@
   right: -12px;
   top: -10px;
 }
+
 .logobox {
   height: 96px;
+  width: 96px;
+  border-radius: 4px;
+  border: 1.6px solid #d1d5db;
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+.info {
+  width: 180.08px;
 }
 .desc {
   font-size: 14px;

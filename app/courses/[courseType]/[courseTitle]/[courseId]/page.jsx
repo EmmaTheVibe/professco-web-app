@@ -1,17 +1,20 @@
 import Explore from "@/app/_components/Explore/Explore";
+import Footer from "@/app/_components/Footer/Footer";
 import Rating from "@/app/_components/Rating/Rating";
 import RelatedCourses from "@/app/_components/RelatedCourses/RelatedCourses";
-import styles from "./CoursePage.module.css";
-import { getCourseById, getCoursesByType } from "@/app/_lib/data-service";
-import Footer from "@/app/_components/Footer/Footer";
-import { notFound } from "next/navigation";
-import { formatAmount } from "@/app/_lib/fns";
-import ReusableNav from "@/app/_components/ReusableNav/ReusableNav";
-import { courseDetailTabs } from "@/app/_utils/data";
+import Spinner from "@/app/_components/Spinner/Spinner";
 import TabSystem from "@/app/_components/TabSystem/TabSystem";
-import CourseHashInitializer from "@/app/_components/CourseHashInitializer";
+import { getCourseById } from "@/app/_lib/data-service";
+import { formatAmount } from "@/app/_lib/fns";
+import { notFound } from "next/navigation";
+import { Suspense } from "react";
+import styles from "./CoursePage.module.css";
+import ClientVideoWrapper from "@/app/_components/ClientVideoWrapper/ClientVideoWrapper";
+import TabSystemWrapper from "@/app/_components/TabSystem/TabSystemWrapper";
 
 export default async function Page({ params }) {
+  const videoManifest =
+    "https://storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd";
   const { courseId, courseType, courseTitle } = await params;
 
   const course = await getCourseById(courseId);
@@ -31,10 +34,6 @@ export default async function Page({ params }) {
   }
 
   const { cache_rating, reviews_count } = course;
-
-  // const filteredRelatedCourses = relatedCourses.filter(
-  //   (c) => c.id !== courseId
-  // );
 
   return (
     <section className={styles.coursepage}>
@@ -63,9 +62,7 @@ export default async function Page({ params }) {
                 />
                 <p className="semiboldFont">Fundamentals</p>
               </div>
-              <h1 className={`boldFont ${styles.title}`}>
-                {course.courseTitle}
-              </h1>
+              <h1 className={`boldFont ${styles.title}`}>{course.title}</h1>
               <p className={styles.desc}>
                 Learn from vetted and certified chartered professionals with
                 proven track records
@@ -81,17 +78,20 @@ export default async function Page({ params }) {
                 <p>Purchase course</p>
               </button>
             </div>
-            <img
-              // src="/images/courseThumbnail2.png"
+            {/* <img
               src={course.cover_image}
               alt="banner"
               className={styles.banner}
-            />
+            /> */}
+            <div className={styles.bannerr}>
+              <ClientVideoWrapper manifestUri={videoManifest} />
+            </div>
           </div>
         </div>
       </section>
+
       <section className={styles.segB}>
-        <TabSystem />
+        <TabSystemWrapper />
       </section>
       <section className={styles.segC}>
         <div className={`container ${styles.segCWrapper}`}>
@@ -104,12 +104,18 @@ export default async function Page({ params }) {
           </div>
 
           <div className={styles.bottom}>
-            <RelatedCourses courseId={courseId} courseType={courseType} />
+            <Suspense fallback={<Spinner />}>
+              <RelatedCourses courseId={courseId} courseType={courseType} />
+            </Suspense>
           </div>
         </div>
       </section>
-      <Explore />
-      <Footer />
+      <Suspense fallback={<Spinner />}>
+        <Explore />
+      </Suspense>
+      <Suspense fallback={<Spinner />}>
+        <Footer />
+      </Suspense>
     </section>
   );
 }

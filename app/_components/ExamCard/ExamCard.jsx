@@ -27,7 +27,7 @@ export default function ExamCard({ exam, selectable = false }) {
       </div>
       {selectable && examTypeList.includes(exam.name) ? (
         <div className={styles.circle}>
-          <img src={media.examCardTick} alt="tick" />
+          <img src="/images/examcard-tick.svg" alt="tick" />
         </div>
       ) : (
         ""

@@ -1,0 +1,92 @@
+.reviewsTab {
+  padding-bottom: 45.25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.top {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 320px;
+}
+.heading {
+  font-size: 24px;
+  line-height: 32px;
+  margin-bottom: 32px;
+}
+
+.form {
+  margin: 21px 0 32px 0;
+  width: 100%;
+}
+.line {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.form textarea {
+  border: 1.2px solid #9ea2b3;
+  border-radius: 4px;
+  height: 103px;
+  width: 100%;
+  padding: 12px 16px;
+  font-family: var(--font-noto-sans), sans-serif;
+  margin-bottom: 44px;
+}
+.txt {
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: 16px;
+  text-align: left;
+}
+.star,
+.txt span {
+  color: #e62e2e;
+}
+.bottom {
+  width: 100%;
+}
+.grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 48px;
+}
+.stars {
+  margin-bottom: 16px;
+}
+.reviewTxt {
+  margin-bottom: 24px;
+}
+
+@media screen and (min-width: 850px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .reviewsTab {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: var(--primary-white-50);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 78px;
+  }
+  .bottom {
+    width: 576px;
+  }
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 48px;
+  }
+}

@@ -21,8 +21,16 @@
 :root {
   --primary-white-50: #ffffff;
   --primary-white-100: #fcfcfc;
+  --primary-white-150: #f9fafb;
+  --primary-white-200: #f7f8fa;
+  --primary-white-250: #dcdee6;
+
+  --primary-grey-50: #6b7280;
+  --primary-grey-100: #59595a;
+  --primary-grey-150: #687d94;
 
   --primary-orange: #e65539;
+  --primary-orange-50: #ef4444;
 
   --primary-peach: #e6553914;
 
@@ -224,6 +232,12 @@ button {
   border: none;
 }
 
+.filledB {
+  background-color: var(--primary-orange-50);
+  color: var(--primary-white-50);
+  border: none;
+}
+
 .outlined {
   background: none;
   border: 1.6px solid var(--primary-orange);
@@ -234,6 +248,12 @@ button {
   background: none;
   border: none;
   color: var(--primary-orange);
+}
+.bareB {
+  background: none;
+  border: none;
+  color: var(--primary-orange);
+  border: 1.6px solid var(--primary-white-250);
 }
 
 .btn-dark {
@@ -272,7 +292,6 @@ button {
 @media screen and (min-width: 500px) {
   .container {
     width: 480px;
-    /* border: 1px solid red; */
   }
 }
 

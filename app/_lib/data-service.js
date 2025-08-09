@@ -86,6 +86,13 @@ export async function getSortedCourses({
       queryParams.tags = tag;
     }
 
+    // Add detailed logging
+    console.log("Making request with params:", queryParams);
+    console.log(
+      "Full URL would be:",
+      `course?${new URLSearchParams(queryParams).toString()}`
+    );
+
     const data = await fetchData("course", queryParams);
 
     const courses = data.data || [];
@@ -101,6 +108,14 @@ export async function getSortedCourses({
       queryParams,
       error
     );
+    // Log the full error response if available
+    if (error.response) {
+      console.error(
+        "Error response:",
+        error.response.status,
+        error.response.data
+      );
+    }
     throw error;
   }
 }

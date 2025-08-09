@@ -1,9 +1,11 @@
 .contentTab {
   width: 100%;
-  border: 1px solid var(--border-color-50);
+  box-shadow: 0px 2px 4px -2px #1018280f;
+  box-shadow: 0px 4px 8px -2px #1018281a;
   border-radius: 10px;
   padding: 10px;
   background-color: var(--primary-white-100);
+  margin-bottom: 40px;
 }
 .heading {
   margin-bottom: 10px;
@@ -11,38 +13,98 @@
 
 .accordion {
   width: 295px;
-  border-top: 1px solid #d1d5db;
-  margin: 80px 0;
 }
 .accordionItem {
   width: 100%;
   transition: height 1s linear;
-  padding: 18px 0px;
-  border-bottom: 1px solid #d1d5db;
+  border: 1px solid var(--border-color-50);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 10px;
 }
-.question {
+.topWrap {
+  padding: 13px 20px;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  background-color: var(--primary-white-150);
+}
+.top {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-right: 11px;
   cursor: pointer;
 }
-
-.answer {
+.mainTitle {
+  font-size: 14px;
+  line-height: 20px;
+}
+.fullDuration {
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--primary-grey-50);
+}
+.bottomWrap {
   overflow: hidden;
   max-height: 0;
   transition: 0.3s ease;
-  padding: 0px 0px 0px 0px;
+  padding: 0 10px;
   width: 100%;
 }
-.accordionItem.open .answer {
+.clip {
+  background-color: var(--primary-orange);
+  padding: 20px;
+  border-radius: 10px;
+}
+.lockedClip {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+  margin-top: 7px;
+}
+
+.clip p {
+  color: var(--primary-white-50);
+}
+.line p {
+  line-height: 18px;
+  margin-left: 3px;
+}
+.title {
+  font-size: 14px;
+  line-height: 20px;
+}
+.duration {
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--primary-grey-50);
+}
+.lockBox {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--border-color-100);
+}
+.accordionItem.open .bottomWrap {
   display: block;
   max-height: 600px;
-  padding: 15px 0px 5px 0px;
+  padding: 10px;
 }
-.accordionItem.open img {
+.accordionItem .arrow {
   transform: rotate(180deg);
+}
+
+.accordionItem.open .arrow {
+  transform: rotate(360deg);
 }
 
 @media screen and (min-width: 400px) {
@@ -51,7 +113,7 @@
   }
 }
 
-@media screen and (min-width: 1000px) {
+/* @media screen and (min-width: 1000px) {
   .accordion {
     width: 700px;
   }
@@ -67,4 +129,4 @@
   .accordion {
     width: 1042px;
   }
-}
+} */
