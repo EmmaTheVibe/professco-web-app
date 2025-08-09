@@ -277,16 +277,29 @@
     transform: translateX(0);
   }
 
+  /* .gridWrapper {
+    align-items: start;
+    padding-left: 30px;
+  } */
   .gridWrapper {
     align-items: start;
     padding-left: 30px;
+    overflow-x: auto;
   }
+  .gridWrapper::-webkit-scrollbar {
+    display: none;
+  }
+
   .gridWrapperB {
     padding: 0 0 56px;
   }
-  .courseGrid,
+  /* .courseGrid, */
   .courseGridB {
     grid-template-columns: repeat(2, 288px);
+    gap: 30px;
+  }
+  .courseGrid {
+    grid-template-columns: repeat(5, 288px);
     gap: 30px;
   }
   .courseGridB {
@@ -335,7 +348,7 @@
   .courseList {
     width: 1380px;
   }
-  .courseGrid,
+
   .courseGridB {
     grid-template-columns: repeat(3, 288px);
     gap: 20px;

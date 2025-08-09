@@ -14,15 +14,16 @@
 }
 
 @media screen and (min-width: 1000px) {
+  .gridWrapper {
+    overflow-x: auto;
+    padding-left: 24px;
+  }
+  .gridWrapper::-webkit-scrollbar {
+    display: none;
+  }
   .grid {
     width: unset;
-    grid-template-columns: repeat(2, 288px);
+    grid-template-columns: repeat(5, 288px);
     margin: 0;
-  }
-}
-
-@media screen and (min-width: 1400px) {
-  .grid {
-    grid-template-columns: repeat(3, 288px);
   }
 }

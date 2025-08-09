@@ -8,7 +8,7 @@ import Skeleton from "../Skeleton/Skeleton";
 
 export default function RelatedCourses({ courseId, courseType }) {
   const lg = useMediaQuery("(min-width: 600px)");
-  const lg2 = useMediaQuery("(min-width: 1400px)");
+  const lg2 = useMediaQuery("(min-width: 1000px)");
 
   const { relatedCourses, isLoading, relatedCoursesCount, error } =
     useRelatedCourses(courseType);
@@ -25,14 +25,14 @@ export default function RelatedCourses({ courseId, courseType }) {
       {isLoading ? (
         <div className={styles.grid}>
           {Array.from({
-            length: lg2 ? 3 : lg ? 2 : 3,
+            length: lg2 ? 5 : lg ? 2 : 3,
           }).map((_, index) => (
             <Skeleton key={index} />
           ))}
         </div>
       ) : (
         <div className={styles.grid}>
-          {courses?.slice(0, `${lg2 ? 3 : lg ? 2 : 3}`).map((course) => (
+          {courses?.slice(0, `${lg2 ? 5 : lg ? 2 : 3}`).map((course) => (
             <CourseCard key={course.id} courseItem={course} />
           ))}
         </div>

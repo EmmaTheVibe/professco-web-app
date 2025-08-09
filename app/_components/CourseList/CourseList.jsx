@@ -54,7 +54,7 @@ export default function CourseList({
   if (!showAll) {
     filteredCourses = filteredCourses.slice(
       0,
-      lg2 ? 3 : lg ? 2 : md2 ? 3 : md ? 2 : 3
+      lg2 ? 5 : lg ? 5 : md2 ? 3 : md ? 2 : 3
     );
   }
 
@@ -130,7 +130,7 @@ export default function CourseList({
               {loading ? (
                 <div className={styles.courseGrid}>
                   {Array.from({
-                    length: lg2 ? 3 : lg ? 2 : md2 ? 3 : md ? 2 : 3,
+                    length: lg2 ? 5 : lg ? 5 : md2 ? 3 : md ? 2 : 3,
                   }).map((_, index) => (
                     <Skeleton key={index} />
                   ))}
