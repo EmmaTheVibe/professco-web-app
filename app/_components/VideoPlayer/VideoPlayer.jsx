@@ -221,8 +221,12 @@ const VideoPlayer = ({ manifestUri, licenseServerUrl }) => {
       >
         <video
           ref={videoRef}
-          autoPlay
+          // autoPlay
+          playsInline
+          controls={false}
+          webkit-playsinline="true"
           className={styles.shakaVideo}
+          poster="/images/courseThumbnail2.png"
           // style={{
           //   width: `${
           //     size1

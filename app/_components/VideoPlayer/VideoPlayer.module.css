@@ -37,6 +37,12 @@
   height: 100%; /* Change from auto to 100% */
   display: block;
   object-fit: cover; /* or object-fit: contain depending on preference */
+
+  -webkit-appearance: none;
+  -webkit-media-controls: none;
+  -webkit-media-controls-panel: none;
+  -webkit-media-controls-play-button: none;
+  -webkit-media-controls-start-playback-button: none;
 }
 .videoContainer [data-shaka-player-container] {
   width: 100% !important;
@@ -69,6 +75,27 @@
   width: 100% !important;
   height: 100% !important;
   object-fit: contain !important;
+}
+
+.shakaVideo::-webkit-media-controls {
+  display: none !important;
+}
+
+.shakaVideo::-webkit-media-controls-panel {
+  display: none !important;
+}
+
+.shakaVideo::-webkit-media-controls-play-button {
+  display: none !important;
+}
+
+.shakaVideo::-webkit-media-controls-start-playback-button {
+  display: none !important;
+}
+
+/* Force hide all native controls on iOS */
+.videoContainer video::-webkit-media-controls-enclosure {
+  display: none !important;
 }
 
 .loadingOverlay {
