@@ -1,5 +1,16 @@
 .instructorsTab {
   width: 100%;
+  margin-bottom: 80px;
+}
+.instructorsGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+.instructorWrapper {
+  border-bottom: 1px solid var(--border-color-200);
+  padding-bottom: 24px;
 }
 .line {
   display: flex;
@@ -24,4 +35,92 @@
 .instructorName,
 .instructorTxt {
   margin-bottom: 8px;
+}
+.courseTypes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 14px;
+  width: fit-content;
+}
+.courseType {
+  width: 69px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ebfff3;
+  color: #00903b;
+  border-radius: 4px;
+}
+.instructorSummary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  margin-bottom: 23px;
+}
+.divider {
+  height: 20px;
+  border: 1px solid var(--primary-white-300);
+  margin: 0 23px;
+}
+.instructorSummary span {
+  color: var(--primary-grey-50);
+}
+.gridWrapper {
+  width: 100%;
+  margin-bottom: 24px;
+}
+.cardGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 320px);
+  gap: 23px;
+}
+.card {
+  display: flex;
+  border: 1px solid var(--border-color-150);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.banner {
+  width: 85px;
+  height: 162px;
+  /* height: 159px; */
+}
+.cardInfo {
+  padding: 10px;
+}
+.cardTitle {
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 6px;
+}
+.cardType {
+  font-size: 12px;
+  line-height: 18px;
+  margin-bottom: 6px;
+}
+.rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.blackstar {
+  width: 13.28px;
+  height: 12.54px;
+  margin-right: 3px;
+}
+.cardTxt {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--primary-grey-200);
+}
+.cardTxt span {
+  color: var(--primary-grey-250);
+}
+.moreInfo br + * {
+  margin-top: 16px; /* Adjust the value as needed */
 }
