@@ -1,39 +1,78 @@
 "use client";
 import Link from "next/link";
+import { useForm } from "react-hook-form";
 import LiveRating from "../LiveRating/LiveRating";
 import styles from "./ReviewsTab.module.css";
+
 export default function ReviewsTab() {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  // Watch the comment field to get real-time updates
+  const comment = watch("comment", "");
+
+  // Count words (split by whitespace and filter out empty strings)
+  const wordCount =
+    comment.trim() === "" ? 0 : comment.trim().split(/\s+/).length;
+
+  // Alternative: Count characters
+  // const charCount = comment.length;
+
+  const onSubmit = (data) => {
+    console.log("Review submitted:", data);
+    // Handle form submission here
+  };
+
   return (
     <div className={styles.reviewsTab}>
       <div className={styles.top}>
         <h1 className={`boldFont ${styles.heading}`}>Leave a review</h1>
         <LiveRating />
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.line}>
             <p className={`${styles.label} semiboldFont`}>
               Comment <span className={styles.star}>*</span>
             </p>
-            <p className={styles.count}>
-              <span>0</span>/100
+            <p
+              className={`${
+                wordCount > 100 ? styles.countError : styles.count
+              }`}
+            >
+              <span>{wordCount}</span>/100
             </p>
           </div>
 
-          <div
-            style={{
-              position: "relative",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <textarea id="comment" placeholder="Comment" />
+          <div className={styles.commentBox}>
+            <textarea
+              id="comment"
+              placeholder="Comment"
+              {...register("comment", {
+                required: "Comment is required",
+                validate: (value) => {
+                  const words =
+                    value.trim() === "" ? 0 : value.trim().split(/\s+/).length;
+                  if (words > 100) {
+                    return "Comment cannot exceed 100 words";
+                  }
+                  return true;
+                },
+              })}
+            />
+            {errors.comment && (
+              <p className={styles.error}>{errors.comment.message}</p>
+            )}
           </div>
 
-          <button className="filled">
+          <button className="filled" type="submit">
             <p>Submit Review</p>
           </button>
 
           <p className={styles.txt}>
-            Don’t have an account, create one{" "}
+            Don't have an account, create one{" "}
             <Link href="/signup">
               <span>here</span>
             </Link>

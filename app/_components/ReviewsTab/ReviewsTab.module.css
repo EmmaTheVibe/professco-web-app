@@ -37,7 +37,19 @@
   width: 100%;
   padding: 12px 16px;
   font-family: var(--font-noto-sans), sans-serif;
-  margin-bottom: 44px;
+  margin-bottom: 4px;
+}
+.commentBox {
+  margin-bottom: 40px;
+}
+.countError {
+  color: #e62e2e;
+}
+.error {
+  font-size: 14px;
+  line-height: 20px;
+  color: #e62e2e;
+  text-align: left;
 }
 .txt {
   font-size: 14px;

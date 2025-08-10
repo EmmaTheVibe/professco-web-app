@@ -40,7 +40,7 @@ export default async function Page({ params }) {
       <section className={styles.seg}>
         <div className="container">
           <div className={styles.wrapper}>
-            <div>
+            <div className={styles.infoBox}>
               <div className={styles.line}>
                 <p>Courses</p>
                 <img
@@ -83,7 +83,7 @@ export default async function Page({ params }) {
               alt="banner"
               className={styles.banner}
             /> */}
-            <div className={styles.bannerr}>
+            <div className={styles.banner}>
               <ClientVideoWrapper manifestUri={videoManifest} />
             </div>
           </div>
