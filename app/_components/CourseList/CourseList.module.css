@@ -285,6 +285,7 @@
     align-items: start;
     padding-left: 30px;
     overflow-x: auto;
+    /* mask-image: linear-gradient(to right, #000 0% 96%, transparent 100%); */
   }
   .gridWrapper::-webkit-scrollbar {
     display: none;

@@ -1,5 +1,10 @@
+"use client";
+import { useMediaQuery } from "@mui/material";
 import styles from "./InstructorsTab.module.css";
+
 export default function InstructorsTab() {
+  const lg = useMediaQuery("(min-width: 400px)");
+
   return (
     <div className={styles.instructorsTab}>
       <div className={styles.line}>
@@ -12,50 +17,56 @@ export default function InstructorsTab() {
         {[...Array(2)].map((_, index) => (
           <div className={styles.instructorWrapper} key={index}>
             <div className={styles.instructor}>
-              <img
-                src="/images/instructor-avatar.svg"
-                alt="avatar"
-                className={styles.avatar}
-              />
-              <div className={styles.instructorBrief}>
-                <p className={`${styles.instructorName} boldFont`}>
-                  Okoro James
-                </p>
-                <p className={styles.instructorTxt}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse varius enim
-                </p>
-                <div className={styles.courseTypes}>
-                  <div className={styles.courseType}>
-                    <p className="semiboldFont">CIMA</p>
-                  </div>
-                  <div className={styles.courseType}>
-                    <p className="semiboldFont">ICAN</p>
-                  </div>
-                  <div className={styles.courseType}>
-                    <p className="semiboldFont">ACCA</p>
-                  </div>
-                </div>
-                <div className={styles.instructorSummary}>
-                  <p className={styles.learners}>
-                    6757 <span>learners</span>
+              <div className={styles.instructorBox}>
+                <img
+                  src="/images/instructor-avatar.svg"
+                  alt="avatar"
+                  className={styles.avatar}
+                />
+                <div className={styles.instructorBrief}>
+                  <p className={`${styles.instructorName} boldFont`}>
+                    Okoro James
                   </p>
-                  <div className={styles.divider}></div>
-                  <p className={styles.courses}>
-                    3 <span>courses</span>
+                  <p className={styles.instructorTxt}>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Suspendisse varius enim
                   </p>
+                  <div className={styles.courseTypes}>
+                    <div className={styles.courseType}>
+                      <p className="semiboldFont">CIMA</p>
+                    </div>
+                    <div className={styles.courseType}>
+                      <p className="semiboldFont">ICAN</p>
+                    </div>
+                    <div className={styles.courseType}>
+                      <p className="semiboldFont">ACCA</p>
+                    </div>
+                  </div>
+                  <div className={styles.instructorSummary}>
+                    <p className={styles.learners}>
+                      6757 <span>learners</span>
+                    </p>
+                    <div className={styles.divider}></div>
+                    <p className={styles.courses}>
+                      3 <span>courses</span>
+                    </p>
+                  </div>
                 </div>
               </div>
+
               <div className={styles.dividerB}></div>
               <div className={styles.gridWrapper}>
                 <div className={styles.cardGrid}>
                   {[...Array(3)].map((_, index) => (
                     <div className={styles.card} key={index}>
-                      <img
-                        src="/images/course-banner-sm.png"
-                        alt="banner"
-                        className={styles.banner}
-                      />
+                      <div className={styles.banner}>
+                        <img
+                          src={`/images/course-banner-${lg ? "md" : "sm"}.png`}
+                          alt="banner"
+                          className={styles.banner}
+                        />
+                      </div>
+
                       <div className={styles.cardInfo}>
                         <p className={`${styles.cardTitle} boldFont`}>
                           BA1 Fundamentals of Business Economics

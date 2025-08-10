@@ -1,5 +1,6 @@
 .instructorsTab {
   width: 100%;
+  /* background-color: pink; */
   margin-bottom: 80px;
 }
 .instructorsGrid {
@@ -71,12 +72,13 @@
 }
 .gridWrapper {
   width: 100%;
+  /* background-color: orange; */
   margin-bottom: 24px;
 }
 .cardGrid {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(1, 320px);
+  grid-template-columns: repeat(1, 1fr);
   gap: 23px;
 }
 .card {
@@ -84,11 +86,17 @@
   border: 1px solid var(--border-color-150);
   border-radius: 8px;
   overflow: hidden;
+  height: fit-content;
 }
 .banner {
   width: 85px;
-  height: 162px;
-  /* height: 159px; */
+  /* height: 100%; */
+  /* display: flex; */
+}
+.banner img {
+  width: 85px;
+  height: 100%;
+  /* object-fit: cover; */
 }
 .cardInfo {
   padding: 10px;
@@ -97,6 +105,14 @@
   font-size: 14px;
   line-height: 20px;
   margin-bottom: 6px;
+  width: 233.67px;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
 }
 .cardType {
   font-size: 12px;
@@ -117,10 +133,164 @@
   font-size: 14px;
   line-height: 20px;
   color: var(--primary-grey-200);
+  width: 120px;
 }
 .cardTxt span {
   color: var(--primary-grey-250);
 }
 .moreInfo br + * {
   margin-top: 16px; /* Adjust the value as needed */
+}
+
+@media screen and (min-width: 400px) {
+  .banner {
+    width: 127px;
+  }
+  .banner img {
+    width: 127px;
+  }
+  .cardTitle {
+    width: 191.67px;
+  }
+  .cardTxt {
+    width: 191.67;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .gridWrapper {
+    overflow-x: auto;
+    width: 480px;
+    /* overflow: hidden; */
+    mask-image: linear-gradient(to right, #000 0% 95%, transparent 100%);
+  }
+
+  .gridWrapper::-webkit-scrollbar {
+    display: none;
+  }
+  .cardGrid {
+    display: flex;
+    /* grid-template-columns: none; */
+  }
+  .card {
+    width: 401px;
+    flex-shrink: 0;
+  }
+  .cardInfo {
+    width: 100%;
+    padding: 14px;
+  }
+  .cardTitle {
+    width: 263px;
+  }
+  .cardTxt {
+    width: 263px;
+    display: -webkit-box;
+    line-clamp: 1;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .gridWrapper {
+    width: 590px;
+  }
+}
+@media screen and (min-width: 850px) {
+  .gridWrapper {
+    width: 848px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .instructorsTab {
+    margin-bottom: 91px;
+  }
+  .line {
+    margin-bottom: 90px;
+  }
+  .instructorsGrid {
+    gap: 70px;
+  }
+  .gridWrapper {
+    width: 630px;
+    /* background-color: paleturquoise;
+    border: 1px solid red; */
+    margin-bottom: 0;
+  }
+  .instructor {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 53px;
+  }
+  .instructorTxt {
+    width: 350px;
+  }
+  .instructorSummary {
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .gridWrapper {
+    width: 698px;
+    border-left: 1.4px solid var(--primary-white-300);
+    padding-left: 24px;
+  }
+  .instructor {
+    display: flex;
+    align-items: center;
+  }
+
+  .instructorBox {
+    display: flex;
+    align-items: center;
+  }
+  .avatar {
+    margin: 0 24px 0 0;
+  }
+  .instructorTxt {
+    width: 300px;
+    margin: 0 24px 0 0;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .gridWrapper {
+    width: 723px;
+    /* background-color: paleturquoise;
+    border: 1px solid red; */
+  }
+  .avatar {
+    margin: 0 40px 0 0;
+  }
+  .instructorTxt {
+    width: 450px;
+    margin: 0 40px 0 0;
+  }
+}
+@media screen and (min-width: 1540px) {
+  .gridWrapper {
+    width: 745px;
+    padding-left: 30px;
+  }
+  .cardGrid {
+    gap: 30px;
+  }
+  .avatar {
+    margin: 0 40px 0 0;
+  }
+  .instructorTxt {
+    width: 530px;
+    margin: 0 70px 0 0;
+  }
 }
