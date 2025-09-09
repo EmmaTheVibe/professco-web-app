@@ -9,7 +9,7 @@ import ReusableNav from "@/app/_components/ReusableNav/ReusableNav";
 export default function CourseSegment({ showAll = false }) {
   // const {courses} = await getAllCourses();
   const { courses, isLoading, count, error, isFetching } = useCourses();
-  console.log(courses);
+
   return (
     <div className={styles.courseSegment}>
       <ReusableNav

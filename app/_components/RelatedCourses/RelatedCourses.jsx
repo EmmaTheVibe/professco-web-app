@@ -17,9 +17,6 @@ export default function RelatedCourses({ courseId, courseType }) {
     ? relatedCourses.data.filter((course) => course.id !== Number(courseId))
     : [];
 
-  console.log(courses);
-  console.log(courseId);
-
   return (
     <div className={styles.gridWrapper}>
       {isLoading ? (

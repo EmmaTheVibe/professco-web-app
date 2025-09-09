@@ -16,9 +16,9 @@
 }
 
 .form select {
-  appearance: none; /* Standard */
-  -webkit-appearance: none; /* Chrome, Safari */
-  -moz-appearance: none; /* Firefox */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   margin-bottom: 32px;
   font-size: 14px;
   line-height: 24px;

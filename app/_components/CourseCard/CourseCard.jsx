@@ -45,7 +45,7 @@ export default function CourseCard({ courseItem }) {
             <p className={`truncate ${styles.courseDesc}`}>
               {courseItem.description}
             </p>
-            <div className={styles.tags}>
+            {/* <div className={styles.tags}>
               {courseItem.tags?.map((tag) => (
                 <div
                   key={tag.id}
@@ -55,7 +55,7 @@ export default function CourseCard({ courseItem }) {
                   <p>{tag.name}</p>
                 </div>
               ))}
-            </div>
+            </div> */}
 
             <button className={`outlined ${styles.btn}`}>
               <p>Purchase course</p>

@@ -13,8 +13,8 @@ const notoSans = Noto_Sans({
 });
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"], // Adjust weights as needed
-  variable: "--font-inter", // Define as a CSS variable
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
 });
 
 export const metadata = {

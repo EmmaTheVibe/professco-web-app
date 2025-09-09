@@ -1,26 +1,3 @@
-export async function getCoursesByType(courseType, page = 1) {
-  try {
-    const slug = courseType.toUpperCase();
-
-    const queryParams = {
-      page: page,
-      limit: PAGE_SIZE,
-    };
-
-    const data = await fetchData(`exam_body/${slug}/courses`, queryParams);
-
-    const courses = data.data || [];
-    const count = data.total || 0;
-
-    return {
-      courses: courses,
-      count: count,
-    };
-  } catch (error) {
-    console.error(`Failed to fetch courses of type ${courseType}:`, error);
-    throw error;
-  }
-}
 import PAGE_SIZE from "@/app/_utils/constants";
 
 function buildQueryParams(params) {
@@ -37,19 +14,9 @@ function buildQueryParams(params) {
   return query.toString();
 }
 
-export async function fetchData(endpoint = "", params = {}, options = {}) {
+export async function fetchData(endpoint = "", params = {}) {
   const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-
-  let url;
-  if (endpoint) {
-    const cleanEndpoint = endpoint.startsWith("/")
-      ? endpoint.slice(1)
-      : endpoint;
-    const cleanBaseUrl = baseUrl.endsWith("/") ? baseUrl.slice(0, -1) : baseUrl;
-    url = `${cleanBaseUrl}/${cleanEndpoint}`;
-  } else {
-    url = baseUrl;
-  }
+  let url = endpoint ? `${baseUrl}/${endpoint}` : baseUrl;
 
   const queryString = buildQueryParams(params);
   if (queryString) {
@@ -64,10 +31,8 @@ export async function fetchData(endpoint = "", params = {}, options = {}) {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        ...options.headers,
       },
       mode: "cors",
-      ...options,
     });
 
     if (!response.ok) {
@@ -121,6 +86,12 @@ export async function getSortedCourses({
       queryParams.tags = tag;
     }
 
+    console.log("Making request with params:", queryParams);
+    console.log(
+      "Full URL would be:",
+      `course?${new URLSearchParams(queryParams).toString()}`
+    );
+
     const data = await fetchData("course", queryParams);
 
     const courses = data.data || [];
@@ -131,7 +102,35 @@ export async function getSortedCourses({
       count: count,
     };
   } catch (error) {
-    console.error(`Error fetching courses from API with filters:`, error);
+    console.error(
+      `Error fetching courses from API with filters:`,
+      queryParams,
+      error
+    );
+
+    if (error.response) {
+      console.error(
+        "Error response:",
+        error.response.status,
+        error.response.data
+      );
+    }
+    throw error;
+  }
+}
+
+export async function getAllCourses() {
+  try {
+    const response = await fetch("http://localhost:3001/courses");
+
+    if (!response.ok) {
+      throw new Error(`Error fetching courses: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Failed to fetch courses:", error);
     throw error;
   }
 }
@@ -139,37 +138,35 @@ export async function getSortedCourses({
 export async function getCourseById(id) {
   try {
     const data = await fetchData(`course/${id}`);
+
     return data;
   } catch (error) {
     console.error(`Failed to fetch course with ID ${id}:`, error);
+
     throw error;
   }
 }
 
-export async function fetchVideo() {
+export async function getCoursesByType(courseType, page = 1) {
   try {
-    const apiUrl = "/api/video";
+    const slug = courseType.toUpperCase();
 
-    console.log("Attempting to fetch video from proxy:", apiUrl);
+    const queryParams = {
+      page: page,
+      per_page: PAGE_SIZE,
+    };
 
-    const response = await fetch(apiUrl, {
-      method: "GET",
-      headers: {
-        Accept: "application/dash+xml, video/mp4, */*",
-      },
-    });
+    const data = await fetchData(`exam_body/${slug}/courses`, queryParams);
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+    const courses = data.data || [];
+    const count = data.total || 0;
 
-    const manifestContent = await response.text();
     return {
-      url: "https://professco.ng/videos/videoCodec/manifest.mpd",
-      manifest: manifestContent,
+      courses: courses,
+      count: count,
     };
   } catch (error) {
-    console.error(`Error fetching video manifest:`, error);
+    console.error(`Failed to fetch courses of type ${courseType}:`, error);
     throw error;
   }
 }

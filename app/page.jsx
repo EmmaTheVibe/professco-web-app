@@ -11,20 +11,15 @@ import Footer from "@/app/_components/Footer/Footer";
 import { fetchData } from "./_lib/data-service";
 
 export default function Page() {
-  async function exampleUsage() {
-    try {
-      // Fetch course data
-      const courseData = await fetchData("course");
-      console.log("Course data received:", courseData);
-
-      // You can also try other endpoints if they exist
-      // const userData = await fetchData('users');
-      // const specificCourse = await fetchData('course/1');
-    } catch (error) {
-      console.log("Failed to fetch data:", error.message);
-    }
-  }
-  exampleUsage();
+  // async function exampleUsage() {
+  //   try {
+  //     const courseData = await fetchData("course");
+  //     console.log("Course data received:", courseData);
+  //   } catch (error) {
+  //     console.log("Failed to fetch data:", error.message);
+  //   }
+  // }
+  // exampleUsage();
   return (
     <section className={styles.homepage}>
       <div className="container">

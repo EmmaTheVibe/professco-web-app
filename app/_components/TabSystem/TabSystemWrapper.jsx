@@ -8,6 +8,6 @@ const TabSystem = dynamic(() => import("./TabSystem"), {
   loading: () => <Spinner />,
 });
 
-export default function TabSystemWrapper() {
-  return <TabSystem />;
+export default function TabSystemWrapper({ course, moduleId }) {
+  return <TabSystem course={course} moduleId={moduleId} />;
 }

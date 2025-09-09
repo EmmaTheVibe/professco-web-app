@@ -4,11 +4,13 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import styles from "./VideoPlayer.module.css";
 
 const VideoPlayer = ({
-  manifestUri,
+  manifestUrl,
   licenseServerUrl,
   videoId = `video_${Date.now()}`,
   title = "Course Video Demo",
   onError = null,
+  poster,
+  course,
 }) => {
   const videoRef = useRef(null);
   const playerRef = useRef(null);
@@ -144,11 +146,9 @@ const VideoPlayer = ({
           });
         }
 
-        await player.load(manifestUri);
+        await player.load(manifestUrl);
 
         if (isMounted) {
-          console.log("Video loaded successfully!");
-
           videoElement.addEventListener("loadedmetadata", () => {
             const duration = videoElement.duration;
             setVideoDuration(duration);
@@ -283,7 +283,7 @@ const VideoPlayer = ({
         }
       }
     };
-  }, [manifestUri, licenseServerUrl]);
+  }, [manifestUrl, licenseServerUrl]);
 
   if (error) {
     return (
@@ -303,7 +303,6 @@ const VideoPlayer = ({
 
   return (
     <div className={styles.videoContainer}>
-      {/* PHASE 1: Add title display */}
       {title && (
         <div className={styles.videoTitle || "video-title"}>
           <h2>{title}</h2>
@@ -327,7 +326,7 @@ const VideoPlayer = ({
           controls={false}
           webkit-playsinline="true"
           className={styles.shakaVideo}
-          poster="/images/courseThumbnail2.png"
+          poster={poster ? poster : "/images/courseThumbnail2.png"}
           style={{ width: "100%", height: "auto" }}
         />
       </div>

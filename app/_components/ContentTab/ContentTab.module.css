@@ -50,11 +50,16 @@
   transition: 0.3s ease;
   padding: 0 10px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .clip {
-  background-color: var(--primary-orange);
   padding: 20px;
   border-radius: 10px;
+}
+.active {
+  background-color: var(--primary-orange);
 }
 .lockedClip {
   padding: 20px;
@@ -69,7 +74,7 @@
   margin-top: 7px;
 }
 
-.clip p {
+.active p {
   color: var(--primary-white-50);
 }
 .line p {
@@ -95,8 +100,7 @@
   background-color: var(--border-color-100);
 }
 .accordionItem.open .bottomWrap {
-  display: block;
-  max-height: 600px;
+  max-height: fit-content;
   padding: 10px;
 }
 .accordionItem .arrow {

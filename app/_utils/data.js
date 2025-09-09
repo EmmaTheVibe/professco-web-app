@@ -965,38 +965,38 @@ const courseContent = [
     id: 1,
     open: true,
   },
-  {
-    id: 2,
-    open: false,
-  },
-  {
-    id: 3,
-    open: false,
-  },
-  {
-    id: 4,
-    open: false,
-  },
-  {
-    id: 5,
-    open: false,
-  },
-  {
-    id: 6,
-    open: false,
-  },
-  {
-    id: 7,
-    open: false,
-  },
-  {
-    id: 8,
-    open: false,
-  },
-  {
-    id: 9,
-    open: false,
-  },
+  // {
+  //   id: 2,
+  //   open: false,
+  // },
+  // {
+  //   id: 3,
+  //   open: false,
+  // },
+  // {
+  //   id: 4,
+  //   open: false,
+  // },
+  // {
+  //   id: 5,
+  //   open: false,
+  // },
+  // {
+  //   id: 6,
+  //   open: false,
+  // },
+  // {
+  //   id: 7,
+  //   open: false,
+  // },
+  // {
+  //   id: 8,
+  //   open: false,
+  // },
+  // {
+  //   id: 9,
+  //   open: false,
+  // },
 ];
 
 const guideData = [

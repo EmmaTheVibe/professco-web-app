@@ -178,13 +178,14 @@
   .topB h1 {
     width: fit-content;
   }
-  .courseGrid,
-  .courseGridB {
+  .courseGrid {
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
   }
   .courseGridB {
     width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
   }
   .gridWrapperB {
     /* width: calc(100vw - 262px);

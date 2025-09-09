@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import LiveRating from "../LiveRating/LiveRating";
 import styles from "./ReviewsTab.module.css";
 
-export default function ReviewsTab() {
+export default function ReviewsTab({ course }) {
   const {
     register,
     handleSubmit,
@@ -12,19 +12,13 @@ export default function ReviewsTab() {
     formState: { errors },
   } = useForm();
 
-  // Watch the comment field to get real-time updates
   const comment = watch("comment", "");
 
-  // Count words (split by whitespace and filter out empty strings)
   const wordCount =
     comment.trim() === "" ? 0 : comment.trim().split(/\s+/).length;
 
-  // Alternative: Count characters
-  // const charCount = comment.length;
-
   const onSubmit = (data) => {
     console.log("Review submitted:", data);
-    // Handle form submission here
   };
 
   return (
@@ -80,10 +74,12 @@ export default function ReviewsTab() {
         </form>
       </div>
       <div className={styles.bottom}>
-        <h1 className={`boldFont ${styles.heading}`}>Reviews</h1>
+        <h1 className={`boldFont ${styles.heading}`}>
+          Reviews ({course.reviews_count})
+        </h1>
         <div className={styles.grid}>
-          {[...Array(3)].map((_, index) => (
-            <div className={styles.card} key={index}>
+          {course.reviews.map((review) => (
+            <div className={styles.card} key={review.id}>
               <div className={styles.stars}>
                 {[...Array(5)].map((_, index) => (
                   <img
@@ -98,11 +94,7 @@ export default function ReviewsTab() {
                   />
                 ))}
               </div>
-              <p className={styles.reviewTxt}>
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse varius enim in eros elementum tristique. Duis
-                cursus, mi quis viverra ornare."
-              </p>
+              <p className={styles.reviewTxt}>{review.comment}</p>
               <div
                 style={{
                   display: "flex",

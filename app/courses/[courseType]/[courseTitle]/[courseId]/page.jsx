@@ -1,23 +1,27 @@
+import ClientVideoWrapper from "@/app/_components/ClientVideoWrapper/ClientVideoWrapper";
 import Explore from "@/app/_components/Explore/Explore";
 import Footer from "@/app/_components/Footer/Footer";
 import Rating from "@/app/_components/Rating/Rating";
 import RelatedCourses from "@/app/_components/RelatedCourses/RelatedCourses";
 import Spinner from "@/app/_components/Spinner/Spinner";
-import TabSystem from "@/app/_components/TabSystem/TabSystem";
+import TabSystemWrapper from "@/app/_components/TabSystem/TabSystemWrapper";
 import { getCourseById } from "@/app/_lib/data-service";
 import { formatAmount } from "@/app/_lib/fns";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import styles from "./CoursePage.module.css";
-import ClientVideoWrapper from "@/app/_components/ClientVideoWrapper/ClientVideoWrapper";
-import TabSystemWrapper from "@/app/_components/TabSystem/TabSystemWrapper";
 
-export default async function Page({ params }) {
-  const videoManifest =
-    "https://storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd";
+export default async function Page({ params, searchParams }) {
   const { courseId, courseType, courseTitle } = await params;
-
   const course = await getCourseById(courseId);
+  const { moduleId } = await searchParams;
+
+  const defaultModuleId = course.modules[0]?.id;
+  const moduleExists =
+    moduleId && course.modules.some((mod) => mod.id === Number(moduleId));
+  const actualModuleId = moduleExists ? Number(moduleId) : defaultModuleId;
+
+  console.log(`module id is ${actualModuleId}`);
 
   if (!course) {
     notFound();
@@ -34,6 +38,7 @@ export default async function Page({ params }) {
   }
 
   const { cache_rating, reviews_count } = course;
+  console.log(course);
 
   return (
     <section className={styles.coursepage}>
@@ -64,8 +69,9 @@ export default async function Page({ params }) {
               </div>
               <h1 className={`boldFont ${styles.title}`}>{course.title}</h1>
               <p className={styles.desc}>
-                Learn from vetted and certified chartered professionals with
-                proven track records
+                {/* Learn from vetted and certified chartered professionals with
+                proven track records */}
+                {course.description}
               </p>
               <div className={styles.pricePack}>
                 <div className={styles.price}>
@@ -85,8 +91,10 @@ export default async function Page({ params }) {
             /> */}
             <div className={styles.banner}>
               <ClientVideoWrapper
-                manifestUri={videoManifest}
                 title={course.title}
+                poster={course.cover_image}
+                course={course}
+                moduleId={actualModuleId}
               />
             </div>
           </div>
@@ -94,7 +102,7 @@ export default async function Page({ params }) {
       </section>
 
       <section className={styles.segB}>
-        <TabSystemWrapper />
+        <TabSystemWrapper course={course} moduleId={actualModuleId} />
       </section>
       <section className={styles.segC}>
         <div className={`container ${styles.segCWrapper}`}>

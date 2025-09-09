@@ -1,10 +1,14 @@
 "use client";
 import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./ContentTab.module.css";
 import { courseContent } from "@/app/_utils/data";
 
-export default function ContentTab() {
+export default function ContentTab({ course, moduleId }) {
   const [list, setList] = useState(courseContent);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   function handleIsOpen(id) {
     setList((curr) =>
       curr.map((item) =>
@@ -12,6 +16,13 @@ export default function ContentTab() {
       )
     );
   }
+
+  function handleModuleClick(moduleId) {
+    const params = new URLSearchParams(searchParams);
+    params.set("moduleId", moduleId);
+    router.push(`?${params.toString()}`);
+  }
+
   return (
     <div className={styles.contentTab}>
       <p className={`${styles.heading} boldFont`}>Course Content</p>
@@ -46,49 +57,24 @@ export default function ContentTab() {
             </div>
 
             <div className={styles.bottomWrap}>
-              <div className={styles.clip}>
-                <p className={styles.title}>1. Welcome</p>
-                <div className={styles.line}>
-                  <img src="/images/play-btn.svg" alt="play" />{" "}
-                  <p className={styles.duration}>6 mins</p>
-                </div>
-              </div>
-              <div className={styles.lockedClip}>
-                <div>
-                  <p className={styles.title}>2. Interface Overview</p>
+              {course.modules.map((module, index) => (
+                <div
+                  className={`${styles.clip} ${
+                    moduleId === module.id ? styles.active : ""
+                  }`}
+                  key={module.id}
+                  onClick={() => handleModuleClick(module.id)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <p className={styles.title}>
+                    {index + 1}. {module.title}
+                  </p>
                   <div className={styles.line}>
                     <img src="/images/play-btn.svg" alt="play" />{" "}
                     <p className={styles.duration}>6 mins</p>
                   </div>
                 </div>
-                <div className={styles.lockBox}>
-                  <img src="/images/square-lock.svg" alt="lock" />
-                </div>
-              </div>
-              <div className={styles.lockedClip}>
-                <div>
-                  <p className={styles.title}>3. Introduction to Android</p>
-                  <div className={styles.line}>
-                    <img src="/images/play-btn.svg" alt="play" />{" "}
-                    <p className={styles.duration}>6 mins</p>
-                  </div>
-                </div>
-                <div className={styles.lockBox}>
-                  <img src="/images/square-lock.svg" alt="lock" />
-                </div>
-              </div>
-              <div className={styles.lockedClip}>
-                <div>
-                  <p className={styles.title}>4. FAQs</p>
-                  <div className={styles.line}>
-                    <img src="/images/play-btn.svg" alt="play" />{" "}
-                    <p className={styles.duration}>6 mins</p>
-                  </div>
-                </div>
-                <div className={styles.lockBox}>
-                  <img src="/images/square-lock.svg" alt="lock" />
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         ))}

@@ -1,8 +1,7 @@
-"use client"; // Assuming Explore itself is a Client Component, if not, remove this.
-// If Explore is a Server Component, this is where the Suspense is critical.
+"use client";
 
-import { Suspense } from "react"; // NEW: Import Suspense
-import Spinner from "@/app/_components/Spinner/Spinner"; // NEW: Import Spinner for fallback
+import { Suspense } from "react";
+import Spinner from "@/app/_components/Spinner/Spinner";
 import { examTabs } from "@/app/_utils/data";
 import ExamCard from "@/app/_components/ExamCard/ExamCard";
 import styles from "./Explore.module.css";
@@ -24,13 +23,9 @@ export default function Explore() {
         <div className={styles.bottom}>
           <div className={styles.examGrid}>
             {examTabs.map((exam) => (
-              // NEW: Wrap ExamCard in Suspense
               <Suspense key={exam.id} fallback={<Spinner />}>
                 <div className={styles.card}>
-                  <ExamCard
-                    exam={exam}
-                    // selectable={true}
-                  />
+                  <ExamCard exam={exam} />
                 </div>
               </Suspense>
             ))}

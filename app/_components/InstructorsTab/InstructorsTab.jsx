@@ -2,7 +2,7 @@
 import { useMediaQuery } from "@mui/material";
 import styles from "./InstructorsTab.module.css";
 
-export default function InstructorsTab() {
+export default function InstructorsTab({ course }) {
   const lg = useMediaQuery("(min-width: 400px)");
 
   return (
@@ -14,8 +14,8 @@ export default function InstructorsTab() {
         </button>
       </div>
       <div className={styles.instructorsGrid}>
-        {[...Array(2)].map((_, index) => (
-          <div className={styles.instructorWrapper} key={index}>
+        {course.tutors.map((tutor) => (
+          <div className={styles.instructorWrapper} key={tutor.id}>
             <div className={styles.instructor}>
               <div className={styles.instructorBox}>
                 <img
@@ -25,7 +25,9 @@ export default function InstructorsTab() {
                 />
                 <div className={styles.instructorBrief}>
                   <p className={`${styles.instructorName} boldFont`}>
-                    Okoro James
+                    {`${tutor.last_name} ${
+                      tutor.middlename && tutor.middlename
+                    } ${tutor.first_name}`}
                   </p>
                   <p className={styles.instructorTxt}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
