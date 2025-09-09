@@ -84,7 +84,10 @@ export default async function Page({ params }) {
               className={styles.banner}
             /> */}
             <div className={styles.banner}>
-              <ClientVideoWrapper manifestUri={videoManifest} />
+              <ClientVideoWrapper
+                manifestUri={videoManifest}
+                title={course.title}
+              />
             </div>
           </div>
         </div>

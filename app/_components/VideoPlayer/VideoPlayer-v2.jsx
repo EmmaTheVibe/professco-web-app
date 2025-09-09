@@ -1,51 +1,31 @@
 "use client";
 
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import styles from "./VideoPlayer.module.css";
 
-const VideoPlayer = ({
-  manifestUri,
-  licenseServerUrl,
-  videoId = `video_${Date.now()}`,
-  title = "Course Video Demo",
-  onError = null,
-}) => {
+const VideoPlayer = ({ manifestUri, licenseServerUrl }) => {
   const videoRef = useRef(null);
   const playerRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const [currentTime, setCurrentTime] = useState(0);
-  const [videoDuration, setVideoDuration] = useState(0);
-
-  const [hasStartedPlaying, setHasStartedPlaying] = useState(false);
-
-  const trackEvent = useCallback(
-    (eventType, data = {}) => {
-      const eventData = {
-        event: eventType,
-        videoId,
-        timestamp: currentTime,
-        duration: videoDuration,
-        userAgent: navigator.userAgent,
-        timestamp_iso: new Date().toISOString(),
-        ...data,
-      };
-
-      console.log("📊 Video Analytics:", eventData);
-    },
-    [videoId, currentTime, videoDuration]
-  );
+  const size1 = useMediaQuery("(min-width: 1200px)");
+  const size2 = useMediaQuery("(min-width: 1000px)");
+  const size3 = useMediaQuery("(min-width: 850px)");
+  const size4 = useMediaQuery("(min-width: 600px)");
 
   useEffect(() => {
     let isMounted = true;
 
     const initializePlayer = async () => {
       try {
+        // Check if we're in the browser
         if (typeof window === "undefined") {
           return;
         }
 
+        // Dynamic import of Shaka Player
         const shaka = await import("shaka-player/dist/shaka-player.ui.js");
         await import("shaka-player/dist/controls.css");
 
@@ -54,29 +34,33 @@ const VideoPlayer = ({
         const videoElement = videoRef.current;
         if (!videoElement) {
           console.error("Video element not found");
-          setError("Video element not found");
-          setIsLoading(false);
           return;
         }
 
+        // Check browser support
         if (!shaka.Player.isBrowserSupported()) {
           setError("Browser not supported for video playback");
           setIsLoading(false);
           return;
         }
 
+        // Install polyfills
         shaka.polyfill.installAll();
 
+        // Create player
         const player = new shaka.Player(videoElement);
         playerRef.current = player;
 
+        // Create UI with custom configuration
         const videoContainer = videoElement.parentElement;
 
+        // Clear any existing UI first
         const existingControls = videoContainer.querySelectorAll(
           ".shaka-controls-container"
         );
         existingControls.forEach((control) => control.remove());
 
+        // Configure UI controls - remove unwanted options
         const uiConfig = {
           controlPanelElements: [
             "play_pause",
@@ -84,7 +68,7 @@ const VideoPlayer = ({
             "spacer",
             "mute",
             "volume",
-            "overflow_menu",
+            "overflow_menu", // This is needed for the settings button
             "fullscreen",
           ],
           overflowMenuButtons: [
@@ -94,43 +78,23 @@ const VideoPlayer = ({
             "language",
             "picture_in_picture",
             "playback_rate",
+            // Removed 'save_video_frame' from here
           ],
         };
 
         const ui = new shaka.ui.Overlay(player, videoContainer, videoElement);
         ui.configure(uiConfig);
 
+        // Store UI reference for later use
         playerRef.current.ui = ui;
 
+        // Error handling
         player.addEventListener("error", (event) => {
-          const error = event.detail;
-          console.error("Shaka Player Error:", error);
-
-          let errorMessage = "Video playback error occurred";
-          if (error && error.code) {
-            switch (error.code) {
-              case 6001:
-                errorMessage = "Content protection error. Please try again.";
-                break;
-              case 1002:
-                errorMessage =
-                  "Network connection error. Check your internet connection.";
-                break;
-              case 2001:
-                errorMessage = "Video format error. Please contact support.";
-                break;
-              default:
-                errorMessage = `Playback error (${error.code}). Please try again.`;
-            }
-          }
-
-          setError(errorMessage);
-
-          if (onError) {
-            onError(errorMessage);
-          }
+          console.error("Shaka Player Error:", event.detail);
+          setError("Video playback error occurred");
         });
 
+        // Configure DRM if needed
         if (licenseServerUrl) {
           player.configure({
             drm: {
@@ -138,103 +102,34 @@ const VideoPlayer = ({
                 "com.widevine.alpha": licenseServerUrl,
               },
             },
+            // Additional security options
             streaming: {
               allowCrossSiteCredentials: false,
             },
           });
         }
 
+        // Load the manifest
         await player.load(manifestUri);
 
         if (isMounted) {
           console.log("Video loaded successfully!");
-
-          videoElement.addEventListener("loadedmetadata", () => {
-            const duration = videoElement.duration;
-            setVideoDuration(duration);
-            console.log(
-              "📏 Video duration loaded:",
-              Math.floor(duration),
-              "seconds"
-            );
-            trackEvent("video_metadata_loaded", { duration });
-          });
-
-          videoElement.addEventListener("timeupdate", () => {
-            const current = videoElement.currentTime;
-            setCurrentTime(current);
-
-            const progress = current / videoDuration;
-            if (progress >= 0.25 && !videoElement.milestone25) {
-              videoElement.milestone25 = true;
-              trackEvent("video_progress_25");
-            }
-            if (progress >= 0.5 && !videoElement.milestone50) {
-              videoElement.milestone50 = true;
-              trackEvent("video_progress_50");
-            }
-            if (progress >= 0.75 && !videoElement.milestone75) {
-              videoElement.milestone75 = true;
-              trackEvent("video_progress_75");
-            }
-          });
-
-          videoElement.addEventListener("play", () => {
-            if (!hasStartedPlaying) {
-              setHasStartedPlaying(true);
-              trackEvent("video_first_play");
-            }
-            trackEvent("video_play", {
-              playbackRate: videoElement.playbackRate,
-            });
-          });
-
-          videoElement.addEventListener("pause", () => {
-            trackEvent("video_pause");
-          });
-
-          videoElement.addEventListener("seeking", () => {
-            trackEvent("video_seek_start", {
-              seekTo: videoElement.currentTime,
-            });
-          });
-
-          videoElement.addEventListener("seeked", () => {
-            trackEvent("video_seek_end", { seekTo: videoElement.currentTime });
-          });
-
-          videoElement.addEventListener("ended", () => {
-            trackEvent("video_completed");
-          });
-
-          player.addEventListener("buffering", (event) => {
-            if (event.buffering) {
-              trackEvent("video_buffering_start");
-            } else {
-              trackEvent("video_buffering_end");
-            }
-          });
-
-          player.addEventListener("adaptation", (event) => {
-            if (event.newTrack) {
-              trackEvent("quality_change", {
-                newQuality: `${event.newTrack.height}p`,
-                bandwidth: event.newTrack.bandwidth,
-              });
-            }
-          });
-
-          trackEvent("video_loaded");
-
           setIsLoading(false);
 
-          videoElement.addEventListener("contextmenu", (e) => {
-            e.preventDefault();
-          });
+          // Disable right-click context menu for additional security
+          const videoElement = videoRef.current;
+          if (videoElement) {
+            videoElement.addEventListener("contextmenu", (e) => {
+              e.preventDefault();
+            });
+          }
 
+          // Multiple attempts to fix control positioning
           setTimeout(() => {
+            // Method 1: Trigger window resize
             window.dispatchEvent(new Event("resize"));
 
+            // Method 2: Force UI resize if available
             if (ui && ui.getControls) {
               try {
                 const controls = ui.getControls();
@@ -246,21 +141,29 @@ const VideoPlayer = ({
               }
             }
 
+            // Method 3: Manually trigger layout recalculation
             const videoContainer = videoElement.parentElement;
             if (videoContainer) {
               const currentDisplay = videoContainer.style.display;
               videoContainer.style.display = "none";
-              videoContainer.offsetHeight;
+              videoContainer.offsetHeight; // Trigger reflow
               videoContainer.style.display = currentDisplay || "";
             }
           }, 100);
 
+          // Second attempt after a longer delay
           setTimeout(() => {
             window.dispatchEvent(new Event("resize"));
           }, 500);
         }
       } catch (error) {
         console.error("Error initializing video player:", error);
+        console.error("Error type:", typeof error);
+        console.error("Error stringified:", JSON.stringify(error));
+        if (error instanceof Error) {
+          console.error("Error message:", error.message);
+          console.error("Stack trace:", error.stack);
+        }
         if (isMounted) {
           setError("Failed to initialize video player");
           setIsLoading(false);
@@ -274,9 +177,11 @@ const VideoPlayer = ({
       isMounted = false;
       if (playerRef.current) {
         try {
+          // Destroy UI first if it exists
           if (playerRef.current.ui) {
             playerRef.current.ui.destroy();
           }
+          // Then destroy the player
           playerRef.current.destroy();
         } catch (error) {
           console.error("Error destroying player:", error);
@@ -303,13 +208,6 @@ const VideoPlayer = ({
 
   return (
     <div className={styles.videoContainer}>
-      {/* PHASE 1: Add title display */}
-      {title && (
-        <div className={styles.videoTitle || "video-title"}>
-          <h2>{title}</h2>
-        </div>
-      )}
-
       {isLoading && (
         <div className={styles.loadingOverlay}>
           <div className={styles.spinner}></div>
@@ -323,6 +221,7 @@ const VideoPlayer = ({
       >
         <video
           ref={videoRef}
+          // autoPlay
           playsInline
           controls={false}
           webkit-playsinline="true"

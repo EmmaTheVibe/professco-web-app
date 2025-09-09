@@ -104,7 +104,8 @@ a {
   text-decoration: none;
 }
 input,
-textarea {
+textarea,
+select {
   background: none;
   border: none;
   font-family: "Averta", sans-serif;

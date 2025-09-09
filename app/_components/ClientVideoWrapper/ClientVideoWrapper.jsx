@@ -2,7 +2,6 @@
 
 import dynamic from "next/dynamic";
 
-// Now this dynamic import with ssr: false works because it's in a client component
 const VideoPlayer = dynamic(
   () => import("@/app/_components/VideoPlayer/VideoPlayer"),
   {
@@ -13,7 +12,7 @@ const VideoPlayer = dynamic(
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          // minHeight: "200px",
+
           height: "100%",
           background: "#f5f5f5",
           borderRadius: "8px",
@@ -27,11 +26,16 @@ const VideoPlayer = dynamic(
   }
 );
 
-export default function ClientVideoWrapper({ manifestUri, licenseServerUrl }) {
+export default function ClientVideoWrapper({
+  manifestUri,
+  licenseServerUrl,
+  title,
+}) {
   return (
     <VideoPlayer
       manifestUri={manifestUri}
       licenseServerUrl={licenseServerUrl}
+      title={title}
     />
   );
 }

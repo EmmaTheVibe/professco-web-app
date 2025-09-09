@@ -4,6 +4,11 @@
   border: 1px solid var(--border-color-150);
   border-radius: 8px;
   overflow: hidden;
+  cursor: pointer;
+  color: #1f2937;
+}
+.courseCard a {
+  color: inherit;
 }
 .preview {
   width: 100%;
