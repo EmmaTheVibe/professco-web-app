@@ -3,8 +3,13 @@
 import { Suspense } from "react";
 import Spinner from "@/app/_components/Spinner/Spinner";
 import { examTabs } from "@/app/_utils/data";
-import ExamCard from "@/app/_components/ExamCard/ExamCard";
 import styles from "./Explore.module.css";
+
+import dynamic from "next/dynamic";
+
+const ExamCard = dynamic(() => import("@/app/_components/ExamCard/ExamCard"), {
+  ssr: false,
+});
 
 export default function Explore() {
   return (

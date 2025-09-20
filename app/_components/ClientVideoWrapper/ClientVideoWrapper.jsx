@@ -52,6 +52,9 @@ export default function ClientVideoWrapper({
   }
 
   const { manifest_url, license_url } = module;
+  // console.log(
+  //   `from video wrapper, manifest url is ${manifest_url}, module id is ${moduleId} and module is ${module}`
+  // );
 
   if (!manifest_url) {
     return (
@@ -78,6 +81,8 @@ export default function ClientVideoWrapper({
       title={title}
       poster={poster}
       course={course}
+      moduleId={moduleId}
+      key={moduleId}
     />
   );
 }

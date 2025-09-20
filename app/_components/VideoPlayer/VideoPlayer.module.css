@@ -1,10 +1,7 @@
-/* VideoPlayer.module.css */
-
-/* Base video container - Updated with your existing styles */
-.videoContainer {
+/* .videoContainer {
   position: relative;
   width: 100%;
-  height: 100%; /* This will make it fill the banner height */
+  height: 100%; 
   background: #000;
   overflow: hidden;
   -webkit-user-select: none;
@@ -20,9 +17,37 @@
 
 .shakaVideo {
   width: 100%;
-  height: 100%; /* Change from auto to 100% */
+  height: 100%;
   display: block;
-  object-fit: cover; /* or object-fit: contain depending on preference */
+  object-fit: cover; 
+  -webkit-appearance: none;
+  -webkit-media-controls: none;
+  -webkit-media-controls-panel: none;
+  -webkit-media-controls-play-button: none;
+  -webkit-media-controls-start-playback-button: none;
+} */
+
+.videoContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+.shakaVideo {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: fill;
   -webkit-appearance: none;
   -webkit-media-controls: none;
   -webkit-media-controls-panel: none;
@@ -85,6 +110,22 @@
 /* Force hide all native controls on iOS */
 .videoContainer video::-webkit-media-controls-enclosure {
   display: none !important;
+}
+
+/* Add this to your VideoPlayer.module.css */
+/* .sr-only {
+  display: none;
+} */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }
 
 .loadingOverlay {
@@ -444,19 +485,19 @@
 }
 
 /* Ensure video container maintains aspect ratio */
-.videoContainer::before {
+/* .videoContainer::before {
   content: "";
   display: block;
-  padding-top: 56.25%; /* 16:9 aspect ratio */
-}
+  padding-top: 56.25%; 
+} */
 
-.videoContainer > div[data-shaka-player-container] {
+/* .videoContainer > div[data-shaka-player-container] {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-}
+} */
 
 /* Shaka Player control customizations */
 .videoContainer .shaka-controls-container {
