@@ -73,14 +73,12 @@ const VideoPlayer = ({
 
   const goToNextModule = () => {
     if (isLastModule()) {
-      console.log("Course completed - no more modules");
       trackEvent("course_completed");
       return;
     }
 
-    console.log(moduleId);
     const nextModuleId = Number(moduleId) + 1;
-    console.log(`next module Id is ${nextModuleId}`);
+
     const params = new URLSearchParams(searchParams);
     params.set("moduleId", nextModuleId.toString());
 
@@ -378,6 +376,7 @@ const VideoPlayer = ({
           ref={videoRef}
           playsInline
           controls={false}
+          autoPlay
           webkit-playsinline="true"
           className={styles.shakaVideo}
           poster={poster ? poster : "/images/courseThumbnail2.png"}

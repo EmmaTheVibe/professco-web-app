@@ -1,8 +1,17 @@
+"use client";
 import { examTabs, footerOptions } from "@/app/_utils/data";
-import FooterForm from "@/app/_components/FooterForm/FooterForm";
 import Notifs from "@/app/_components/Notifs/Notifs";
 import styles from "./Footer.module.css";
 import Link from "next/link";
+
+import dynamic from "next/dynamic";
+
+const FooterForm = dynamic(
+  () => import("@/app/_components/FooterForm/FooterForm"),
+  {
+    ssr: false,
+  }
+);
 
 export default function Footer() {
   const learnOptions = footerOptions.filter((option) =>
