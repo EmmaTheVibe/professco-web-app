@@ -90,12 +90,14 @@ export default async function Page({ params, searchParams }) {
               className={styles.banner}
             /> */}
             <div className={styles.banner}>
-              <ClientVideoWrapper
-                title={course.title}
-                poster={course.cover_image}
-                course={course}
-                moduleId={actualModuleId}
-              />
+              <Suspense fallback={<Spinner />}>
+                <ClientVideoWrapper
+                  title={course.title}
+                  poster={course.cover_image}
+                  course={course}
+                  moduleId={actualModuleId}
+                />
+              </Suspense>
             </div>
           </div>
         </div>

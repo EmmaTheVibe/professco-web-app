@@ -3,9 +3,7 @@
 import { useState } from "react";
 import styles from "./LiveRating.module.css";
 
-export default function LiveRating() {
-  const [currentRating, setCurrentRating] = useState(0);
-
+export default function LiveRating({ currentRating, setCurrentRating }) {
   const [hoverRating, setHoverRating] = useState(0);
 
   const handleMouseMove = (event, starValue) => {

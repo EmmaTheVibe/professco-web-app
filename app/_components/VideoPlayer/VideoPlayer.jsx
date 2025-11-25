@@ -190,9 +190,6 @@ const VideoPlayer = ({
                 "com.widevine.alpha": licenseServerUrl,
               },
             },
-            streaming: {
-              allowCrossSiteCredentials: false,
-            },
           });
         }
 

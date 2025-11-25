@@ -3,13 +3,16 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import LiveRating from "../LiveRating/LiveRating";
 import styles from "./ReviewsTab.module.css";
+import { useState } from "react";
 
 export default function ReviewsTab({ course }) {
+  const [currentRating, setCurrentRating] = useState(0);
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
+    reset,
   } = useForm();
 
   const comment = watch("comment", "");
@@ -18,14 +21,22 @@ export default function ReviewsTab({ course }) {
     comment.trim() === "" ? 0 : comment.trim().split(/\s+/).length;
 
   const onSubmit = (data) => {
-    console.log("Review submitted:", data);
+    console.log("Review submitted:", {
+      ...data,
+      rating: currentRating,
+    });
+    reset();
+    setCurrentRating(0);
   };
 
   return (
     <div className={styles.reviewsTab}>
       <div className={styles.top}>
         <h1 className={`boldFont ${styles.heading}`}>Leave a review</h1>
-        <LiveRating />
+        <LiveRating
+          currentRating={currentRating}
+          setCurrentRating={setCurrentRating}
+        />
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.line}>
             <p className={`${styles.label} semiboldFont`}>
