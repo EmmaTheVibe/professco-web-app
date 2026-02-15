@@ -1,8 +1,8 @@
 "use client";
 import styles from "./About.module.css";
-import HomeNav from "@/app/_components/HomeNav/HomeNav";
-import Footer from "@/app/_components/Footer/Footer";
-import Segment from "@/app/_components/Segment/Segment";
+import HomeNav from "@/app/_components/navigation/HomeNav/HomeNav";
+import Footer from "@/app/_components/layout/Footer/Footer";
+import Segment from "@/app/_components/layout/Segment/Segment";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 export default function Page() {

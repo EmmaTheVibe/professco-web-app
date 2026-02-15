@@ -1,0 +1,373 @@
+.courseList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /* border-bottom: 1px solid #cbd5e1; */
+}
+
+.top,
+.bottom {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+.topB {
+  padding-top: 28px;
+  margin-bottom: 56px;
+}
+
+.divider {
+  background-color: #cbd5e1;
+  width: 100%;
+  height: 1px;
+}
+
+.dividerB {
+  background-color: #cbd5e1;
+  width: 100%;
+  height: 2px;
+  margin: 30px 0 20px 0;
+}
+
+.wrapper {
+  padding: 36px 0 56px;
+  width: 320px;
+}
+.gridWrapper,
+.gridWrapperB {
+  padding: 36px 0 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /* border: 1px solid red; */
+}
+.heading {
+  font-size: 30px;
+  line-height: 38px;
+  margin: 12px 0 14px;
+}
+
+.headingPlaceholder {
+  height: 30px;
+  width: 70%;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  background: linear-gradient(to right, #e0e0e0 8%, #ffffff 18%, #e0e0e0 33%);
+  background-size: 800px 104px;
+  animation: shimmer 1.5s infinite linear;
+}
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.moreInfo {
+  margin-bottom: 30px;
+}
+.sidebar {
+  width: 292px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: var(--primary-white-50);
+  overflow-y: auto;
+  box-sizing: border-box;
+  z-index: 1000;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  padding: 20px 20px 60px 20px;
+}
+.open {
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+  transform: translateX(0);
+}
+.closeLine {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+.closer {
+  display: flex;
+  cursor: pointer;
+}
+
+.courseGrid,
+.courseGridB {
+  display: grid;
+  grid-template-columns: repeat(1, 288px);
+  gap: 20px;
+}
+.courseGridB {
+  margin-bottom: 21px;
+}
+
+.tagBox {
+  margin-bottom: 10px;
+}
+
+.btn {
+  width: 201px;
+}
+.btnB {
+  width: 128px;
+  margin-bottom: 16px;
+}
+.btnB img {
+  transform: translateY(1px);
+  margin-left: 8px;
+}
+
+@media screen and (min-width: 400px) {
+  .courseGrid,
+  .courseGridB {
+    grid-template-columns: repeat(1, 300px);
+  }
+}
+
+@media screen and (min-width: 500px) {
+  /* .courseGrid,
+  .courseGridB {
+    grid-template-columns: repeat(2, 240px);
+  } */
+}
+
+@media screen and (min-width: 600px) {
+  .wrapper {
+    width: 590px;
+  }
+  .courseGrid,
+  .courseGridB {
+    grid-template-columns: repeat(2, 288px);
+  }
+  .courseGridB {
+    gap: 14px;
+  }
+  .moreInfo {
+    width: 480px;
+  }
+}
+
+@media screen and (min-width: 850px) {
+  .wrapperB {
+    display: flex;
+    flex-direction: column;
+  }
+  /* .topB {
+    width: 262px;
+    position: sticky;
+    top: 84px;
+    background-color: var(--primary-white-100);
+    z-index: 9;
+    padding-right: 15px;
+    height: fit-content;
+  } */
+  .topB p,
+  .topB h1 {
+    width: fit-content;
+  }
+  .courseGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .courseGridB {
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  /* .gridWrapperB {
+    width: calc(100vw - 262px);
+    height: 100%;
+  } */
+
+  /* .courseGridB {
+    grid-template-columns: repeat(2, 288px);
+    gap: 10px;
+  } */
+}
+
+@media screen and (min-width: 1000px) {
+  .courseList {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 980px;
+  }
+  .divider {
+    width: 1px;
+    height: 100%;
+  }
+  .top {
+    width: 30%;
+    padding-right: 16px;
+  }
+  .wrapper {
+    width: unset;
+  }
+  .wrapperB {
+    flex-direction: column;
+  }
+  .topB {
+    width: unset;
+    position: relative;
+    top: unset;
+    z-index: unset;
+    padding-right: 0;
+    height: fit-content;
+  }
+
+  .moreInfo {
+    width: unset;
+  }
+
+  .bottom {
+    border-left: 1px solid #cbd5e1;
+    width: 70%;
+  }
+  .border {
+    /* border-right: 1px solid #cbd5e1; */
+    width: calc(30% + 0.5px);
+  }
+  /* .borderB {
+    border-left: 1px solid #cbd5e1;
+  } */
+  .top,
+  .bottom {
+    border-bottom: none;
+  }
+  .tagBox {
+    margin: 20px 0;
+    width: 100%;
+  }
+
+  /* .btnB {
+    display: none;
+  } */
+  .bottomB {
+    display: flex;
+    margin-bottom: 56px;
+    align-items: flex-start;
+  }
+  /* .gridWrapperB {
+    width: calc(100vw - 292px);
+    padding: 0;
+  } */
+  /* .courseGridB {
+    gap: 20px;
+  } */
+  .sidebar {
+    width: 292px;
+    position: relative;
+    top: unset;
+    left: unset;
+    height: unset;
+    overflow-y: auto;
+    box-sizing: border-box;
+    z-index: unset;
+    transform: translateX(0);
+  }
+
+  /* .gridWrapper {
+    align-items: start;
+    padding-left: 30px;
+  } */
+  .gridWrapper {
+    align-items: start;
+    padding-left: 30px;
+    overflow-x: auto;
+    /* mask-image: linear-gradient(to right, #000 0% 96%, transparent 100%); */
+  }
+  .gridWrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gridWrapperB {
+    padding: 0 0 56px;
+  }
+  /* .courseGrid, */
+  .courseGridB {
+    grid-template-columns: repeat(2, 288px);
+    gap: 30px;
+  }
+  .courseGrid {
+    grid-template-columns: repeat(5, 288px);
+    gap: 30px;
+  }
+  .courseGridB {
+    width: unset;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .courseList {
+    width: 1180px;
+  }
+  .top {
+    width: 35%;
+    justify-content: flex-start;
+    padding-left: 20px;
+  }
+  .heading {
+    font-size: 36px;
+    line-height: 44px;
+    width: 317px;
+  }
+  .moreInfo {
+    font-size: 18px;
+    line-height: 28px;
+    margin-bottom: 56px;
+    width: 317px;
+  }
+  .bottom {
+    width: 65%;
+  }
+
+  .bottomB {
+    justify-content: space-between;
+  }
+  .gridWrapperB {
+    width: calc(100% - 310px);
+  }
+  .courseGridB {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .courseList {
+    width: 1380px;
+  }
+
+  .courseGridB {
+    grid-template-columns: repeat(3, 288px);
+    gap: 20px;
+    width: unset;
+  }
+
+  .top {
+    width: 30%;
+  }
+  .bottom {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 1540px) {
+  .courseList {
+    width: 1519px;
+  }
+}

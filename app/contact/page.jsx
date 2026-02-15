@@ -1,7 +1,7 @@
 import styles from "./ContactPage.module.css";
-import HomeNav from "@/app/_components/HomeNav/HomeNav";
-import ContactForm from "@/app/_components/ContactForm/ContactForm";
-import BottomBanner from "@/app/_components/BottomBanner/BottomBanner";
+import HomeNav from "@/app/_components/navigation/HomeNav/HomeNav";
+import ContactForm from "@/app/_components/layout/ContactForm/ContactForm";
+import BottomBanner from "@/app/_components/layout/BottomBanner/BottomBanner";
 
 export default function ContactPage() {
   return (

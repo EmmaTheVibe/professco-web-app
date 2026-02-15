@@ -3,8 +3,9 @@ import { Suspense } from "react";
 
 import "@/app/_styles/globals.css";
 import { ContextProvider } from "@/app/_utils/Contexts";
-import HomeNav from "@/app/_components/HomeNav/HomeNav";
-import { Providers } from "@/app/_components/Providers";
+import AuthHydrator from "@/app/_components/auth/AuthHydrator";
+import HomeNav from "@/app/_components/navigation/HomeNav/HomeNav";
+import { Providers } from "@/app/_components/layout/Providers";
 
 const notoSans = Noto_Sans({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({ children }) {
         <Suspense fallback={null}>
           <Providers>
             <ContextProvider>
+              <AuthHydrator />
               <HomeNav />
               {children}
             </ContextProvider>

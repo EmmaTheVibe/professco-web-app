@@ -1,13 +1,9 @@
-"use client";
-import BackButton from "@/app/_components/BackButton/BackButton";
-import BottomBanner from "@/app/_components/BottomBanner/BottomBanner";
-import LoginForm from "@/app/_components/LoginForm/LoginForm";
+import BackButton from "@/app/_components/navigation/BackButton/BackButton";
+import BottomBanner from "@/app/_components/layout/BottomBanner/BottomBanner";
+import LoginForm from "@/app/_components/auth/LoginForm/LoginForm";
 import styles from "./Login.module.css";
-import { useMediaQuery } from "@mui/material";
 
 export default function Login() {
-  const lg = useMediaQuery("(min-width: 1200px)");
-
   return (
     <section className={styles.login}>
       <section className={styles.main}>
@@ -22,13 +18,6 @@ export default function Login() {
               </p>
             </div>
             <LoginForm />
-            {lg && (
-              <img
-                src="/images/graduation.png"
-                alt="grad"
-                className={styles.grad}
-              />
-            )}
           </div>
         </div>
       </section>

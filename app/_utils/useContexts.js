@@ -7,13 +7,8 @@ function useContexts() {
 
   if (!context) {
     return {
-      activeTab: "ALL",
-      setActiveTab: () => {},
       activeCourseTab: "About",
       setActiveCourseTab: () => {},
-      examTypeList: [],
-      setExamTypeList: () => {},
-      addExamType: () => {},
       formatTabForUrl: (tab) =>
         tab.toLowerCase().replace(/\s+/g, "-").replace("& ", ""),
     };

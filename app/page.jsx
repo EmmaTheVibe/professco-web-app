@@ -1,13 +1,13 @@
-import Carousel from "@/app/_components/Carousel/Carousel";
-import Faqs from "@/app/_components/Faqs/Faqs";
-import GuideCard from "@/app/_components/GuideCard/GuideCard";
-import ReviewCard from "@/app/_components/ReviewCard/ReviewCard";
-import Segment from "@/app/_components/Segment/Segment";
+import Carousel from "@/app/_components/common/Carousel/Carousel";
+import Faqs from "@/app/_components/common/Faqs/Faqs";
+import GuideCard from "@/app/_components/common/GuideCard/GuideCard";
+import ReviewCard from "@/app/_components/common/ReviewCard/ReviewCard";
+import Segment from "@/app/_components/layout/Segment/Segment";
 import { guideData } from "@/app/_utils/data";
 import Link from "next/link";
-import CourseSegment from "./_components/CourseSegment/CourseSegment";
+import CourseSegment from "@/app/_components/course/CourseSegment/CourseSegment";
 import styles from "./HomePage.module.css";
-import Footer from "@/app/_components/Footer/Footer";
+import Footer from "@/app/_components/layout/Footer/Footer";
 import { fetchData } from "./_lib/data-service";
 
 export default function Page() {

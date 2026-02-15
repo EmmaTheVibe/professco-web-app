@@ -1,4 +1,4 @@
-import BottomBanner from "@/app/_components/BottomBanner/BottomBanner";
+import BottomBanner from "@/app/_components/layout/BottomBanner/BottomBanner";
 import styles from "./TermsPage.module.css";
 
 export default function Page() {
