@@ -1,5 +1,5 @@
-import BottomBanner from "@/app/_components/BottomBanner/BottomBanner";
-import ExamCard from "@/app/_components/ExamCard/ExamCard";
+import BottomBanner from "@/app/_components/layout/BottomBanner/BottomBanner";
+import ExamCard from "@/app/_components/common/ExamCard/ExamCard";
 import { examTabs } from "@/app/_utils/data";
 import styles from "./GetStarted.module.css";
 

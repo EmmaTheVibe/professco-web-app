@@ -1,0 +1,27 @@
+.checkoutPage {
+  padding-top: 93px;
+}
+.wrapper {
+  max-width: 1383px;
+}
+.heading {
+  font-size: 30px;
+  line-height: 38px;
+  margin-bottom: 4px;
+}
+.desc {
+  font-size: 18px;
+  line-height: 28px;
+  margin-bottom: 32px;
+}
+
+@media screen and (min-width: 850px) {
+  .checkoutPage {
+    padding-top: 110px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .checkoutPage {
+    padding-top: 141.67px;
+  }
+}

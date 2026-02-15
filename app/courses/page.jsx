@@ -1,7 +1,7 @@
-import CourseSegment from "@/app/_components/CourseSegment/CourseSegment";
-import Explore from "@/app/_components/Explore/Explore";
+import CourseSegment from "@/app/_components/course/CourseSegment/CourseSegment";
+import Explore from "@/app/_components/layout/Explore/Explore";
 import styles from "./Courses.module.css";
-import Footer from "@/app/_components/Footer/Footer";
+import Footer from "@/app/_components/layout/Footer/Footer";
 
 export default function Page() {
   return (

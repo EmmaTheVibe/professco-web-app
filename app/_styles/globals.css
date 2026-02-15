@@ -26,18 +26,25 @@
   --primary-white-250: #dcdee6;
   --primary-white-300: #e5e7eb;
 
+  --primary-grey-0: #acacac;
   --primary-grey-50: #6b7280;
   --primary-grey-100: #59595a;
   --primary-grey-150: #687d94;
   --primary-grey-200: #6b6f80;
   --primary-grey-250: #374151;
+  --primary-grey-300: #9ea2b3;
+  --primary-grey-350: #838799;
 
   --primary-orange: #e65539;
   --primary-orange-50: #ef4444;
+  --primary-orange-100: #dc2626;
+
+  --primary-green-0: #359944;
 
   --primary-peach: #e6553914;
 
   --primary-black-50: #000000;
+  --primary-black-100: rgba(0, 0, 0, 0.6);
   --primary-black-150: #344054;
 
   --border-color: #d0d5dd;
@@ -45,6 +52,7 @@
   --border-color-100: #f1f5f9;
   --border-color-150: #e2e8f0;
   --border-color-200: #d1d5db;
+  --border-color-250: rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -237,6 +245,11 @@ button {
   background-color: var(--primary-orange);
   color: var(--primary-white-50);
   border: none;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .filledB {

@@ -1,15 +1,17 @@
-import ClientVideoWrapper from "@/app/_components/ClientVideoWrapper/ClientVideoWrapper";
-import Explore from "@/app/_components/Explore/Explore";
-import Footer from "@/app/_components/Footer/Footer";
-import Rating from "@/app/_components/Rating/Rating";
-import RelatedCourses from "@/app/_components/RelatedCourses/RelatedCourses";
-import Spinner from "@/app/_components/Spinner/Spinner";
-import TabSystemWrapper from "@/app/_components/TabSystem/TabSystemWrapper";
+import ClientVideoWrapper from "@/app/_components/video/ClientVideoWrapper/ClientVideoWrapper";
+import Explore from "@/app/_components/layout/Explore/Explore";
+import Footer from "@/app/_components/layout/Footer/Footer";
+import Rating from "@/app/_components/common/Rating/Rating";
+import RelatedCourses from "@/app/_components/course/RelatedCourses/RelatedCourses";
+import Spinner from "@/app/_components/layout/Spinner/Spinner";
+import TabSystemWrapper from "@/app/_components/course/TabSystem/TabSystemWrapper";
 import { getCourseById } from "@/app/_lib/data-service";
 import { formatAmount } from "@/app/_lib/fns";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import styles from "./CoursePage.module.css";
+import Link from "next/link";
+import AddToCartButton from "@/app/_components/cart/AddToCartButton";
 
 export default async function Page({ params, searchParams }) {
   const { courseId, courseType, courseTitle } = await params;
@@ -20,8 +22,6 @@ export default async function Page({ params, searchParams }) {
   const moduleExists =
     moduleId && course.modules.some((mod) => mod.id === Number(moduleId));
   const actualModuleId = moduleExists ? Number(moduleId) : defaultModuleId;
-
-  console.log(`module id is ${actualModuleId}`);
 
   if (!course) {
     notFound();
@@ -38,7 +38,6 @@ export default async function Page({ params, searchParams }) {
   }
 
   const { cache_rating, reviews_count } = course;
-  console.log(course);
 
   return (
     <section className={styles.coursepage}>
@@ -68,11 +67,7 @@ export default async function Page({ params, searchParams }) {
                 <p className="semiboldFont">Fundamentals</p>
               </div>
               <h1 className={`boldFont ${styles.title}`}>{course.title}</h1>
-              <p className={styles.desc}>
-                {/* Learn from vetted and certified chartered professionals with
-                proven track records */}
-                {course.description}
-              </p>
+              <p className={styles.desc}>{course.description}</p>
               <div className={styles.pricePack}>
                 <div className={styles.price}>
                   <p className="boldFont">₦{formatAmount(course.amount)}</p>
@@ -80,9 +75,16 @@ export default async function Page({ params, searchParams }) {
 
                 <Rating count={reviews_count} rating={cache_rating} />
               </div>
-              <button className={`filled ${styles.btn}`}>
-                <p>Purchase course</p>
-              </button>
+              <div className={styles.btnGroup}>
+                <Link
+                  href={`/checkout?directPurchase=true&courseId=${courseId}`}
+                >
+                  <button className={`filled ${styles.btn}`}>
+                    <p>Purchase course</p>
+                  </button>
+                </Link>
+                <AddToCartButton courseId={courseId} />
+              </div>
             </div>
             {/* <img
               src={course.cover_image}

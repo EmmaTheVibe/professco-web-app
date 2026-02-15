@@ -3,7 +3,7 @@
 import { getSortedCourses } from "@/app/_lib/data-service";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import useContexts from "@/app/_utils/useContexts";
+import useFilterStore from "@/app/_utils/filter-store";
 import PAGE_SIZE from "@/app/_utils/constants";
 
 const validExams = [
@@ -33,7 +33,7 @@ const formatTagForBackend = (tagInput) => {
 
 export default function useCourses() {
   const searchParams = useSearchParams();
-  const { activeTab } = useContexts();
+  const activeTab = useFilterStore((state) => state.activeTab);
   const queryClient = useQueryClient();
 
   const rawExam = searchParams?.get("exam")?.toLowerCase();
@@ -145,65 +145,69 @@ export default function useCourses() {
   const pageCount = Math.ceil(backendTotalCount / limit);
 
   // if (page < pageCount) {
-  //   queryClient.prefetchQuery({
-  //     queryKey: [
-  //       "courses",
-  //       examValue,
-  //       page + 1,
-  //       limit,
-  //       minAmountParam,
-  //       maxAmountParam,
-  //       minRating,
-  //       applyPriceFilterFrontend,
-  //       levelValues.sort().join(","),
-  //       sortBy,
-  //       sortOrder,
-  //       tagValue,
-  //     ],
-  //     queryFn: () =>
-  //       getSortedCourses({
+  //   setTimeout(() => {
+  //     queryClient.prefetchQuery({
+  //       queryKey: [
+  //         "courses",
   //         examValue,
-  //         page: page + 1,
+  //         page + 1,
   //         limit,
-  //         minAmount: minAmountParam,
-  //         maxAmount: maxAmountParam,
+  //         minAmountParam,
+  //         maxAmountParam,
   //         minRating,
-  //         sortBy: sortBy,
-  //         sortOrder: sortOrder,
-  //         tag: backendTagParam,
-  //       }),
-  //   });
+  //         applyPriceFilterFrontend,
+  //         levelValues.sort().join(","),
+  //         sortBy,
+  //         sortOrder,
+  //         tagValue,
+  //       ],
+  //       queryFn: () =>
+  //         getSortedCourses({
+  //           examValue,
+  //           page: page + 1,
+  //           limit,
+  //           minAmount: minAmountParam,
+  //           maxAmount: maxAmountParam,
+  //           minRating,
+  //           sortBy: sortBy,
+  //           sortOrder: sortOrder,
+  //           tag: backendTagParam,
+  //         }),
+  //     });
+  //   }, 300);
   // }
 
   // if (page > 1) {
-  //   queryClient.prefetchQuery({
-  //     queryKey: [
-  //       "courses",
-  //       examValue,
-  //       page - 1,
-  //       limit,
-  //       minAmountParam,
-  //       maxAmountParam,
-  //       minRating,
-  //       applyPriceFilterFrontend,
-  //       levelValues.sort().join(","),
-  //       sortBy,
-  //       sortOrder,
-  //       tagValue,
-  //     ],
-  //     queryFn: () =>
-  //       getSortedCourses({
+  //   setTimeout(() => {
+  //     queryClient.prefetchQuery({
+  //       queryKey: [
+  //         "courses",
   //         examValue,
-  //         page: page - 1,
+  //         page - 1,
   //         limit,
-  //         minAmount: minAmountParam,
-  //         maxAmount: maxAmountParam,
+  //         minAmountParam,
+  //         maxAmountParam,
   //         minRating,
-  //         sortBy: sortBy,
-  //         sortOrder: sortOrder,
-  //         tag: backendTagParam,
-  //       }),
-  //   });
+  //         applyPriceFilterFrontend,
+  //         levelValues.sort().join(","),
+  //         sortBy,
+  //         sortOrder,
+  //         tagValue,
+  //       ],
+  //       queryFn: () =>
+  //         getSortedCourses({
+  //           examValue,
+  //           page: page - 1,
+  //           limit,
+  //           minAmount: minAmountParam,
+  //           maxAmount: maxAmountParam,
+  //           minRating,
+  //           sortBy: sortBy,
+  //           sortOrder: sortOrder,
+  //           tag: backendTagParam,
+  //         }),
+  //     });
+  //   }, 300);
   // }
 
   return { isLoading, isFetching, error, courses, count: backendTotalCount };

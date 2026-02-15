@@ -56,16 +56,16 @@ export async function fetchData(endpoint = "", params = {}, options = {}) {
     url += `?${queryString}`;
   }
 
-  console.log("Attempting to fetch from:", url);
+  const headers = {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    ...options.headers,
+  };
 
   try {
     const response = await fetch(url, {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        ...options.headers,
-      },
+      headers: headers,
       mode: "cors",
       ...options,
     });
@@ -150,7 +150,7 @@ export async function fetchVideo() {
   try {
     const apiUrl = "/api/video";
 
-    console.log("Attempting to fetch video from proxy:", apiUrl);
+    // console.log("Attempting to fetch video from proxy:", apiUrl);
 
     const response = await fetch(apiUrl, {
       method: "GET",
