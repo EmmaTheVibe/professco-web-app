@@ -7,16 +7,19 @@ import styles from "./Explore.module.css";
 
 import dynamic from "next/dynamic";
 
-const ExamCard = dynamic(() => import("@/app/_components/common/ExamCard/ExamCard"), {
-  ssr: false,
-});
+const ExamCard = dynamic(
+  () => import("@/app/_components/common/ExamCard/ExamCard"),
+  {
+    ssr: false,
+  },
+);
 
 export default function Explore() {
   return (
     <section className={styles.explore}>
       <div className={`container ${styles.box}`}>
         <div className={styles.top}>
-          <p style={{ color: "#4B5563" }}>Available on Professco</p>
+          <p style={{ color: "#4B5563" }}>Available on Professco.</p>
           <h1 className="boldFont">Explore Professco</h1>
           <p className={styles.txt}>
             Learn from verified/certified Professionals in various fields with
