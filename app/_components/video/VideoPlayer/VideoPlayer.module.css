@@ -1,0 +1,580 @@
+/* .videoContainer {
+  position: relative;
+  width: 100%;
+  height: 100%; 
+  background: #000;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
+.shakaVideo {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover; 
+  -webkit-appearance: none;
+  -webkit-media-controls: none;
+  -webkit-media-controls-panel: none;
+  -webkit-media-controls-play-button: none;
+  -webkit-media-controls-start-playback-button: none;
+} */
+
+.videoContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+.shakaVideo {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: fill;
+  -webkit-appearance: none;
+  -webkit-media-controls: none;
+  -webkit-media-controls-panel: none;
+  -webkit-media-controls-play-button: none;
+  -webkit-media-controls-start-playback-button: none;
+}
+
+/* Shaka Player container overrides */
+.videoContainer [data-shaka-player-container] {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.videoContainer .shaka-controls-container {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Fullscreen styles */
+.videoContainer [data-shaka-player-container]:fullscreen {
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+.videoContainer [data-shaka-player-container]:fullscreen video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+/* For webkit browsers */
+.videoContainer [data-shaka-player-container]:-webkit-full-screen {
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+.videoContainer [data-shaka-player-container]:-webkit-full-screen video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+/* Hide native video controls completely */
+.shakaVideo::-webkit-media-controls {
+  display: none !important;
+}
+
+.shakaVideo::-webkit-media-controls-panel {
+  display: none !important;
+}
+
+.shakaVideo::-webkit-media-controls-play-button {
+  display: none !important;
+}
+
+.shakaVideo::-webkit-media-controls-start-playback-button {
+  display: none !important;
+}
+
+/* Force hide all native controls on iOS */
+.videoContainer video::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+
+/* Add this to your VideoPlayer.module.css */
+/* .sr-only {
+  display: none;
+} */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.loadingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 10;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.errorMessage {
+  background: #1a1a1a;
+  color: white;
+  padding: 32px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.retryButton {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  margin-top: 16px;
+}
+
+.retryButton:hover:not(:disabled) {
+  background: #0056b3;
+  transform: translateY(-1px);
+}
+
+.retryButton:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* NEW STYLES FOR ENHANCED FEATURES */
+
+/* Resume Prompt Dialog */
+.resumePrompt {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  animation: fadeIn 0.3s ease;
+}
+
+.resumeDialog {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 32px;
+  border-radius: 12px;
+  text-align: center;
+  color: white;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transform: scale(0.9);
+  animation: scaleIn 0.3s ease forwards;
+}
+
+.resumeDialog h3 {
+  margin: 0 0 16px 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.resumeDialog p {
+  margin: 0 0 24px 0;
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.resumeDialog div {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.resumeDialog button {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+}
+
+.resumeDialog button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.resumeDialog button:first-child {
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  border-color: transparent;
+}
+
+.resumeDialog button:first-child:hover {
+  background: white;
+  transform: translateY(-2px);
+}
+
+/* Buffering Overlay */
+.bufferingOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 15;
+  backdrop-filter: blur(5px);
+}
+
+.bufferingOverlay .spinner {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 12px;
+}
+
+.bufferingOverlay p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Video Title */
+.videoTitle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+  color: white;
+  padding: 20px 24px;
+  z-index: 12;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.videoContainer:hover .videoTitle {
+  opacity: 1;
+}
+
+.videoTitle h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Video Info Bar */
+.videoInfo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+  color: white;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  z-index: 12;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.videoContainer:hover .videoInfo {
+  opacity: 1;
+}
+
+.videoInfo div {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 6px 12px;
+  border-radius: 16px;
+  backdrop-filter: blur(5px);
+  font-weight: 500;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .resumeDialog {
+    padding: 24px;
+    margin: 16px;
+  }
+
+  .resumeDialog h3 {
+    font-size: 20px;
+  }
+
+  .resumeDialog div {
+    flex-direction: column;
+  }
+
+  .resumeDialog button {
+    width: 100%;
+  }
+
+  .videoTitle {
+    padding: 16px;
+  }
+
+  .videoTitle h2 {
+    font-size: 16px;
+  }
+
+  .videoInfo {
+    padding: 12px 16px;
+    font-size: 12px;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .resumeDialog {
+    padding: 20px;
+    margin: 12px;
+  }
+
+  .bufferingOverlay {
+    padding: 16px;
+  }
+
+  .videoTitle h2 {
+    font-size: 14px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+  }
+
+  .resumeDialog {
+    animation: none;
+    transform: scale(1);
+  }
+
+  .videoTitle,
+  .videoInfo {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .resumeDialog {
+    background: #000;
+    border: 2px solid #fff;
+  }
+
+  .bufferingOverlay {
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid #fff;
+  }
+
+  .errorMessage {
+    border: 2px solid #ff6b6b;
+  }
+}
+
+/* Dark mode considerations */
+@media (prefers-color-scheme: dark) {
+  .resumeDialog {
+    background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+  }
+}
+
+/* Focus styles for keyboard navigation */
+.retryButton:focus,
+.resumeDialog button:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+/* Loading state refinements */
+.loadingOverlay p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Ensure video container maintains aspect ratio */
+/* .videoContainer::before {
+  content: "";
+  display: block;
+  padding-top: 56.25%; 
+} */
+
+/* .videoContainer > div[data-shaka-player-container] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+} */
+
+/* Shaka Player control customizations */
+.videoContainer .shaka-controls-container {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, transparent 50%);
+}
+
+.videoContainer .shaka-play-button {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.videoContainer .shaka-play-button:hover {
+  background: white !important;
+  transform: scale(1.1);
+}
+
+/* Custom progress bar styling */
+.videoContainer .shaka-seek-bar-container {
+  height: 6px;
+}
+
+.videoContainer .shaka-seek-bar {
+  background: rgba(255, 255, 255, 0.3);
+  height: 100%;
+}
+
+.videoContainer .shaka-seek-bar-progress {
+  background: #007bff;
+  height: 100%;
+}
+
+.videoContainer .shaka-seek-bar-buffered {
+  background: rgba(255, 255, 255, 0.5);
+  height: 100%;
+}
+
+/* Skip button styling (from your existing CSS) */
+.skipButton {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 4px;
+  color: white;
+  border: 1px solid #ffffffa0;
+  border-radius: 4px;
+  margin: 0 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.skipButton:hover {
+  background-color: #ffffff30;
+  border-color: #fff;
+}
+
+/* Responsive breakpoints (commented out from your original)
+@media screen and (min-width: 600px) {
+  .videoContainer {
+    height: 350px;
+  }
+}
+@media screen and (min-width: 850px) {
+  .videoContainer {
+    width: 450px;
+    height: 400px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .videoContainer {
+    width: 550px;
+    height: 465px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .videoContainer {
+    width: 658px;
+    height: 484px;
+  }
+}
+*/

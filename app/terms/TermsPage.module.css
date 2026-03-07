@@ -1,0 +1,73 @@
+.termsPage {
+  padding-top: 105px;
+}
+.wrapper {
+  margin-bottom: 35px;
+}
+.wrapper p {
+  color: #475467;
+  font-size: 18px;
+  line-height: 28px;
+}
+.hero {
+  border-bottom: 1px solid #d8d9d9;
+  padding-bottom: 44px;
+  margin-bottom: 44px;
+}
+.tag {
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--primary-orange);
+  margin-bottom: 12px;
+}
+.heading {
+  font-size: 48px;
+  line-height: 60px;
+  margin-bottom: 64px;
+}
+.heading,
+.question {
+  color: #101828;
+}
+.desc {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.question {
+  font-size: 36px;
+  line-height: 44px;
+  margin: 40px 0 20px;
+}
+
+.termsPage ol {
+  list-style: decimal; /* Ensures numbers are displayed */
+  padding-left: 20px; /* Adds space to align properly */
+}
+
+.termsPage li {
+  counter-increment: list-counter;
+}
+
+@media screen and (min-width: 850px) {
+  .hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .heading {
+    margin-bottom: 0;
+  }
+  .desc {
+    width: 384px;
+  }
+  .moreInfo p {
+    width: 720px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .termsPage {
+    padding-top: 164px;
+  }
+}

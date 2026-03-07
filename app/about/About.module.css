@@ -1,0 +1,247 @@
+.hero {
+  background-color: #f9fafb;
+  padding: 121px 0 44px;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.tag {
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--primary-orange);
+  margin-bottom: 12px;
+}
+.wrapper h1 {
+  font-size: 60px;
+  line-height: 72px;
+  margin-bottom: 24px;
+}
+.desc {
+  color: #475467;
+  font-size: 20px;
+  line-height: 30px;
+  width: 294px;
+  margin-bottom: 40px;
+}
+.btnPack {
+  display: grid;
+  grid-template-columns: repeat(2, 147px);
+  gap: 12px;
+}
+
+.wrapperB {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 96px 0;
+}
+.wrapperB h1 {
+  font-size: 48px;
+  line-height: 60px;
+  margin-bottom: 20px;
+}
+.wrapperB p {
+  font-size: 20px;
+  line-height: 30px;
+  color: #475467;
+}
+
+.infoBox {
+  padding: 64px 0;
+  width: 320px;
+}
+.circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--primary-orange);
+  border: 8px solid #f1f5f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.circle img {
+  transform: translateY(1px);
+}
+.infoBox h1 {
+  font-size: 36px;
+  line-height: 44px;
+  margin-bottom: 16px;
+  width: 100%;
+}
+.infoBox p {
+  font-size: 20px;
+  line-height: 30px;
+  color: #475467;
+  margin-bottom: 32px;
+  width: 320px;
+}
+
+.points {
+  padding: 0 16px;
+}
+.line {
+  display: flex;
+  margin-bottom: 20px;
+}
+.bullet {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-orange);
+  margin-right: 12px;
+}
+.line p {
+  margin: 0;
+  width: unset;
+}
+.banner {
+  width: 100%;
+  margin-bottom: 96px;
+}
+.last {
+  margin-bottom: 0;
+}
+
+@media screen and (min-width: 330px) {
+  .infoBox h1 {
+    width: 330px;
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .infoBox {
+    width: 340px;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .infoBox {
+    width: 480px;
+  }
+  .infoBox h1 {
+    width: 100%;
+  }
+  .infoBox p {
+    width: 450px;
+  }
+  .line p {
+    width: unset;
+  }
+  .banner {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .infoBox {
+    width: 590px;
+  }
+}
+
+@media screen and (min-width: 850px) {
+  .infoBox {
+    width: 840px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .hero {
+    padding: 169px 0 96px;
+  }
+  .wrapper h1,
+  .wrapperB h1 {
+    width: 960px;
+  }
+  .desc {
+    width: 100%;
+  }
+  .wrapperB p {
+    width: 900px;
+  }
+  .frame {
+    flex-direction: row;
+    justify-content: end;
+    margin-bottom: 96px;
+  }
+  .rev {
+    flex-direction: row-reverse;
+    justify-content: start;
+  }
+  .infoBox {
+    width: unset;
+    padding: 0;
+  }
+  .infoBox h1 {
+    width: 450px;
+  }
+  .infoBox p {
+    width: 400px;
+  }
+  .points {
+    width: fit-content;
+  }
+  .line p {
+    width: unset;
+  }
+  .banner {
+    width: 480px;
+    height: 450px;
+    margin-bottom: 0;
+    aspect-ratio: unset;
+    margin: 0 0 0 50px;
+  }
+  .rev .banner {
+    margin: 0 50px 0 0;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  /* .infoBox {
+    width: 1180px;
+  } */
+  .about button {
+    height: 56px;
+  }
+  .banner {
+    width: 600px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .wrapperB h1 {
+    width: 1280px;
+  }
+  .wrapperB p {
+    width: 1216px;
+  }
+  .infoBox h1,
+  .infoBox p {
+    width: 530px;
+  }
+  .banner {
+    width: 700px;
+  }
+}
+
+@media screen and (min-width: 1540px) {
+  .banner {
+    width: 800px;
+    height: 500px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .banner {
+    width: 950px;
+    height: 550px;
+  }
+}

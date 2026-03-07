@@ -1,0 +1,31 @@
+.ratingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16.23px 19.43px;
+  border-radius: 9.72px;
+  background-color: var(--primary-white-200);
+  width: 318.91px;
+}
+
+.starsWrapper {
+  display: flex;
+  gap: 2px;
+}
+
+.starIcon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out;
+}
+
+.starIcon:hover {
+  transform: scale(1.05);
+}
+
+.ratingText {
+  font-size: 20.85px;
+  line-height: 27.8px;
+  color: var(--primary-grey-150);
+}
