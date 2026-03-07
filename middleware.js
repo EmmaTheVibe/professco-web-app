@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 const protectedRoutes = ["/student"];
 
-export function proxy(request) {
+export function middleware(request) {
   const token = request.cookies.get("token")?.value;
   const { pathname } = request.nextUrl;
 
