@@ -4,6 +4,6 @@
   margin-bottom: 24px;
 }
 .aboutTab p {
-  color: #1f2937;
+  color: var(--primary-text-dark);
   margin-bottom: 16px;
 }

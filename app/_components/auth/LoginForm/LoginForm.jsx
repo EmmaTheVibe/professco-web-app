@@ -43,7 +43,7 @@ export default function LoginForm() {
 
       setUser(response.profile);
 
-      router.push(redirectPath || "/");
+      router.push(redirectPath || "/student");
     } catch (err) {
       setError(err.message || "Login failed. Please try again.");
       setIsSubmitting(false);

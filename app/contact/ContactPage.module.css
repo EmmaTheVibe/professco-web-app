@@ -27,7 +27,7 @@
 }
 .desc {
   width: 250px;
-  color: #475467;
+  color: var(--primary-medium-grey);
 }
 
 .box {
@@ -57,7 +57,7 @@
   margin-bottom: 8px;
 }
 .box p {
-  color: #475467;
+  color: var(--primary-medium-grey);
   font-size: 18px;
   line-height: 28px;
   margin-bottom: 20px;

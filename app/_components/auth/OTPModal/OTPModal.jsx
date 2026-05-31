@@ -40,7 +40,6 @@ export default function OTPModal({ isOpen, onClose, onVerified }) {
       const response = await generateOTP(email);
       console.log("OTP generated successfully:", response);
 
-      // Store nonce_key from response
       if (response.nonce_key) {
         setNonceKey(response.nonce_key);
         setStep(2);

@@ -5,7 +5,7 @@
   margin-bottom: 35px;
 }
 .wrapper p {
-  color: #475467;
+  color: var(--primary-medium-grey);
   font-size: 18px;
   line-height: 28px;
 }

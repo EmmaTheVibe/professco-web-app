@@ -4,7 +4,6 @@ const useVideoTime = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [videoDuration, setVideoDuration] = useState(0);
 
-  // Format time for screen readers
   const formatTimeForA11y = (seconds) => {
     if (!seconds || isNaN(seconds)) return "0 seconds";
 

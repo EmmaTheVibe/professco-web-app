@@ -21,7 +21,7 @@ export default function ReusableNav({
   useEffect(() => {
     const updateSliderPosition = () => {
       const activeIndex = tabs.findIndex(
-        (tab) => tab.toLowerCase() === activeTab?.toLowerCase()
+        (tab) => tab.toLowerCase() === activeTab?.toLowerCase(),
       );
       const activeNavItem = navRefs.current[activeIndex];
 
@@ -39,30 +39,35 @@ export default function ReusableNav({
     };
   }, [activeTab, tabs]);
 
-  // This useEffect is now the SOLE updater of activeTab based on URL param
   useEffect(() => {
     let newActiveTab = null;
 
     const urlTab = searchParams.get(paramName);
     if (urlTab) {
       const matchingTab = tabs.find(
-        (tab) => tab.toLowerCase() === urlTab.toLowerCase()
+        (tab) => tab.toLowerCase() === urlTab.toLowerCase(),
       );
       if (matchingTab) {
         newActiveTab = matchingTab;
       }
     }
 
-    // Default to the first tab if no matching tab found in URL
     if (!newActiveTab && !activeTab && tabs.length > 0) {
       newActiveTab = tabs[0];
     }
 
-    // Only update if the newActiveTab is different from current activeTab
     if (newActiveTab && newActiveTab !== activeTab) {
       setActiveTab(newActiveTab);
     }
-  }, [paramName, searchParams, tabs, activeTab, setActiveTab, pathname, router]);
+  }, [
+    paramName,
+    searchParams,
+    tabs,
+    activeTab,
+    setActiveTab,
+    pathname,
+    router,
+  ]);
 
   function handleTab(tab) {
     const urlTab = tab.toLowerCase();

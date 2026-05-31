@@ -1,5 +1,5 @@
 .hero {
-  background-color: #f9fafb;
+  background-color: var(--primary-white-150);
   padding: 121px 0 44px;
 }
 .wrapper {
@@ -20,7 +20,7 @@
   margin-bottom: 24px;
 }
 .desc {
-  color: #475467;
+  color: var(--primary-medium-grey);
   font-size: 20px;
   line-height: 30px;
   width: 294px;
@@ -47,7 +47,7 @@
 .wrapperB p {
   font-size: 20px;
   line-height: 30px;
-  color: #475467;
+  color: var(--primary-medium-grey);
 }
 
 .infoBox {
@@ -59,7 +59,7 @@
   height: 60px;
   border-radius: 50%;
   background-color: var(--primary-orange);
-  border: 8px solid #f1f5f9;
+  border: 8px solid var(--border-color-100);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,7 +77,7 @@
 .infoBox p {
   font-size: 20px;
   line-height: 30px;
-  color: #475467;
+  color: var(--primary-medium-grey);
   margin-bottom: 32px;
   width: 320px;
 }

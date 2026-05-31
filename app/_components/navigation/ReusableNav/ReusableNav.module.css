@@ -3,7 +3,7 @@
   width: 100%;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid #d1d5db;
+  border-bottom: 1px solid var(--border-color-200);
 }
 
 .courseNav {
@@ -52,7 +52,7 @@
   /* padding: 0 10px 0 0; */
 }
 .activeTabItem {
-  color: #1f2937;
+  color: var(--primary-text-dark);
 }
 
 .slider {

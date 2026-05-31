@@ -1,10 +1,10 @@
 .footer {
-  background-color: #061223;
+  background-color: var(--primary-dark-blue);
   padding: 96px 0;
-  color: #f9fafb;
+  color: var(--primary-white-150);
 }
 .footer a {
-  color: #f9fafb;
+  color: var(--primary-white-150);
 }
 .footer a:hover {
   text-decoration: underline;
@@ -29,7 +29,7 @@
 
 .divider {
   width: 100%;
-  border: 1.2px solid #374151;
+  border: 1.2px solid var(--primary-grey-250);
   margin: 96px 0;
 }
 

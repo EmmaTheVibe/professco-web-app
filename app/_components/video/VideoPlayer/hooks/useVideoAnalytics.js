@@ -12,10 +12,8 @@ const useVideoAnalytics = (videoId, currentTime, videoDuration) => {
         timestamp_iso: new Date().toISOString(),
         ...data,
       };
-
-      // console.log("📊 Video Analytics:", eventData);
     },
-    [videoId, currentTime, videoDuration]
+    [videoId, currentTime, videoDuration],
   );
 
   return { trackEvent };

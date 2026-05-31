@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
-  background-color: #fff;
+  background-color: var(--primary-white-50);
 }
 .wrapper {
   position: relative;
@@ -44,8 +44,8 @@
   position: absolute;
   top: -6px;
   right: -8px;
-  background-color: #e53935;
-  color: #fff;
+  background-color: var(--primary-error);
+  color: var(--primary-white-50);
   font-size: 11px;
   font-weight: 600;
   min-width: 18px;

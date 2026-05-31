@@ -6,9 +6,8 @@ const useVideoKeyboardControls = (
   playbackRate,
   setVolume,
   setIsMuted,
-  setPlaybackRate
+  setPlaybackRate,
 ) => {
-  // Keyboard navigation handler
   const handleKeyPress = useCallback(
     (event) => {
       if (!videoRef.current) return;
@@ -16,10 +15,8 @@ const useVideoKeyboardControls = (
       const video = videoRef.current;
       const { key, ctrlKey, shiftKey } = event;
 
-      // Only handle key presses when the container or video is focused
       if (!event.target.closest("[data-shaka-player-container]")) return;
 
-      // Prevent default for our custom shortcuts
       const customKeys = [
         " ",
         "Space",
@@ -43,7 +40,6 @@ const useVideoKeyboardControls = (
       switch (key) {
         case " ":
         case "Space":
-          // Play/Pause
           if (video.paused) {
             video.play();
             trackEvent("keyboard_play");
@@ -54,24 +50,21 @@ const useVideoKeyboardControls = (
           break;
 
         case "ArrowLeft":
-          // Rewind 10 seconds (or 5 seconds with Shift)
           const rewindAmount = shiftKey ? 5 : 10;
           video.currentTime = Math.max(0, video.currentTime - rewindAmount);
           trackEvent("keyboard_rewind", { seconds: rewindAmount });
           break;
 
         case "ArrowRight":
-          // Fast forward 10 seconds (or 5 seconds with Shift)
           const forwardAmount = shiftKey ? 5 : 10;
           video.currentTime = Math.min(
             video.duration,
-            video.currentTime + forwardAmount
+            video.currentTime + forwardAmount,
           );
           trackEvent("keyboard_forward", { seconds: forwardAmount });
           break;
 
         case "ArrowUp":
-          // Increase volume
           const newVolumeUp = Math.min(1, video.volume + 0.1);
           video.volume = newVolumeUp;
           setVolume(newVolumeUp);
@@ -79,7 +72,6 @@ const useVideoKeyboardControls = (
           break;
 
         case "ArrowDown":
-          // Decrease volume
           const newVolumeDown = Math.max(0, video.volume - 0.1);
           video.volume = newVolumeDown;
           setVolume(newVolumeDown);
@@ -88,7 +80,6 @@ const useVideoKeyboardControls = (
 
         case "m":
         case "M":
-          // Toggle mute
           video.muted = !video.muted;
           setIsMuted(video.muted);
           trackEvent("keyboard_toggle_mute", { muted: video.muted });
@@ -96,7 +87,6 @@ const useVideoKeyboardControls = (
 
         case "f":
         case "F":
-          // Toggle fullscreen
           try {
             if (document.fullscreenElement) {
               document.exitFullscreen();
@@ -111,18 +101,15 @@ const useVideoKeyboardControls = (
           break;
 
         case "Home":
-          // Jump to beginning
           video.currentTime = 0;
           trackEvent("keyboard_jump_start");
           break;
 
         case "End":
-          // Jump to end
           video.currentTime = video.duration;
           trackEvent("keyboard_jump_end");
           break;
 
-        // Playback rate controls
         case ",":
           if (ctrlKey) {
             const newRate = Math.max(0.25, playbackRate - 0.25);
@@ -142,10 +129,16 @@ const useVideoKeyboardControls = (
           break;
       }
     },
-    [videoRef, trackEvent, playbackRate, setVolume, setIsMuted, setPlaybackRate]
+    [
+      videoRef,
+      trackEvent,
+      playbackRate,
+      setVolume,
+      setIsMuted,
+      setPlaybackRate,
+    ],
   );
 
-  // Add keyboard event listener
   useEffect(() => {
     document.addEventListener("keydown", handleKeyPress);
     return () => {
@@ -153,7 +146,6 @@ const useVideoKeyboardControls = (
     };
   }, [handleKeyPress]);
 
-  // Return the handler in case it's needed elsewhere
   return { handleKeyPress };
 };
 

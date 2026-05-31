@@ -1,11 +1,11 @@
 .frame {
   width: 100%;
-  min-height: 100vh;
-  background-color: #fff;
+  background-color: var(--primary-white-50);
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
+  padding-bottom: 32px;
 }
 .top {
   width: 100%;
@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   padding: 12px 0px;
-  border-bottom: 1px solid #e3e7ef;
+  border-bottom: 1px solid var(--primary-nav-border);
   margin-bottom: 25px;
 }
 .topWrapper {
@@ -39,8 +39,8 @@
   position: absolute;
   top: -6px;
   right: -8px;
-  background-color: #e53935;
-  color: #fff;
+  background-color: var(--primary-error);
+  color: var(--primary-white-50);
   font-size: 11px;
   font-weight: 600;
   min-width: 18px;
@@ -67,35 +67,22 @@
 
 @media screen and (min-width: 500px) {
   .wrapper {
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
   }
   .searchbox {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-@media screen and (min-width: 600px) {
-  .frame {
-    min-height: 300px;
-  }
-  .wrapper {
     flex-direction: row;
-    justify-content: space-between;
-    align-items: end;
-  }
-  .searchbox {
-    align-items: flex-start;
+    align-items: center;
+    gap: 24px;
   }
   .searchbox p {
-    margin: 28px 0 22px;
-  }
-  .searchbox p:last-of-type {
-    margin-bottom: 0;
+    margin: 0;
   }
   .btnPack {
-    width: 230px;
+    grid-template-columns: repeat(2, 1fr);
+    width: 280px;
     margin: 0;
   }
 }

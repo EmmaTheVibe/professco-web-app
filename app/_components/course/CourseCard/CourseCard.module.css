@@ -5,7 +5,7 @@
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
-  color: #1f2937;
+  color: var(--primary-text-dark);
 }
 .courseCard a {
   color: inherit;
@@ -27,7 +27,7 @@
   font-weight: bold;
   margin-bottom: 6px;
   height: 57px;
-  width: 256px;
+  width: 100%;
   display: -webkit-box;
   line-clamp: 2;
   -webkit-line-clamp: 2;
@@ -81,11 +81,11 @@
   margin-right: 3px;
 }
 .courseDesc {
-  color: #6b6f80;
+  color: var(--primary-grey-200);
   font-size: 14px;
   line-height: 20px;
   display: -webkit-box;
-  width: 256px;
+  width: 100%;
   height: 40px;
   line-clamp: 2;
   -webkit-line-clamp: 2;
@@ -107,7 +107,7 @@
   font-size: 12px;
   line-height: 18px;
   font-weight: bold;
-  color: #1f2937;
+  color: var(--primary-text-dark);
 }
 .cart {
   height: 20px;
@@ -120,18 +120,6 @@
   height: 40px;
 }
 
-@media screen and (min-width: 400px) {
-  .courseTitle,
-  .courseDesc {
-    width: 270px;
-  }
-}
-@media screen and (min-width: 850px) {
-  .courseTitle,
-  .courseDesc {
-    width: 100%;
-  }
-}
 
 /* .truncate {
   display: -webkit-box;

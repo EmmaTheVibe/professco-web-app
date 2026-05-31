@@ -1,13 +1,13 @@
 .login {
   min-height: 100vh;
-  background-color: #fcfcfc;
+  background-color: var(--primary-white-100);
   position: relative;
   display: flex;
   flex-direction: column;
 }
 .main {
-  padding: 50px 0 0;
-  margin-bottom: 96px;
+  padding: 110px 0 0;
+  margin-bottom: 110px;
 }
 .frame {
   margin-top: 26px;

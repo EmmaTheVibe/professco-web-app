@@ -5,7 +5,6 @@ const VideoError = ({ error, onRetry }) => {
     if (onRetry) {
       onRetry();
     } else {
-      // Default behavior: reload the page
       window.location.reload();
     }
   };

@@ -9,7 +9,6 @@ const useVideoState = (title, currentTime, videoDuration) => {
   const [volume, setVolume] = useState(1);
   const [playbackRate, setPlaybackRate] = useState(1);
 
-  // Format time for screen readers (helper function)
   const formatTimeForA11y = (seconds) => {
     if (!seconds || isNaN(seconds)) return "0 seconds";
 
@@ -27,7 +26,6 @@ const useVideoState = (title, currentTime, videoDuration) => {
     }`;
   };
 
-  // Generate dynamic ARIA labels
   const getVideoAriaLabel = () => {
     if (isLoading) return "Video is loading";
     if (error) return "Video playback error";
@@ -35,7 +33,7 @@ const useVideoState = (title, currentTime, videoDuration) => {
     const timeInfo =
       videoDuration > 0
         ? ` Duration: ${formatTimeForA11y(
-            videoDuration
+            videoDuration,
           )}. Current time: ${formatTimeForA11y(currentTime)}.`
         : "";
 
@@ -51,7 +49,6 @@ const useVideoState = (title, currentTime, videoDuration) => {
   };
 
   return {
-    // State values
     isLoading,
     error,
     hasStartedPlaying,
@@ -60,7 +57,6 @@ const useVideoState = (title, currentTime, videoDuration) => {
     volume,
     playbackRate,
 
-    // State setters
     setIsLoading,
     setError,
     setHasStartedPlaying,
@@ -69,7 +65,6 @@ const useVideoState = (title, currentTime, videoDuration) => {
     setVolume,
     setPlaybackRate,
 
-    // Computed values
     getVideoAriaLabel,
   };
 };

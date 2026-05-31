@@ -61,10 +61,9 @@ const VideoPlayer = ({
     playbackRate,
     setVolume,
     setIsMuted,
-    setPlaybackRate
+    setPlaybackRate,
   );
 
-  // Helper function to check if current module is the last one
   const isLastModule = () => {
     if (!Array.isArray(course?.modules) || course.modules.length === 0)
       return true;
@@ -77,8 +76,6 @@ const VideoPlayer = ({
     const urlParams = new URLSearchParams(window.location.search);
     const currentTab = urlParams.get("t");
 
-    // console.log("Fresh tab from window.location:", currentTab);
-
     if (isLastModule()) {
       trackEvent("course_completed");
       return;
@@ -86,21 +83,14 @@ const VideoPlayer = ({
 
     const nextModuleId = Number(moduleId) + 1;
 
-    // const params = new URLSearchParams(searchParams);
     const params = new URLSearchParams(window.location.search);
     params.set("moduleId", nextModuleId.toString());
-
-    // if (currentTab) {
-    //   params.set("t", currentTab);
-    // }
-    // console.log("Current tab from URL:", currentTab);
 
     if (currentTab) {
       params.set("t", currentTab);
     }
 
     router.push(`?${params.toString()}`);
-    // router.replace(`?${params.toString()}`);
     trackEvent("auto_next_module", {
       currentModule: moduleId,
       nextModule: nextModuleId,
@@ -143,7 +133,7 @@ const VideoPlayer = ({
         const videoContainer = videoElement.parentElement;
 
         const existingControls = videoContainer.querySelectorAll(
-          ".shaka-controls-container"
+          ".shaka-controls-container",
         );
         existingControls.forEach((control) => control.remove());
 

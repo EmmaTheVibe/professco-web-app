@@ -31,7 +31,7 @@
   margin-bottom: 4px;
 }
 .form textarea {
-  border: 1.2px solid #9ea2b3;
+  border: 1.2px solid var(--primary-grey-300);
   border-radius: 4px;
   height: 103px;
   width: 100%;
@@ -43,12 +43,12 @@
   margin-bottom: 40px;
 }
 .countError {
-  color: #e62e2e;
+  color: var(--primary-error);
 }
 .error {
   font-size: 14px;
   line-height: 20px;
-  color: #e62e2e;
+  color: var(--primary-error);
   text-align: left;
 }
 .txt {
@@ -59,7 +59,7 @@
 }
 .star,
 .txt span {
-  color: #e62e2e;
+  color: var(--primary-error);
 }
 .bottom {
   width: 100%;
