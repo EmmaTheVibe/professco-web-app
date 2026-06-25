@@ -4,8 +4,6 @@ import { Suspense } from "react";
 import Spinner from "@/app/_components/layout/Spinner/Spinner";
 import { examTabs } from "@/app/_utils/data";
 import styles from "./Explore.module.css";
-import { useStudentCourses } from "@/app/_hooks/useStudentCourses";
-
 import dynamic from "next/dynamic";
 
 const ExamCard = dynamic(
@@ -16,8 +14,6 @@ const ExamCard = dynamic(
 );
 
 export default function Explore() {
-  const result = useStudentCourses();
-  console.log("useStudentCourses:", result);
   return (
     <section className={styles.explore}>
       <div className={`container ${styles.box}`}>

@@ -8,11 +8,11 @@ import ContentTab from "@/app/_components/course/ContentTab/ContentTab";
 import ResourcesTab from "@/app/_components/course/ResourcesTab/ResourcesTab";
 import ReviewsTab from "@/app/_components/course/ReviewsTab/ReviewsTab";
 import useContexts from "@/app/_hooks/useContexts";
-import { Course } from "@/app/_utils/types";
+import { CourseDetail } from "@/app/_utils/types";
 
 interface Props {
-  course: Course;
-  moduleId: string;
+  course: CourseDetail;
+  moduleId: string | number;
 }
 
 export default function TabSystem({ course, moduleId }: Props) {

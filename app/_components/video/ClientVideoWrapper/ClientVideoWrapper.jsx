@@ -51,29 +51,11 @@ export default function ClientVideoWrapper({
     );
   }
 
-  const { manifest_url, license_url } = module;
-
-  if (!manifest_url) {
-    return (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "400px",
-          background: "#fee",
-          borderRadius: "8px",
-          color: "#c33",
-        }}
-      >
-        Video not available for this module.
-      </div>
-    );
-  }
+  const { license_url } = module;
 
   return (
     <VideoPlayer
-      manifestUrl={manifest_url}
+      manifestUrl={process.env.NEXT_PUBLIC_VIDEO_MANIFEST_URL}
       licenseServerUrl={license_url}
       title={title}
       poster={poster}

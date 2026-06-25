@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import Spinner from "@/app/_components/layout/Spinner/Spinner";
-import { Course } from "@/app/_utils/types";
+import { CourseDetail } from "@/app/_utils/types";
 
 const TabSystem = dynamic(() => import("./TabSystem"), {
   ssr: false,
@@ -10,8 +10,8 @@ const TabSystem = dynamic(() => import("./TabSystem"), {
 });
 
 interface Props {
-  course: Course;
-  moduleId: string;
+  course: CourseDetail;
+  moduleId: string | number;
 }
 
 export default function TabSystemWrapper({ course, moduleId }: Props) {

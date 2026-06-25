@@ -1,5 +1,5 @@
 import PAGE_SIZE from "@/app/_utils/constants";
-import type { Course, CoursesResponse } from "@/app/_utils/types";
+import type { Course, CourseDetail, CoursesResponse } from "@/app/_utils/types";
 
 interface QueryParams {
   [key: string]: string | number | null | undefined;
@@ -87,14 +87,14 @@ export async function getCoursesByType(
 ): Promise<CoursesResponse> {
   try {
     const slug = courseType.toUpperCase();
-    const data = await fetchData(`exam_body/${slug}/courses`, {
+    const response = await fetchData(`exam_body/${slug}/courses`, {
       page,
       limit: PAGE_SIZE,
-    }) as { data: Course[]; total: number };
+    }) as { status: boolean; data: { data: Course[]; total: number } };
 
     return {
-      courses: data.data || [],
-      count: data.total || 0,
+      courses: Array.isArray(response.data?.data) ? response.data.data : [],
+      count: response.data?.total || 0,
     };
   } catch (error) {
     console.error(`Failed to fetch courses of type ${courseType}:`, error);
@@ -140,9 +140,9 @@ export async function getSortedCourses({
   }
 }
 
-export async function getCourseById(id: number | string): Promise<unknown> {
+export async function getCourseById(id: number | string): Promise<CourseDetail> {
   try {
-    return await fetchData(`course/${id}`);
+    return await fetchData(`course/${id}`) as CourseDetail;
   } catch (error) {
     console.error(`Failed to fetch course with ID ${id}:`, error);
     throw error;
@@ -163,7 +163,7 @@ export async function fetchVideo(): Promise<{ url: string; manifest: string }> {
     }
 
     return {
-      url: "https://professco.ng/videos/videoCodec/manifest.mpd",
+      url: process.env.VIDEO_MANIFEST_URL as string,
       manifest: await response.text(),
     };
   } catch (error) {

@@ -11,7 +11,7 @@ export default function useRelatedCourses(courseType: string, page: number = 1) 
     enabled: !!courseType,
   });
 
-  const courses: Course[] = data?.courses || [];
+  const courses: Course[] = Array.isArray(data?.courses) ? data.courses : [];
   const count: number = data?.count || 0;
 
   return {

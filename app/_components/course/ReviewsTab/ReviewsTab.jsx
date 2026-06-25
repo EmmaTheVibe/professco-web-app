@@ -5,8 +5,11 @@ import LiveRating from "@/app/_components/course/LiveRating/LiveRating";
 import styles from "./ReviewsTab.module.css";
 import { useState } from "react";
 
+const BATCH_SIZE = 5;
+
 export default function ReviewsTab({ course }) {
   const [currentRating, setCurrentRating] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(BATCH_SIZE);
   const {
     register,
     handleSubmit,
@@ -85,7 +88,10 @@ export default function ReviewsTab({ course }) {
           Reviews ({course.reviews_count})
         </h1>
         <div className={styles.grid}>
-          {course.reviews.map((review) => (
+          {[...course.reviews]
+            .sort((a, b) => Number(b.rating) - Number(a.rating))
+            .slice(0, visibleCount)
+            .map((review) => (
             <div className={styles.card} key={review.id}>
               <div className={styles.stars}>
                 {[...Array(5)].map((_, index) => (
@@ -134,6 +140,21 @@ export default function ReviewsTab({ course }) {
             </div>
           ))}
         </div>
+        {visibleCount < course.reviews.length ? (
+          <button
+            className={`bareB ${styles.loadMore}`}
+            onClick={() => setVisibleCount((c) => c + BATCH_SIZE)}
+          >
+            <p>Load more reviews</p>
+          </button>
+        ) : visibleCount > BATCH_SIZE && (
+          <button
+            className={`bareB ${styles.loadMore}`}
+            onClick={() => setVisibleCount(BATCH_SIZE)}
+          >
+            <p>Show less</p>
+          </button>
+        )}
       </div>
     </div>
   );

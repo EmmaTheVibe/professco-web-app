@@ -77,6 +77,15 @@
   margin-bottom: 24px;
 }
 
+.loadMore {
+  margin-top: 32px;
+  color: var(--primary-orange);
+  font-size: 14px;
+  line-height: 20px;
+  text-decoration: underline;
+  border: none;
+}
+
 @media screen and (min-width: 850px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);

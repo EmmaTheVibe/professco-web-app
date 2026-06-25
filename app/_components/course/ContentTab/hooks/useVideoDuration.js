@@ -62,13 +62,8 @@ export function useVideoDuration(modules = []) {
   const [error, setError] = useState(null);
 
   const fetchModuleDuration = useCallback(async (module) => {
-    if (!module.manifest_url) {
-      console.warn(`Module ${module.id} has no manifest_url`);
-      return null;
-    }
-
     try {
-      const response = await fetch(module.manifest_url);
+      const response = await fetch(process.env.NEXT_PUBLIC_VIDEO_MANIFEST_URL);
       if (!response.ok) {
         throw new Error(`Failed to fetch MPD: ${response.statusText}`);
       }

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function GET(): Promise<NextResponse> {
   try {
     const response = await fetch(
-      "https://professco.ng/videos/videoCodec/manifest.mpd",
+      process.env.VIDEO_MANIFEST_URL as string,
       {
         headers: {
           Accept: "application/dash+xml, video/mp4, */*",

@@ -79,9 +79,7 @@ export default function InstructorsTab({ course }) {
                 />
                 <div className={styles.instructorBrief}>
                   <p className={`${styles.instructorName} boldFont`}>
-                    {`${tutor.last_name} ${
-                      tutor.middlename && tutor.middlename
-                    } ${tutor.first_name}`}
+                    {`${tutor.last_name}${tutor.middlename ? ' ' + tutor.middlename : ''} ${tutor.first_name}`}
                   </p>
                   <p className={styles.instructorTxt}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
