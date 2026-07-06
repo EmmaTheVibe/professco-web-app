@@ -39,12 +39,10 @@ export default function ExamCard({ exam, selectable = false }: Props) {
         </p>
         <p className={`lightFont ${styles.desc}`}>{exam.description}</p>
       </div>
-      {selectable && examTypeList.includes(exam.name) ? (
+      {selectable && examTypeList.includes(exam.name) && (
         <div className={styles.circle}>
           <img src="/images/examcard-tick.svg" alt="tick" />
         </div>
-      ) : (
-        ""
       )}
     </div>
   );

@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import Modal from "@/app/_components/common/Modal/Modal";
 import styles from "./OTPModal.module.css";
 import { generateOTP, verifyOTP } from "@/app/_lib/otp-service";
 
@@ -142,108 +143,98 @@ export default function OTPModal({ isOpen, onClose, onVerified }) {
     }
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className={styles.overlay} onClick={onClose}>
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <div className={styles.line}>
-          <button className={styles.closeBtn} onClick={onClose}>
-            <p>X</p>
+    <Modal isOpen={isOpen} onClose={onClose} className={styles.otpModal}>
+      {error && (
+        <div
+          style={{
+            padding: "12px",
+            marginBottom: "20px",
+            backgroundColor: "#fee",
+            color: "#c00",
+            borderRadius: "8px",
+            fontSize: "14px",
+            textAlign: "center",
+          }}
+        >
+          {error}
+        </div>
+      )}
+
+      {step === 1 ? (
+        <div className={styles.content}>
+          <h2 className={`${styles.title} boldFont`}>Enter Your Email</h2>
+          <p className={styles.description}>
+            We'll send you a verification code to complete your purchase
+          </p>
+
+          <div className={styles.inputWrapper}>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onKeyDown={handleEmailKeyDown}
+              placeholder="your.email@example.com"
+              className={styles.emailInput}
+              required
+              autoFocus
+              disabled={isSending}
+            />
+
+            <button
+              onClick={handleEmailSubmit}
+              className={`${styles.submitBtn} filled`}
+              disabled={!email || isSending}
+            >
+              {isSending ? "Sending..." : "Send Code"}
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className={styles.content}>
+          <h2 className={`${styles.title} boldFont`}>
+            Enter Verification Code
+          </h2>
+          <p className={styles.description}>
+            We sent a 6-digit code to <strong>{email}</strong>
+          </p>
+
+          <div className={styles.otpContainer}>
+            {otp.map((digit, index) => (
+              <input
+                key={index}
+                ref={(el) => (inputRefs.current[index] = el)}
+                type="text"
+                inputMode="numeric"
+                maxLength={1}
+                value={digit}
+                onChange={(e) => handleOtpChange(index, e.target.value)}
+                onKeyDown={(e) => handleOtpKeyDown(index, e)}
+                onPaste={index === 0 ? handlePaste : undefined}
+                className={styles.otpInput}
+                disabled={isVerifying}
+                autoFocus={index === 0}
+              />
+            ))}
+          </div>
+
+          <button
+            className={`${styles.verifyBtn} filled`}
+            disabled={isVerifying || otp.some((digit) => digit === "")}
+            onClick={() => handleVerifyOtp(otp)}
+          >
+            {isVerifying ? "Verifying..." : "Verify Code"}
+          </button>
+
+          <button
+            className={styles.resendBtn}
+            onClick={handleResendOTP}
+            disabled={isVerifying || isSending}
+          >
+            {isSending ? "Sending..." : "Resend Code"}
           </button>
         </div>
-
-        {error && (
-          <div
-            style={{
-              padding: "12px",
-              marginBottom: "20px",
-              backgroundColor: "#fee",
-              color: "#c00",
-              borderRadius: "8px",
-              fontSize: "14px",
-              textAlign: "center",
-            }}
-          >
-            {error}
-          </div>
-        )}
-
-        {step === 1 ? (
-          <div className={styles.content}>
-            <h2 className={`${styles.title} boldFont`}>Enter Your Email</h2>
-            <p className={styles.description}>
-              We'll send you a verification code to complete your purchase
-            </p>
-
-            <div className={styles.inputWrapper}>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                onKeyDown={handleEmailKeyDown}
-                placeholder="your.email@example.com"
-                className={styles.emailInput}
-                required
-                autoFocus
-                disabled={isSending}
-              />
-
-              <button
-                onClick={handleEmailSubmit}
-                className={`${styles.submitBtn} filled`}
-                disabled={!email || isSending}
-              >
-                {isSending ? "Sending..." : "Send Code"}
-              </button>
-            </div>
-          </div>
-        ) : (
-          <div className={styles.content}>
-            <h2 className={`${styles.title} boldFont`}>
-              Enter Verification Code
-            </h2>
-            <p className={styles.description}>
-              We sent a 6-digit code to <strong>{email}</strong>
-            </p>
-
-            <div className={styles.otpContainer}>
-              {otp.map((digit, index) => (
-                <input
-                  key={index}
-                  ref={(el) => (inputRefs.current[index] = el)}
-                  type="text"
-                  inputMode="numeric"
-                  maxLength={1}
-                  value={digit}
-                  onChange={(e) => handleOtpChange(index, e.target.value)}
-                  onKeyDown={(e) => handleOtpKeyDown(index, e)}
-                  onPaste={index === 0 ? handlePaste : undefined}
-                  className={styles.otpInput}
-                  disabled={isVerifying}
-                  autoFocus={index === 0}
-                />
-              ))}
-            </div>
-
-            <button
-              className={`${styles.verifyBtn} filled`}
-              disabled={isVerifying || otp.some((digit) => digit === "")}
-              onClick={() => handleVerifyOtp(otp)}
-            >
-              {isVerifying ? "Verifying..." : "Verify Code"}
-            </button>
-
-            <button
-              className={styles.resendBtn}
-              onClick={handleResendOTP}
-              disabled={isVerifying || isSending}
-            >
-              {isSending ? "Sending..." : "Resend Code"}
-            </button>
-          </div>
-        )}
-      </div>
-    </div>
+      )}
+    </Modal>
   );
 }

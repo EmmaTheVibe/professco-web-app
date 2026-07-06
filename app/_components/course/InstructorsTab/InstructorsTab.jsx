@@ -1,11 +1,10 @@
 "use client";
 import { useRef } from "react";
-import { useMediaQuery } from "@mui/material";
 import styles from "./InstructorsTab.module.css";
 import ScrollButton from "@/app/_components/common/ScrollButton/ScrollButton";
 import useScrollEnd from "@/app/_components/common/ScrollButton/useScrollEnd";
 
-function InstructorCourseGrid({ lg }) {
+function InstructorCourseGrid() {
   const gridWrapperRef = useRef(null);
   const isAtEnd = useScrollEnd(gridWrapperRef);
 
@@ -19,11 +18,17 @@ function InstructorCourseGrid({ lg }) {
           {[...Array(3)].map((_, index) => (
             <div className={styles.card} key={index}>
               <div className={styles.banner}>
-                <img
-                  src={`/images/course-banner-${lg ? "md" : "sm"}.png`}
-                  alt="banner"
-                  className={styles.banner}
-                />
+                <picture>
+                  <source
+                    media="(min-width: 400px)"
+                    srcSet="/images/course-banner-md.png"
+                  />
+                  <img
+                    src="/images/course-banner-sm.png"
+                    alt="banner"
+                    className={styles.banner}
+                  />
+                </picture>
               </div>
 
               <div className={styles.cardInfo}>
@@ -57,8 +62,6 @@ function InstructorCourseGrid({ lg }) {
 }
 
 export default function InstructorsTab({ course }) {
-  const lg = useMediaQuery("(min-width: 400px)");
-
   return (
     <div className={styles.instructorsTab}>
       <div className={styles.line}>
@@ -109,7 +112,7 @@ export default function InstructorsTab({ course }) {
               </div>
 
               <div className={styles.dividerB}></div>
-              <InstructorCourseGrid lg={lg} />
+              <InstructorCourseGrid />
             </div>
             <p className={styles.moreInfo}>
               Tim Buchalka

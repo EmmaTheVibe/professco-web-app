@@ -26,6 +26,9 @@
   width: unset;
   color: var(--primary-black-150);
 }
+.pagination button:hover:not(:disabled) {
+  background-color: var(--border-color-100);
+}
 .prev p,
 .next p {
   font-family: var(--font-inter);

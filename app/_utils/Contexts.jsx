@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { createContext, useState, useEffect } from "react";
 import useFilterStore from "./filter-store";
 import useCartStore from "./cart-store";
@@ -9,6 +9,7 @@ const ContextCreator = createContext();
 
 const validExams = [
   "all",
+  "suggested",
   "ican",
   "acca",
   "cfa",
@@ -44,6 +45,7 @@ const formatTabForUrl = (displayTab) => {
 
 function ContextProvider({ children }) {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const setActiveTab = useFilterStore((state) => state.setActiveTab);
   const initCart = useCartStore((state) => state.initCart);
 
@@ -58,8 +60,9 @@ function ContextProvider({ children }) {
 
   // Sync URL params to stores/state
   useEffect(() => {
+    const defaultExam = pathname?.startsWith("/student") ? "suggested" : "all";
     const rawExam = searchParams?.get("exam")?.toLowerCase();
-    const examValue = validExams.includes(rawExam || "") ? rawExam : "all";
+    const examValue = validExams.includes(rawExam || "") ? rawExam : defaultExam;
     setActiveTab(examValue.toUpperCase());
 
     const rawCourseTabFromUrl = searchParams?.get("t")?.toLowerCase();
@@ -72,7 +75,7 @@ function ContextProvider({ children }) {
       : formatTabForDisplay(defaultCourseTab);
 
     setActiveCourseTab(newCourseTab);
-  }, [searchParams, setActiveTab]);
+  }, [searchParams, pathname, setActiveTab]);
 
   return (
     <ContextCreator.Provider

@@ -26,10 +26,14 @@
   border-radius: 40px;
   color: var(--primary-grey-200);
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+.tag:not(.activeTag):hover {
+  background-color: var(--border-color-100);
 }
 .activeTag {
   background-color: #f5f8ff;
-  border: none;
+  border-color: transparent;
   color: #2960ec;
 }
 

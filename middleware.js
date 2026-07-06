@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
-const protectedRoutes = ["/student"];
+const protectedRoutes = ["/student", "/personalize"];
+const guestOnlyRoutes = ["/login", "/signup"];
 
 export function middleware(request) {
   const token = request.cookies.get("token")?.value;
@@ -15,6 +16,15 @@ export function middleware(request) {
     const loginUrl = new URL("/login", request.url);
     loginUrl.searchParams.set("redirect", pathname);
     return NextResponse.redirect(loginUrl);
+  }
+
+  // Redirect to student home if already logged in and visiting a guest-only page
+  const isGuestOnly = guestOnlyRoutes.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`)
+  );
+
+  if (isGuestOnly && token) {
+    return NextResponse.redirect(new URL("/student", request.url));
   }
 
   const response = NextResponse.next();

@@ -1,14 +1,14 @@
 "use client";
 
-import { useMediaQuery } from "@mui/material";
 import styles from "./SignUpForm.module.css";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { register as registerUser } from "@/app/_lib/auth-service";
+import { register as registerUser, login as loginUser } from "@/app/_lib/auth-service";
+import useAuthStore from "@/app/_utils/auth-store";
 import { useRouter } from "next/navigation";
 
 export default function SignUpForm() {
-  const lg = useMediaQuery("(min-width: 1200px)");
+  const setUser = useAuthStore((state) => state.setUser);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordVisibleB, setPasswordVisibleB] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -47,9 +47,12 @@ export default function SignUpForm() {
         password: data.password,
       };
 
-      const response = await registerUser(userData);
+      await registerUser(userData);
 
-      router.push("/login");
+      const loginResponse = await loginUser({ email: data.email, password: data.password });
+      setUser(loginResponse.profile);
+
+      router.push("/personalize");
     } catch (err) {
       setError(err.message || "Registration failed. Please try again.");
     } finally {
@@ -59,7 +62,7 @@ export default function SignUpForm() {
 
   return (
     <div className={styles.formWrapper}>
-      <div className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         {error && (
           <div
             style={{
@@ -224,8 +227,8 @@ export default function SignUpForm() {
         </div>
 
         <button
+          type="submit"
           className={`filled ${styles.submit}`}
-          onClick={handleSubmit(onSubmit)}
           disabled={isSubmitting}
         >
           <p>
@@ -241,11 +244,9 @@ export default function SignUpForm() {
             className={styles.logo}
           />
         </button>
-      </div>
+      </form>
 
-      {lg && (
-        <img src="/images/graduation.png" alt="grad" className={styles.grad} />
-      )}
+      <img src="/images/graduation.png" alt="grad" className={styles.grad} />
     </div>
   );
 }

@@ -106,7 +106,9 @@
 
 .courseGrid {
   display: grid;
+  grid-auto-flow: column;
   grid-template-columns: repeat(1, 288px);
+  grid-auto-columns: 288px;
   gap: 20px;
 }
 .courseGridB {
@@ -142,6 +144,7 @@
 @media screen and (min-width: 400px) {
   .courseGrid {
     grid-template-columns: repeat(1, 300px);
+    grid-auto-columns: 300px;
   }
 }
 
@@ -158,6 +161,7 @@
   }
   .courseGrid {
     grid-template-columns: repeat(2, 288px);
+    grid-auto-columns: 288px;
   }
   .courseGridB {
     grid-template-columns: repeat(2, 1fr);
@@ -191,6 +195,7 @@
   .courseGrid {
     width: 848px;
     grid-template-columns: repeat(3, 1fr);
+    grid-auto-columns: 272px;
     gap: 10px;
   }
   .courseGridB {
@@ -265,9 +270,9 @@
     width: 100%;
   }
 
-  /* .btnB {
+  .btnB {
     display: none;
-  } */
+  }
   .bottomB {
     display: flex;
     margin-bottom: 56px;
@@ -290,6 +295,12 @@
     box-sizing: border-box;
     z-index: unset;
     transform: translateX(0);
+  }
+  .open {
+    box-shadow: none;
+  }
+  .closeLine {
+    display: none;
   }
 
   /* .gridWrapper {
@@ -319,6 +330,7 @@
   }
   .courseGrid {
     grid-template-columns: repeat(5, 288px);
+    grid-auto-columns: 288px;
     gap: 30px;
   }
   .courseGridB {

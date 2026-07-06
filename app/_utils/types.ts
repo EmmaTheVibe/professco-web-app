@@ -57,7 +57,7 @@ export interface Course {
   id: number;
   title: string;
   description: string;
-  amount: number;
+  amount: string;
   cover_image: string;
   cache_rating: string | number;
   reviews_count: string | number;

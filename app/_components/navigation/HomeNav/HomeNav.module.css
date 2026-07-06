@@ -1,9 +1,5 @@
 .homenav {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  overflow: hidden;
   background-color: var(--primary-white-50);
 }
 .wrapper {
@@ -11,6 +7,18 @@
 }
 .logo {
   transform: translateX(-3.4px);
+}
+
+.mobileNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.desktopNav {
+  display: none;
+  width: 100%;
 }
 
 .box {
@@ -58,19 +66,118 @@
 }
 
 @media screen and (min-width: 1000px) {
-  .homenav {
-    justify-content: center;
+  .mobileNav {
+    display: none;
   }
-  .frame,
-  .box {
-    position: absolute;
+  .desktopNav {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
   }
   .frame {
-    left: 0;
+    justify-self: start;
   }
   .box {
-    right: 0;
+    justify-self: end;
   }
+}
+
+.studentTabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+}
+.studentTab {
+  display: block;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: var(--primary-grey-50);
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.studentTab:hover {
+  color: var(--primary-orange);
+}
+.activeStudentTab {
+  color: var(--primary-orange);
+  border: 1px solid var(--border-color-100);
+  box-shadow: var(--shadow-card);
+}
+
+.bellLink {
+  display: flex;
+  align-items: center;
+  margin-left: 14px;
+}
+
+.menuWrapper {
+  position: relative;
+  margin-left: 14px;
+  background: none;
+}
+
+.menuWrapper .profilePill {
+  width: auto;
+  height: auto;
+  margin-left: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  border: none;
+}
+
+.profilePill {
+  border-radius: 93.63px;
+  padding: 13.47px 10px 13.47px 60px;
+  background-color: var(--primary-white-175);
+  position: relative;
+}
+.avatarGroup {
+  position: absolute;
+  left: 0;
+  border-radius: 50%;
+  width: fit-content;
+  height: fit-content;
+  background-color: var(--pfp-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.avatarBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+}
+.pillAvatar {
+  width: 47.94px;
+  height: 47.94px;
+  border-radius: 50%;
+}
+.online {
+  background-color: #ffffff;
+  padding: 2px;
+  bottom: 0;
+  right: 0;
+  border-radius: 50%;
+  position: absolute;
+}
+.onlineInner {
+  width: 13.11px;
+  height: 13.11px;
+  border-radius: 50%;
+  background-color: var(--primary-green-50);
+}
+.pillName {
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+  color: var(--primary-text-dark);
 }
 
 @media screen and (min-width: 1400px) {

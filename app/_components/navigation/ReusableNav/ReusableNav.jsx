@@ -10,6 +10,7 @@ export default function ReusableNav({
   activeTab,
   setActiveTab,
   resetPage = true,
+  hideBorder = false,
 }) {
   const sliderRef = useRef(null);
   const navRefs = useRef([]);
@@ -82,7 +83,7 @@ export default function ReusableNav({
   }
 
   return (
-    <div className={styles.nav}>
+    <div className={`${styles.nav} ${hideBorder ? styles.noBorder : ""}`}>
       <div className="container">
         <div className={styles.courseNav}>
           <ul className={styles.tabs}>

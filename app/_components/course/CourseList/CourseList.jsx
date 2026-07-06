@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import CourseCard from "@/app/_components/course/CourseCard/CourseCard";
 import useFilterStore from "@/app/_utils/filter-store";
 import styles from "./CourseList.module.css";
-import { useMediaQuery } from "@mui/material";
 import Link from "next/link";
 import Tags from "@/app/_components/common/Tags/Tags";
 import Spinner from "@/app/_components/layout/Spinner/Spinner";
@@ -14,6 +13,8 @@ import Overlay from "@/app/_components/common/Overlay/Overlay";
 import Skeleton from "@/app/_components/common/Skeleton/Skeleton";
 import ScrollButton from "@/app/_components/common/ScrollButton/ScrollButton";
 import useScrollEnd from "@/app/_components/common/ScrollButton/useScrollEnd";
+
+const PREVIEW_COUNT = 8;
 
 export default function CourseList({
   showAll,
@@ -30,11 +31,6 @@ export default function CourseList({
   const filterButtonRef = useRef(null);
   const gridWrapperRef = useRef(null);
   const isAtEnd = useScrollEnd(gridWrapperRef);
-
-  const md = useMediaQuery("(min-width: 600px)");
-  const md2 = useMediaQuery("(min-width: 850px)");
-  const lg = useMediaQuery("(min-width: 1000px)");
-  const lg2 = useMediaQuery("(min-width: 1400px)");
 
   const ratingFilters = [
     { value: 4, name: "4.0 stars & Up" },
@@ -56,10 +52,7 @@ export default function CourseList({
   let filteredCourses = courses || [];
 
   if (!showAll) {
-    filteredCourses = filteredCourses.slice(
-      0,
-      lg2 ? 5 : lg ? 5 : md2 ? 3 : md ? 2 : 3,
-    );
+    filteredCourses = filteredCourses.slice(0, PREVIEW_COUNT);
   }
 
   const searchedCourses =
@@ -136,9 +129,7 @@ export default function CourseList({
             >
               {loading ? (
                 <div className={styles.courseGrid}>
-                  {Array.from({
-                    length: lg2 ? 5 : lg ? 5 : md2 ? 3 : md ? 2 : 3,
-                  }).map((_, index) => (
+                  {Array.from({ length: PREVIEW_COUNT }).map((_, index) => (
                     <Skeleton key={index} />
                   ))}
                 </div>

@@ -1,16 +1,22 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import styles from "./Carousel.module.css";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useMediaQuery } from "@mui/material";
+import useMediaQuery from "@/app/_hooks/useMediaQuery";
 
 export default function Carousel() {
   const array = [...Array(13)];
   const lg = useMediaQuery("(min-width: 1000px)");
   const lg2 = useMediaQuery("(min-width: 1540px)");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const settings = {
     dots: true,
@@ -22,6 +28,10 @@ export default function Carousel() {
     autoplay: true,
     autoplaySpeed: 2500,
   };
+
+  if (!mounted) {
+    return <div className={styles.carouselWrapper} />;
+  }
 
   return (
     <div className={styles.carouselWrapper}>

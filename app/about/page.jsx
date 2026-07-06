@@ -1,13 +1,9 @@
-"use client";
 import styles from "./About.module.css";
 import HomeNav from "@/app/_components/navigation/HomeNav/HomeNav";
 import Footer from "@/app/_components/layout/Footer/Footer";
 import Segment from "@/app/_components/layout/Segment/Segment";
-import useMediaQuery from "@mui/material/useMediaQuery";
 
 export default function Page() {
-  const lg = useMediaQuery("(min-width: 1000px)");
-
   return (
     <section className={styles.about}>
       <section className={styles.hero}>
@@ -82,11 +78,14 @@ export default function Page() {
             </div>
           </div>
         </div>
-        <img
-          src={lg ? "/images/about-pc-1.png" : "/images/about-mobile-1.png"}
-          alt="banner"
-          className={styles.banner}
-        />
+        <picture>
+          <source media="(min-width: 1000px)" srcSet="/images/about-pc-1.png" />
+          <img
+            src="/images/about-mobile-1.png"
+            alt="banner"
+            className={styles.banner}
+          />
+        </picture>
       </section>
 
       <section className={`${styles.frame} ${styles.rev}`}>
@@ -122,11 +121,14 @@ export default function Page() {
             </div>
           </div>
         </div>
-        <img
-          src={lg ? "/images/about-pc-2.png" : "/images/about-mobile-2.png"}
-          alt="banner"
-          className={styles.banner}
-        />
+        <picture>
+          <source media="(min-width: 1000px)" srcSet="/images/about-pc-2.png" />
+          <img
+            src="/images/about-mobile-2.png"
+            alt="banner"
+            className={styles.banner}
+          />
+        </picture>
       </section>
 
       <section className={styles.frame}>
@@ -162,11 +164,14 @@ export default function Page() {
             </div>
           </div>
         </div>
-        <img
-          src={lg ? "/images/about-pc-3.png" : "/images/about-mobile-3.png"}
-          alt="banner"
-          className={styles.banner}
-        />
+        <picture>
+          <source media="(min-width: 1000px)" srcSet="/images/about-pc-3.png" />
+          <img
+            src="/images/about-mobile-3.png"
+            alt="banner"
+            className={styles.banner}
+          />
+        </picture>
       </section>
 
       <section className={`${styles.frame} ${styles.rev}`}>
@@ -197,11 +202,14 @@ export default function Page() {
             </div>
           </div>
         </div>
-        <img
-          src={lg ? "/images/about-pc-2.png" : "/images/about-mobile-2.png"}
-          alt="banner"
-          className={`${styles.banner} ${styles.last}`}
-        />
+        <picture>
+          <source media="(min-width: 1000px)" srcSet="/images/about-pc-2.png" />
+          <img
+            src="/images/about-mobile-2.png"
+            alt="banner"
+            className={`${styles.banner} ${styles.last}`}
+          />
+        </picture>
       </section>
 
       <Segment />

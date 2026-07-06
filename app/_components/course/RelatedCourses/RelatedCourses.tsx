@@ -3,11 +3,12 @@
 import { useRef } from "react";
 import CourseCard from "@/app/_components/course/CourseCard/CourseCard";
 import styles from "./RelatedCourses.module.css";
-import { useMediaQuery } from "@mui/material";
 import useRelatedCourses from "@/app/_hooks/useRelatedCourses";
 import Skeleton from "@/app/_components/common/Skeleton/Skeleton";
 import ScrollButton from "@/app/_components/common/ScrollButton/ScrollButton";
 import useScrollEnd from "@/app/_components/common/ScrollButton/useScrollEnd";
+
+const PREVIEW_COUNT = 8;
 
 interface Props {
   courseId: string | number;
@@ -15,8 +16,6 @@ interface Props {
 }
 
 export default function RelatedCourses({ courseId, courseType }: Props) {
-  const lg = useMediaQuery("(min-width: 600px)");
-  const lg2 = useMediaQuery("(min-width: 1000px)");
   const gridWrapperRef = useRef<HTMLDivElement>(null);
   const isAtEnd = useScrollEnd(gridWrapperRef);
 
@@ -35,15 +34,13 @@ export default function RelatedCourses({ courseId, courseType }: Props) {
       >
         {isLoading ? (
           <div className={styles.grid}>
-            {Array.from({
-              length: lg2 ? 5 : lg ? 2 : 3,
-            }).map((_, index) => (
+            {Array.from({ length: PREVIEW_COUNT }).map((_, index) => (
               <Skeleton key={index} />
             ))}
           </div>
         ) : (
           <div className={styles.grid}>
-            {courses?.slice(0, lg2 ? 5 : lg ? 2 : 3).map((course) => (
+            {courses?.slice(0, PREVIEW_COUNT).map((course) => (
               <CourseCard key={course.id} courseItem={course} />
             ))}
           </div>

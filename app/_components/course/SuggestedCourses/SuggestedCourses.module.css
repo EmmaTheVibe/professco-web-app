@@ -1,0 +1,30 @@
+.suggestedCourses {
+  padding-top: 36px;
+  border-top: 1px solid var(--border-color-200);
+  border-bottom: 1px solid var(--border-color-200);
+}
+
+.heading {
+  padding: 28px 0 24px;
+}
+.heading h1 {
+  font-size: 24px;
+  line-height: 32px;
+  margin-bottom: 8px;
+}
+.desc {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--primary-grey-50);
+}
+
+.rows {
+  padding-bottom: 56px;
+}
+
+@media screen and (min-width: 1000px) {
+  .heading h1 {
+    font-size: 30px;
+    line-height: 38px;
+  }
+}

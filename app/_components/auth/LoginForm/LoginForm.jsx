@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./LoginForm.module.css";
 import { useState } from "react";
-import { useMediaQuery } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { login as loginUser } from "@/app/_lib/auth-service";
 import useAuthStore from "@/app/_utils/auth-store";
@@ -11,7 +10,6 @@ import useAuthStore from "@/app/_utils/auth-store";
 export default function LoginForm() {
   const setUser = useAuthStore((state) => state.setUser);
 
-  const lg = useMediaQuery("(min-width: 1200px)");
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirectPath = searchParams.get("redirect");
@@ -52,7 +50,7 @@ export default function LoginForm() {
 
   return (
     <div className={styles.formWrapper}>
-      <div className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         {error && (
           <div
             style={{
@@ -139,8 +137,8 @@ export default function LoginForm() {
         </div>
 
         <button
+          type="submit"
           className={`filled ${styles.submit}`}
-          onClick={handleSubmit(onSubmit)}
           disabled={isSubmitting}
         >
           <p>{isSubmitting ? "Logging in..." : "Login"}</p>
@@ -161,11 +159,9 @@ export default function LoginForm() {
             <span>here</span>
           </Link>
         </p>
-      </div>
+      </form>
 
-      {lg && (
-        <img src="/images/graduation.png" alt="grad" className={styles.grad} />
-      )}
+      <img src="/images/graduation.png" alt="grad" className={styles.grad} />
     </div>
   );
 }

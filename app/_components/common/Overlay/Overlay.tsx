@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import styles from "./Overlay.module.css";
-import { useMediaQuery } from "@mui/material";
+import useMediaQuery from "@/app/_hooks/useMediaQuery";
 
 interface Props {
   isOpen: boolean;
@@ -21,10 +21,7 @@ export default function Overlay({
 }: Props) {
   const overlayRef = useRef<HTMLDivElement>(null);
 
-  const md = useMediaQuery("(min-width: 600px)");
-  const md2 = useMediaQuery("(min-width: 850px)");
   const lg = useMediaQuery("(min-width: 1000px)");
-  const lg2 = useMediaQuery("(min-width: 1400px)");
 
   useEffect(() => {
     if (isOpen && !lg) {

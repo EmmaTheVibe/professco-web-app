@@ -22,6 +22,7 @@
   --primary-white-50: #ffffff;
   --primary-white-100: #fcfcfc;
   --primary-white-150: #f9fafb;
+  --primary-white-175: #f8fafc;
   --primary-white-200: #f7f8fa;
   --primary-white-250: #dcdee6;
   --primary-white-300: #e5e7eb;
@@ -40,6 +41,7 @@
   --primary-orange-100: #dc2626;
 
   --primary-green-0: #359944;
+  --primary-green-50: #01c04f;
 
   --primary-peach: #e6553914;
 
@@ -59,6 +61,10 @@
   --primary-medium-grey: #475467;
   --primary-error: #e62e2e;
   --primary-nav-border: #e3e7ef;
+  --pfp-bg: #f4ebff;
+  --shadow-card: 0px 2px 8.5px 0px #6b6b6b0d;
+  --badge-amber-50: #fffaeb;
+  --badge-amber-100: #fef0c7;
 }
 
 * {
@@ -245,6 +251,7 @@ button {
   width: 100%;
   height: 48px;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .filled {
@@ -286,6 +293,18 @@ button:disabled {
   background-color: var(--primary-black-50);
   border: none;
   color: var(--primary-white-50);
+}
+
+.filled:hover,
+.filledB:hover,
+.btn-dark:hover {
+  opacity: 0.9;
+}
+
+.outlined:hover,
+.bare:hover,
+.bareB:hover {
+  background-color: var(--primary-peach);
 }
 
 .slick-slide > div {
