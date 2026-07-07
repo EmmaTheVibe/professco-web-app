@@ -8,6 +8,11 @@
   width: 100%;
   padding: 0 16px;
   font-family: var(--font-noto-sans), sans-serif;
+  transition: border-color 0.2s ease;
+}
+.form input:focus {
+  outline: none;
+  border-color: var(--primary-orange);
 }
 .form span {
   color: var(--primary-error);

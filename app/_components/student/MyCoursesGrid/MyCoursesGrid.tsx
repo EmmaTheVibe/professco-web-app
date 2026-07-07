@@ -10,6 +10,7 @@ const simulatedStates = [
   { progress: 0, rating: null },
   { progress: 75, rating: null },
   { progress: 75, rating: 3 },
+  { progress: 100, rating: 5 },
 ];
 
 export default function MyCoursesGrid() {

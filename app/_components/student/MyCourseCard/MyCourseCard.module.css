@@ -1,5 +1,6 @@
 .card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--border-color-150);
   border-radius: 8px;
   overflow: hidden;
@@ -25,6 +26,10 @@
 
 .info {
   padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 .title {
   font-size: 18px;
