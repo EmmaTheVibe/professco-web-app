@@ -3,6 +3,7 @@
 import { useState } from "react";
 import ReusableNav from "@/app/_components/navigation/ReusableNav/ReusableNav";
 import MyCoursesEmptyState from "@/app/_components/student/MyCoursesEmptyState/MyCoursesEmptyState";
+import MyCoursesGrid from "@/app/_components/student/MyCoursesGrid/MyCoursesGrid";
 
 const tabs = ["My courses", "Completed", "Saved"];
 
@@ -25,6 +26,7 @@ export default function MyCoursesContent() {
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const copy =
     emptyStateCopy[activeTab.toLowerCase()] || emptyStateCopy["my courses"];
+  const isMyCourses = activeTab.toLowerCase() === "my courses";
 
   return (
     <div>
@@ -35,10 +37,14 @@ export default function MyCoursesContent() {
         setActiveTab={setActiveTab}
         resetPage={false}
       />
-      <MyCoursesEmptyState
-        heading={copy.heading}
-        description={copy.description}
-      />
+      {isMyCourses ? (
+        <MyCoursesGrid />
+      ) : (
+        <MyCoursesEmptyState
+          heading={copy.heading}
+          description={copy.description}
+        />
+      )}
     </div>
   );
 }

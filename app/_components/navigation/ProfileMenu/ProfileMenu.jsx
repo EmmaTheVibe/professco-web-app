@@ -3,6 +3,11 @@ import Link from "next/link";
 import LogoutModal from "./components/LogoutModal";
 import styles from "./ProfileMenu.module.css";
 
+const navLinks = [
+  { label: "Home", href: "/student" },
+  { label: "My courses", href: "/student/my-courses" },
+];
+
 const menuItems = [
   { label: "Notifications", href: "/student/notifications" },
   { label: "Account settings", href: "/student/account-settings" },
@@ -10,7 +15,12 @@ const menuItems = [
   { label: "Help and Support", href: "/student/support" },
 ];
 
-export default function ProfileMenu({ user, onLogout, onNavigate }) {
+export default function ProfileMenu({
+  user,
+  onLogout,
+  onNavigate,
+  showNavLinks = false,
+}) {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   return (
@@ -26,6 +36,15 @@ export default function ProfileMenu({ user, onLogout, onNavigate }) {
       </div>
 
       <ul className={styles.list}>
+        {showNavLinks &&
+          navLinks.map((item) => (
+            <li key={item.href}>
+              <Link href={item.href} onClick={onNavigate}>
+                <p>{item.label}</p>
+                <img src="/images/arrowright2.svg" alt="" />
+              </Link>
+            </li>
+          ))}
         {menuItems.map((item) => (
           <li key={item.href}>
             <Link href={item.href} onClick={onNavigate}>

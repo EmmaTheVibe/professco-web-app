@@ -63,7 +63,16 @@ export default function HomeNav() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [menuOpen]);
 
-  const profileMenu = (
+  const mobileProfileMenu = (
+    <ProfileMenu
+      user={user}
+      onLogout={handleLogout}
+      onNavigate={() => setMenuOpen(false)}
+      showNavLinks
+    />
+  );
+
+  const desktopProfileMenu = (
     <ProfileMenu
       user={user}
       onLogout={handleLogout}
@@ -96,7 +105,7 @@ export default function HomeNav() {
                   alt="menu"
                   onClick={() => setMenuOpen((open) => !open)}
                 />
-                {menuOpen && profileMenu}
+                {menuOpen && mobileProfileMenu}
               </div>
             ) : (
               <img
@@ -202,7 +211,7 @@ export default function HomeNav() {
                       </p>
                       <img src="/images/arrowdown.svg" alt="" />
                     </button>
-                    {menuOpen && profileMenu}
+                    {menuOpen && desktopProfileMenu}
                   </div>
                 </>
               ) : (
