@@ -12,7 +12,7 @@ export default function CourseCard({ courseItem }: Props) {
     <div>
       <Link
         href={`/courses/${courseItem.exam_body?.slug.toLowerCase()}/${encodeURIComponent(
-          courseItem.title?.toLowerCase().replace(/\s+/g, "-")
+          courseItem.title?.toLowerCase().replace(/\s+/g, "-"),
         )}/${courseItem.id}`}
       >
         <div className={styles.courseCard}>
