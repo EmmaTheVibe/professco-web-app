@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import CourseCard from "@/app/_components/course/CourseCard/CourseCard";
 import useFilterStore from "@/app/_utils/filter-store";
 import styles from "./CourseList.module.css";
+import useMediaQuery from "@/app/_hooks/useMediaQuery";
 import Link from "next/link";
 import Tags from "@/app/_components/common/Tags/Tags";
 import Spinner from "@/app/_components/layout/Spinner/Spinner";
@@ -14,7 +15,8 @@ import Skeleton from "@/app/_components/common/Skeleton/Skeleton";
 import ScrollButton from "@/app/_components/common/ScrollButton/ScrollButton";
 import useScrollEnd from "@/app/_components/common/ScrollButton/useScrollEnd";
 
-const PREVIEW_COUNT = 8;
+const MOBILE_PREVIEW_COUNT = 3;
+const DESKTOP_PREVIEW_COUNT = 5;
 
 export default function CourseList({
   showAll,
@@ -31,6 +33,18 @@ export default function CourseList({
   const filterButtonRef = useRef(null);
   const gridWrapperRef = useRef(null);
   const isAtEnd = useScrollEnd(gridWrapperRef);
+
+  const [mounted, setMounted] = useState(false);
+  const lg = useMediaQuery("(min-width: 1000px)");
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isSlideMode = mounted && lg;
+  const previewCount = isSlideMode
+    ? DESKTOP_PREVIEW_COUNT
+    : MOBILE_PREVIEW_COUNT;
 
   const ratingFilters = [
     { value: 4, name: "4.0 stars & Up" },
@@ -52,7 +66,7 @@ export default function CourseList({
   let filteredCourses = courses || [];
 
   if (!showAll) {
-    filteredCourses = filteredCourses.slice(0, PREVIEW_COUNT);
+    filteredCourses = filteredCourses.slice(0, previewCount);
   }
 
   const searchedCourses =
@@ -124,24 +138,38 @@ export default function CourseList({
             }`}
           >
             <div
-              className={`${styles.gridWrapper} ${isAtEnd ? styles.atEnd : ""}`}
+              className={`${styles.gridWrapper} ${isAtEnd ? styles.atEnd : ""} ${
+                isSlideMode ? styles.slideMode : ""
+              }`}
               ref={gridWrapperRef}
             >
               {loading ? (
-                <div className={styles.courseGrid}>
-                  {Array.from({ length: PREVIEW_COUNT }).map((_, index) => (
+                <div
+                  className={`${styles.courseGrid} ${
+                    isSlideMode ? styles.slideMode : ""
+                  }`}
+                >
+                  {Array.from({ length: previewCount }).map((_, index) => (
                     <Skeleton key={index} />
                   ))}
                 </div>
               ) : (
-                <div className={styles.courseGrid}>
+                <div
+                  className={`${styles.courseGrid} ${
+                    isSlideMode ? styles.slideMode : ""
+                  }`}
+                >
                   {searchedCourses.map((course) => (
                     <CourseCard courseItem={course} key={course.id} />
                   ))}
                 </div>
               )}
             </div>
-            <div className={styles.scrollButtonCarrier}>
+            <div
+              className={`${styles.scrollButtonCarrier} ${
+                isSlideMode ? styles.slideMode : ""
+              }`}
+            >
               <ScrollButton containerRef={gridWrapperRef} scrollAmount={318} />
             </div>
           </div>
