@@ -11,14 +11,34 @@
 
 .courseNav {
   display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.tabsScroll {
+  display: flex;
   /* justify-content: center;
     align-items: center; */
   position: relative;
-  width: 100%;
+  min-width: 0;
+  flex: 1;
   overflow-x: auto;
 }
-.courseNav::-webkit-scrollbar {
+.tabsScroll::-webkit-scrollbar {
   display: none;
+}
+
+.actionsSlot {
+  display: none;
+  flex-shrink: 0;
+}
+
+@media screen and (min-width: 1000px) {
+  .actionsSlot {
+    display: flex;
+    align-items: center;
+    margin-left: 24px;
+  }
 }
 
 .tabs {
@@ -76,8 +96,3 @@
   } */
 }
 
-@media screen and (min-width: 1000px) {
-  .courseNav {
-    justify-content: flex-start;
-  }
-}

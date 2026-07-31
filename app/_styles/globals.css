@@ -113,8 +113,9 @@ section {
   position: relative;
 }
 .container {
-  width: 320px;
-  /* border: 1px solid red; */
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
 }
 
 p {
@@ -331,38 +332,37 @@ button:disabled {
 
 @media screen and (min-width: 400px) {
   .container {
-    width: 340px;
+    max-width: 340px;
   }
 }
 
 @media screen and (min-width: 500px) {
   .container {
-    width: 480px;
+    max-width: 480px;
   }
 }
 
 @media screen and (min-width: 600px) {
   .container {
-    width: 590px;
-    /* border: 1px solid red; */
+    max-width: 590px;
   }
 }
 
 @media screen and (min-width: 850px) {
   .container {
-    width: 848px;
+    max-width: 848px;
   }
 }
 
 @media screen and (min-width: 1000px) {
   .container {
-    width: 980px;
+    max-width: 980px;
   }
 }
 
 @media screen and (min-width: 1200px) {
   .container {
-    width: 1180px;
+    max-width: 1180px;
   }
   button {
     height: 56px;
@@ -371,12 +371,12 @@ button:disabled {
 
 @media screen and (min-width: 1400px) {
   .container {
-    width: 1380px;
+    max-width: 1380px;
   }
 }
 
 @media screen and (min-width: 1540px) {
   .container {
-    width: 1519px;
+    max-width: 1519px;
   }
 }

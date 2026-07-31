@@ -3,7 +3,7 @@ import CourseList from "@/app/_components/course/CourseList/CourseList";
 import styles from "./CourseSegment.module.css";
 import useCourses from "@/app/_hooks/useCourses";
 import { exams } from "@/app/_utils/data";
-import ReusableNav from "@/app/_components/navigation/ReusableNav/ReusableNav";
+import TabNav from "@/app/_components/navigation/TabNav/TabNav";
 import useFilterStore from "@/app/_utils/filter-store";
 
 interface Props {
@@ -17,7 +17,7 @@ export default function CourseSegment({ showAll = false }: Props) {
 
   return (
     <div className={styles.courseSegment}>
-      <ReusableNav
+      <TabNav
         tabs={exams}
         paramName="exam"
         activeTab={activeTab}

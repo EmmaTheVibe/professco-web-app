@@ -25,37 +25,11 @@ export const metadata = {
   description: "Pass your professional exams with ease the first time",
 };
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
 async function getInitialAuth() {
-  try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get("token")?.value;
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
 
-    if (!token) {
-      return { isAuthenticated: false, user: null };
-    }
-
-    const response = await fetch(`${API_BASE_URL}/user`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      cache: "no-store",
-    });
-
-    if (!response.ok) {
-      return { isAuthenticated: false, user: null };
-    }
-
-    const profile = await response.json();
-    return { isAuthenticated: true, user: profile };
-  } catch (error) {
-    console.error("Failed to resolve initial auth state:", error);
-    return { isAuthenticated: false, user: null };
-  }
+  return { isAuthenticated: !!token, user: null };
 }
 
 export default async function RootLayout({ children }) {

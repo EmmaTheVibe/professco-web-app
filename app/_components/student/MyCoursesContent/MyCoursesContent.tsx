@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import ReusableNav from "@/app/_components/navigation/ReusableNav/ReusableNav";
+import TabNav from "@/app/_components/navigation/TabNav/TabNav";
 import MyCoursesEmptyState from "@/app/_components/student/MyCoursesEmptyState/MyCoursesEmptyState";
 import MyCoursesGrid from "@/app/_components/student/MyCoursesGrid/MyCoursesGrid";
 
@@ -30,7 +30,7 @@ export default function MyCoursesContent() {
 
   return (
     <div>
-      <ReusableNav
+      <TabNav
         tabs={tabs}
         paramName="view"
         activeTab={activeTab}

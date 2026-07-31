@@ -1,6 +1,6 @@
 "use client";
 import { courseDetailTabs } from "@/app/_utils/data";
-import ReusableNav from "@/app/_components/navigation/ReusableNav/ReusableNav";
+import TabNav from "@/app/_components/navigation/TabNav/TabNav";
 import styles from "./TabSystem.module.css";
 import AboutTab from "@/app/_components/course/AboutTab/AboutTab";
 import InstructorsTab from "@/app/_components/course/InstructorsTab/InstructorsTab";
@@ -38,12 +38,24 @@ export default function TabSystem({ course, moduleId }: Props) {
   return (
     <section className={styles.tabSystem}>
       <section className={styles.navbox}>
-        <ReusableNav
+        <TabNav
           tabs={courseDetailTabs}
           paramName="t"
           activeTab={activeCourseTab}
           setActiveTab={setActiveCourseTab}
           resetPage={false}
+          actions={
+            <div className={styles.actions}>
+              <button className={`outlined ${styles.actionBtn}`}>
+                <p>Add to Calendar</p>
+                <img src="/images/calendar-icon.svg" alt="" />
+              </button>
+              <button className={`outlined ${styles.actionBtn}`}>
+                <p>Share</p>
+                <img src="/images/share-icon.svg" alt="" />
+              </button>
+            </div>
+          }
         />
       </section>
 

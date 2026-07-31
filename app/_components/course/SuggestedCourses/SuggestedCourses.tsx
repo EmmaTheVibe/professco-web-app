@@ -1,6 +1,6 @@
 "use client";
 
-import ReusableNav from "@/app/_components/navigation/ReusableNav/ReusableNav";
+import TabNav from "@/app/_components/navigation/TabNav/TabNav";
 import CourseList from "@/app/_components/course/CourseList/CourseList";
 import SuggestedRows from "./SuggestedRows";
 import useCourses from "@/app/_hooks/useCourses";
@@ -41,7 +41,7 @@ export default function SuggestedCourses() {
   return (
     <section className={styles.suggestedCourses}>
       <div className="container">
-        <ReusableNav
+        <TabNav
           tabs={suggestedCourseTabs}
           paramName="exam"
           activeTab={activeTab}

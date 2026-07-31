@@ -1,4 +1,52 @@
 .watchCourse {
-  padding-top: 142px;
+  padding-top: 84px;
   min-height: 100vh;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.main {
+  width: 100%;
+  min-width: 0;
+}
+
+.videoWrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #000;
+  position: relative;
+}
+
+.infoRow {
+  padding: 20px 0 16px;
+}
+.title {
+  font-size: 20px;
+  line-height: 28px;
+  margin-bottom: 8px;
+}
+.moduleLine {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--primary-grey-50);
+}
+
+@media screen and (min-width: 1200px) {
+  .watchCourse {
+    padding-top: 98px;
+  }
+  .layout {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .title {
+    font-size: 24px;
+    line-height: 32px;
+  }
 }

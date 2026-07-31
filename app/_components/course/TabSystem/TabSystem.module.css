@@ -6,6 +6,18 @@
   /* background-color: red; */
   z-index: 50;
 }
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+.actionBtn {
+  width: fit-content;
+  height: 40px;
+  padding: 0 16px;
+  gap: 8px;
+}
+
 @media screen and (min-width: 1000px) {
   .navbox {
     margin-bottom: 52px;

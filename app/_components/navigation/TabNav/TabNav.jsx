@@ -1,16 +1,17 @@
 "use client";
 
-import styles from "./ReusableNav.module.css";
+import styles from "./TabNav.module.css";
 import { useEffect, useRef } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-export default function ReusableNav({
+export default function TabNav({
   tabs,
   paramName = "exam",
   activeTab,
   setActiveTab,
   resetPage = true,
   hideBorder = false,
+  actions = null,
 }) {
   const sliderRef = useRef(null);
   const navRefs = useRef([]);
@@ -86,23 +87,26 @@ export default function ReusableNav({
     <div className={`${styles.nav} ${hideBorder ? styles.noBorder : ""}`}>
       <div className="container">
         <div className={styles.courseNav}>
-          <ul className={styles.tabs}>
-            {tabs.map((tab, index) => (
-              <li
-                key={index}
-                className={`semiboldFont ${styles.tabItem} ${
-                  tab.toLowerCase() === activeTab?.toLowerCase()
-                    ? styles.activeTabItem
-                    : ""
-                } ${index === 0 ? styles.firstTabItem : ""}`}
-                onClick={() => handleTab(tab)}
-                ref={(el) => (navRefs.current[index] = el)}
-              >
-                <p>{tab}</p>
-              </li>
-            ))}
-          </ul>
-          <div className={styles.slider} ref={sliderRef}></div>
+          <div className={styles.tabsScroll}>
+            <ul className={styles.tabs}>
+              {tabs.map((tab, index) => (
+                <li
+                  key={index}
+                  className={`semiboldFont ${styles.tabItem} ${
+                    tab.toLowerCase() === activeTab?.toLowerCase()
+                      ? styles.activeTabItem
+                      : ""
+                  } ${index === 0 ? styles.firstTabItem : ""}`}
+                  onClick={() => handleTab(tab)}
+                  ref={(el) => (navRefs.current[index] = el)}
+                >
+                  <p>{tab}</p>
+                </li>
+              ))}
+            </ul>
+            <div className={styles.slider} ref={sliderRef}></div>
+          </div>
+          {actions && <div className={styles.actionsSlot}>{actions}</div>}
         </div>
       </div>
     </div>

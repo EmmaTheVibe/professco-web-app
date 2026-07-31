@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useAuthStore, { type User } from "@/app/_utils/auth-store";
 
 interface InitialAuth {
@@ -17,6 +17,25 @@ export default function AuthSeeder({ initialAuth }: Props) {
     useAuthStore.setState(initialAuth);
     return true;
   });
+
+  useEffect(() => {
+    if (!initialAuth.isAuthenticated) return;
+
+    let cancelled = false;
+
+    fetch("/api/auth/me")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (!cancelled && data?.profile) {
+          useAuthStore.getState().setUser(data.profile);
+        }
+      })
+      .catch(() => {});
+
+    return () => {
+      cancelled = true;
+    };
+  }, [initialAuth.isAuthenticated]);
 
   return null;
 }

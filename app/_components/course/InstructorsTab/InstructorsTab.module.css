@@ -12,6 +12,7 @@
 .instructorWrapper {
   border-bottom: 1px solid var(--border-color-200);
   padding-bottom: 24px;
+  min-width: 0;
 }
 .line {
   display: flex;
@@ -171,11 +172,13 @@
 @media screen and (min-width: 500px) {
   .gridWrapperContainer {
     position: relative;
+    min-width: 0;
   }
 
   .gridWrapper {
     overflow-x: auto;
-    width: 480px;
+    width: 100%;
+    max-width: 480px;
     /* overflow: hidden; */
     mask-image: linear-gradient(to right, #000 0% 95%, transparent 100%);
   }
@@ -219,12 +222,12 @@
 
 @media screen and (min-width: 600px) {
   .gridWrapper {
-    width: 590px;
+    max-width: 590px;
   }
 }
 @media screen and (min-width: 850px) {
   .gridWrapper {
-    width: 848px;
+    max-width: 848px;
   }
 }
 @media screen and (min-width: 1000px) {
@@ -238,7 +241,7 @@
     gap: 70px;
   }
   .gridWrapper {
-    width: 630px;
+    max-width: 630px;
     /* background-color: paleturquoise;
     border: 1px solid red; */
     margin-bottom: 0;
@@ -258,7 +261,7 @@
 
 @media screen and (min-width: 1200px) {
   .gridWrapper {
-    width: 698px;
+    max-width: 698px;
     border-left: 1.4px solid var(--primary-white-300);
     padding-left: 24px;
   }
@@ -281,7 +284,7 @@
 }
 @media screen and (min-width: 1400px) {
   .gridWrapper {
-    width: 723px;
+    max-width: 723px;
     /* background-color: paleturquoise;
     border: 1px solid red; */
   }
@@ -295,7 +298,7 @@
 }
 @media screen and (min-width: 1540px) {
   .gridWrapper {
-    width: 745px;
+    max-width: 745px;
     padding-left: 30px;
   }
   .cardGrid {
