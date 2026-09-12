@@ -1,9 +1,25 @@
+"use client";
+
+import { motion } from "framer-motion";
 import styles from "./ReviewCard.module.css";
 
-export default function ReviewCard() {
+interface Props {
+  index?: number;
+}
+
+export default function ReviewCard({ index = 0 }: Props) {
   return (
-    <div
+    <motion.div
       className={styles.ReviewCard}
+      initial={{ opacity: 0, y: 96 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.28 }}
+      transition={{
+        type: "spring",
+        stiffness: 120,
+        damping: 18,
+        delay: index * 0.12,
+      }}
       style={{
         padding: "22px 16px",
         backgroundColor: "#ffffff",
@@ -53,6 +69,6 @@ export default function ReviewCard() {
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

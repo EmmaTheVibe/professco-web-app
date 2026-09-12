@@ -2,10 +2,10 @@ import { create } from "zustand";
 
 interface FilterState {
   activeTab: string;
-  examTypeList: string[];
+  examTypeList: number[];
   setActiveTab: (tab: string) => void;
-  setExamTypeList: (list: string[]) => void;
-  addExamType: (name: string, selectable: boolean) => void;
+  setExamTypeList: (list: number[]) => void;
+  addExamType: (id: number, selectable: boolean) => void;
 }
 
 const useFilterStore = create<FilterState>((set) => ({
@@ -16,12 +16,12 @@ const useFilterStore = create<FilterState>((set) => ({
 
   setExamTypeList: (list) => set({ examTypeList: list }),
 
-  addExamType: (name, selectable) => {
+  addExamType: (id, selectable) => {
     if (!selectable) return;
     set((state) => ({
-      examTypeList: state.examTypeList.includes(name)
-        ? state.examTypeList.filter((item) => item !== name)
-        : [...state.examTypeList, name],
+      examTypeList: state.examTypeList.includes(id)
+        ? state.examTypeList.filter((item) => item !== id)
+        : [...state.examTypeList, id],
     }));
   },
 }));

@@ -6,7 +6,6 @@
 }
 .carousel {
   width: 304px;
-
   border-radius: 8px;
 }
 .card {
@@ -35,10 +34,26 @@
   background-color: var(--primary-text-dark);
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 500px) {
+  .carousel {
+    width: calc(234px * 2);
+  }
+  .card {
+    width: 50%;
+  }
+}
+@media screen and (min-width: 600px) {
   .carouselWrapper {
     margin-top: 0;
   }
+  .carousel {
+    width: 304px;
+  }
+  .card {
+    width: unset;
+  }
+}
+@media screen and (min-width: 1000px) {
   .carousel {
     width: calc(304px * 2);
   }
@@ -46,7 +61,6 @@
     width: 50%;
   }
 }
-
 @media screen and (min-width: 1400px) {
   .card {
     width: unset;

@@ -1,13 +1,35 @@
+"use client";
+
+import { useMemo } from "react";
 import SuggestedRow from "./SuggestedRow";
+import useAuthStore from "@/app/_utils/auth-store";
+import type { ExamBody } from "@/app/_utils/types";
 import styles from "./SuggestedCourses.module.css";
 
-const suggestedRowDefinitions = [
-  { label: "Strategic Financial Management", examSlug: "ican" },
-  { label: "Advanced Audit & Assurance", examSlug: "cipm" },
-  { label: "Advanced Taxation", examSlug: "cima" },
-];
+function getExamLabel(examBody: ExamBody) {
+  return examBody.name || examBody.slug.toUpperCase();
+}
 
 export default function SuggestedRows() {
+  const examBodies = useAuthStore((state) => state.user?.exam_bodies);
+  const suggestedRowDefinitions = useMemo(() => {
+    if (!Array.isArray(examBodies)) return [];
+
+    const seenSlugs = new Set<string>();
+
+    return examBodies
+      .filter((examBody) => typeof examBody.slug === "string")
+      .map((examBody) => ({
+        label: getExamLabel(examBody),
+        examSlug: examBody.slug.toLowerCase(),
+      }))
+      .filter((row) => {
+        if (seenSlugs.has(row.examSlug)) return false;
+        seenSlugs.add(row.examSlug);
+        return true;
+      });
+  }, [examBodies]);
+
   return (
     <>
       <div className={styles.heading}>

@@ -1,3 +1,18 @@
 .home {
-  padding-top: 98px;
+  padding-top: 142px;
+  min-height: 100dvh;
+}
+.wrapper {
+  max-width: 1330px;
+  margin-bottom: 150px;
+}
+
+.title {
+  font-size: 28px;
+  margin-bottom: 4px;
+}
+
+.desc {
+  color: var(--badge-gray-600);
+  margin-bottom: 24px;
 }

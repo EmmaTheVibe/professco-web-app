@@ -36,10 +36,15 @@
 .txtBox p:first-of-type {
   margin-right: 14px;
 }
-.homenav button {
-  width: 100px;
+.btnGroup {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 200px;
   margin-left: 14px;
-  height: 48px;
+}
+.btnGroup button {
+  width: 100%;
 }
 
 .cartLink {
@@ -179,8 +184,17 @@
   font-weight: 600;
   color: var(--primary-text-dark);
 }
+@media screen and (min-width: 1200px) {
+  .btnGroup {
+    width: 280px;
+    margin-left: 24px;
+  }
+}
 
 @media screen and (min-width: 1400px) {
+  .btnGroup {
+    width: 320px;
+  }
   .txtBox p {
     font-size: 16px;
     line-height: 24px;
@@ -188,8 +202,8 @@
   .txtBox p:first-of-type {
     margin-right: 40px;
   }
-  .homenav button {
+  /* .homenav button {
     width: 147px;
     margin-left: 24px;
-  }
+  } */
 }

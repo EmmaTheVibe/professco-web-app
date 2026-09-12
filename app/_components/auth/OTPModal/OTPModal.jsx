@@ -1,7 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import Modal from "@/app/_components/common/Modal/Modal";
+import Loader from "@/app/_components/common/Loader/Loader";
 import styles from "./OTPModal.module.css";
 import { generateOTP, verifyOTP } from "@/app/_lib/otp-service";
+import useAuthStore from "@/app/_utils/auth-store";
 
 export default function OTPModal({ isOpen, onClose, onVerified }) {
   const [step, setStep] = useState(1);
@@ -107,12 +109,13 @@ export default function OTPModal({ isOpen, onClose, onVerified }) {
 
     try {
       const response = await verifyOTP(email, otpCode, nonceKey);
-      console.log("OTP verified successfully:", response);
 
-      // TODO: Handle login/signup + payment
-      // For now, just close modal
+      if (response.profile) {
+        useAuthStore.getState().setUser(response.profile);
+      }
+
       if (onVerified) {
-        onVerified(response);
+        onVerified();
       } else {
         onClose();
       }
@@ -186,7 +189,7 @@ export default function OTPModal({ isOpen, onClose, onVerified }) {
               className={`${styles.submitBtn} filled`}
               disabled={!email || isSending}
             >
-              {isSending ? "Sending..." : "Send Code"}
+              {isSending ? <Loader /> : "Send Code"}
             </button>
           </div>
         </div>
@@ -223,7 +226,7 @@ export default function OTPModal({ isOpen, onClose, onVerified }) {
             disabled={isVerifying || otp.some((digit) => digit === "")}
             onClick={() => handleVerifyOtp(otp)}
           >
-            {isVerifying ? "Verifying..." : "Verify Code"}
+            {isVerifying ? <Loader /> : "Verify Code"}
           </button>
 
           <button
@@ -231,7 +234,7 @@ export default function OTPModal({ isOpen, onClose, onVerified }) {
             onClick={handleResendOTP}
             disabled={isVerifying || isSending}
           >
-            {isSending ? "Sending..." : "Resend Code"}
+            {isSending ? <Loader variant="dark" /> : "Resend Code"}
           </button>
         </div>
       )}

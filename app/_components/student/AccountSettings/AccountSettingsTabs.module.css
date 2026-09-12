@@ -1,0 +1,49 @@
+.nav {
+  width: 100%;
+  border-bottom: 1px solid var(--border-color-200);
+}
+
+.tabsScroll {
+  position: relative;
+  min-width: 0;
+  overflow-x: auto;
+}
+.tabsScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.tabs {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style-type: none;
+  width: max-content;
+}
+
+.tabItem {
+  padding: 0 0 16px;
+  margin-right: 32px;
+  cursor: pointer;
+  color: #9ca3af;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.3s ease;
+}
+
+.tabItem:hover {
+  color: var(--primary-text-dark);
+}
+
+.activeTabItem {
+  color: var(--primary-text-dark);
+}
+
+.slider {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  background-color: var(--primary-orange);
+  transition: all 0.3s ease;
+}

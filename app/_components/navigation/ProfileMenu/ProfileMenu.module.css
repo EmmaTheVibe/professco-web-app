@@ -2,7 +2,7 @@
   position: absolute;
   top: calc(100% + 24px);
   right: 0;
-  width: 320px;
+  max-width: 320px;
   background-color: var(--primary-white-50);
   border: 1px solid var(--border-color-150);
   border-radius: 8px;
@@ -52,9 +52,18 @@
   transition: all 0.2s ease;
 }
 
-.list li a:hover,
-.logout:hover {
+.list li a:hover {
   background-color: var(--primary-white-200);
+}
+
+.logout {
+  width: fit-content;
+  height: fit-content;
+  background: var(--primary-white-150);
+}
+
+.logout:hover {
+  background-color: var(--primary-white-150);
 }
 
 .logout p {

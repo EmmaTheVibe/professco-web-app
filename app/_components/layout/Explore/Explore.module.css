@@ -4,7 +4,6 @@
   margin: 16px 0;
 }
 .examGrid {
-  width: 320px;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 27px;
@@ -23,8 +22,11 @@
   flex-direction: column;
   align-items: center;
 }
+.top {
+  padding-top: 52px;
+}
 .txt {
-  width: 320px;
+  max-width: 320px;
 }
 .bottom {
   display: flex;
@@ -68,7 +70,7 @@
     align-items: center;
   }
   .txt {
-    width: 480px;
+    max-width: 480px;
     text-align: center;
   }
 

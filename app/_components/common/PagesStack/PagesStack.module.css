@@ -1,0 +1,49 @@
+.stack {
+  position: absolute;
+  width: 300px;
+  height: 195px;
+  pointer-events: none;
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1199px) {
+  .stack {
+    transform: scale(1.2);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .stack {
+    width: 573px;
+    height: 374px;
+  }
+}
+
+.card {
+  position: absolute;
+  top: var(--top);
+  left: var(--left);
+  width: var(--width);
+  height: var(--height);
+  border-radius: 4px;
+  will-change: transform, opacity;
+  opacity: 1;
+  transform: translate(var(--rx), var(--ry)) rotate(var(--rrot));
+  transition:
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s,
+    opacity 0.6s ease 0.3s;
+}
+
+.card.revealed {
+  opacity: var(--final-opacity, 1);
+  transform: translate(0, 0) rotate(0deg);
+}
+
+@media screen and (min-width: 1200px) {
+  .card {
+    top: var(--top-1200);
+    left: var(--left-1200);
+    width: var(--width-1200);
+    height: var(--height-1200);
+    transform: translate(var(--rx-1200), var(--ry-1200)) rotate(var(--rrot));
+  }
+}

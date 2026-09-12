@@ -1,3 +1,27 @@
+.top {
+  margin-bottom: 30px;
+}
+.top h1 {
+  font-size: 30px;
+  line-height: 38px;
+  margin-bottom: 14px;
+}
+.relatedInfo {
+  font-size: 18px;
+  line-height: 28px;
+}
+.bottom {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.seg {
+  padding: 96px 0;
+  border-top: 1px solid var(--border-color-200);
+  border-bottom: 1px solid var(--border-color-200);
+}
+
 .grid {
   width: 288px;
   display: grid;
@@ -10,11 +34,9 @@
   display: none;
 }
 
-/* Slide mode: applied only once JS confirms desktop width post-mount (see RelatedCourses.tsx) */
 .gridWrapper.slideMode {
   overflow-x: auto;
   mask-image: linear-gradient(to right, #000 0% 96%, transparent 100%);
-  padding-left: 24px;
 }
 .gridWrapper.slideMode.atEnd {
   mask-image: none;
@@ -34,9 +56,95 @@
   display: block;
 }
 
-@media screen and (min-width: 600px) {
+.gridWrapper.verticalMode {
+  max-height: 1400px;
+  overflow-y: auto;
+  mask-image: linear-gradient(to bottom, #000 0% 96%, transparent 100%);
+}
+.gridWrapper.verticalMode.atEnd {
+  mask-image: none;
+}
+.gridWrapper.verticalMode::-webkit-scrollbar {
+  display: none;
+}
+.scrollButtonCarrier.verticalMode {
+  display: block;
+}
+
+@media screen and (min-width: 400px) {
   .grid {
-    width: unset;
-    grid-template-columns: repeat(2, 288px);
+    grid-template-columns: repeat(1, 300px);
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .seg {
+    display: none;
+  }
+}
+
+.segPC {
+  display: none;
+}
+
+@media screen and (min-width: 1000px) {
+  .segPC {
+    display: block;
+    border-top: 1px solid var(--border-color-200);
+    border-bottom: 1px solid var(--border-color-200);
+  }
+  .segPCWrapper {
+    display: flex;
+  }
+  .segPCWrapper .top {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    padding-top: 64px;
+    padding-right: 16px;
+    text-align: left;
+    align-items: flex-start;
+  }
+  .segPCWrapper .relatedInfo {
+    width: 260px;
+  }
+  .segPCWrapper .bottom {
+    width: 70%;
+    border-left: 1px solid var(--border-color-50);
+    padding: 64px 0 56px;
+    position: relative;
+  }
+  .gridWrapper.slideMode {
+    padding-left: 30px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .segPCWrapper .top {
+    width: 35%;
+  }
+  .segPCWrapper .relatedInfo {
+    width: 317px;
+  }
+  .segPCWrapper .bottom {
+    width: 65%;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .segPCWrapper .top {
+    width: 30%;
+  }
+  .segPCWrapper .bottom {
+    width: 70%;
   }
 }

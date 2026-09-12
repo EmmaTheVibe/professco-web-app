@@ -10,44 +10,48 @@ const FooterForm = dynamic(
   () => import("@/app/_components/layout/FooterForm/FooterForm"),
   {
     ssr: false,
-  }
+  },
 );
 
-export default function Footer() {
+export default function Footer({ showFull = true }) {
   const learnOptions = footerOptions.filter((option) =>
-    option.section.includes("learn")
+    option.section.includes("learn"),
   );
   const professcoOptions = footerOptions.filter((option) =>
-    option.section.includes("professco")
+    option.section.includes("professco"),
   );
 
   return (
     <section className={styles.footer}>
-      <div className={`container ${styles.frame}`}>
-        <div className={`${styles.paperbox}`}>
-          <img
-            src="/images/pagesthin.png"
-            alt="pages"
-            className={styles.pages}
-          />
-          <div className={`${styles.notifbox}`}>
-            <Notifs dark={true} />
+      {showFull && (
+        <>
+          <div className={`container ${styles.frame}`}>
+            <div className={`${styles.paperbox}`}>
+              <img
+                src="/images/pagesthin.png"
+                alt="pages"
+                className={styles.pages}
+              />
+              <div className={`${styles.notifbox}`}>
+                <Notifs dark={true} />
+              </div>
+            </div>
+            <div className={styles.formbox}>
+              <h1 className="boldFont">Free materials & resources</h1>
+              <p style={{ margin: "24px 0 16px" }} className={styles.formTxt}>
+                Get free ebooks, PDFs, past questions and other resourecs to
+                help you get started as you prepare for your exams
+              </p>
+              <FooterForm />
+            </div>
           </div>
-        </div>
-        <div className={styles.formbox}>
-          <h1 className="boldFont">Free materials & resources</h1>
-          <p style={{ margin: "24px 0 16px" }} className={styles.formTxt}>
-            Get free ebooks, PDFs, past questions and other resourecs to help
-            you get started as you prepare for your exams
-          </p>
-          <FooterForm />
-        </div>
-      </div>
-      <div className={styles.divider}></div>
+          <div className={styles.divider}></div>
+        </>
+      )}
       <div className={`container ${styles.frameB}`}>
         <div>
-          <h1>Logo</h1>
-          <p style={{ margin: "16px 0 32px" }} className={styles.txt}>
+          <img src="/images/logo-pc.svg" alt="logo" className={styles.logo} />
+          <p className={styles.txt}>
             We ara a lorem ipsum dolor sit amet, consectetur adipiscing elit,
             sed do eiusmod tempor incididunt ut labore exercitation ullamco
             laboris nisi ut aliquip ex ea commodo consequat... Read More

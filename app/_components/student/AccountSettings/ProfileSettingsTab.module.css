@@ -1,0 +1,109 @@
+.form {
+  padding: 32px 0;
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.sectionDesc {
+  color: var(--primary-grey-500, #6b7280);
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+.fieldGroup {
+  margin-bottom: 26px;
+  max-width: 480px;
+}
+
+.label {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.label span {
+  color: var(--primary-error, #c00);
+}
+
+.form input {
+  border: 1.2px solid var(--primary-grey-300);
+  border-radius: 4px;
+  height: 48px;
+  width: 100%;
+  padding: 0 16px;
+  font-family: var(--font-noto-sans), sans-serif;
+}
+
+.form input:focus {
+  border-color: var(--primary-orange);
+}
+
+.inputGroup {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  position: absolute;
+  right: 16px;
+}
+
+.fieldError {
+  color: #c00;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.message {
+  padding: 12px 16px;
+  border-radius: 4px;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.errorMessage {
+  background: #fee;
+  color: #c00;
+}
+
+.successMessage {
+  background: #ecfdf3;
+  color: #067647;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 600px) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 850px) {
+  .grid {
+    gap: 16px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.submit {
+  height: 48px;
+  max-width: 200px;
+}

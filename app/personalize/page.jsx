@@ -1,18 +1,58 @@
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import BottomBanner from "@/app/_components/layout/BottomBanner/BottomBanner";
+import Loader from "@/app/_components/common/Loader/Loader";
 import PersonalizeForm from "@/app/_components/auth/PersonalizeForm/PersonalizeForm";
+import { saveExamBodies } from "@/app/_lib/account-setup-service";
+import useFilterStore from "@/app/_utils/filter-store";
+import useAuthStore from "@/app/_utils/auth-store";
 import styles from "./Personalize.module.css";
 
 export default function Personalize() {
+  const router = useRouter();
+  const examBodyIds = useFilterStore((state) => state.examTypeList);
+  const setExamTypeList = useFilterStore((state) => state.setExamTypeList);
+  const setUser = useAuthStore((state) => state.setUser);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async () => {
+    if (examBodyIds.length === 0) {
+      setError("Please select at least one exam body.");
+      return;
+    }
+
+    setError("");
+    setIsSubmitting(true);
+
+    try {
+      await saveExamBodies(examBodyIds);
+
+      const accountResponse = await fetch("/api/auth/me");
+      const accountData = accountResponse.ok ? await accountResponse.json() : null;
+
+      if (accountData?.profile) {
+        console.log("Account setup complete. Account info:", accountData.profile);
+        setUser(accountData.profile);
+      } else {
+        console.log("Account setup complete. Account info unavailable.");
+      }
+
+      setExamTypeList([]);
+      router.push("/student");
+    } catch (err) {
+      setError(err.message || "Failed to save your exam preferences.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section className={styles.personalize}>
       <section className={styles.main}>
         <div className={`container ${styles.wrapper}`}>
-          <div className={styles.topBar}>
-            <Link href="/student" className={styles.close}>
-              Close ✕
-            </Link>
-          </div>
           <div className={styles.frame}>
             <div>
               <p style={{ color: "#4B5563" }}>Let&apos;s get you started</p>
@@ -22,21 +62,26 @@ export default function Personalize() {
               <p className={`lightFont ${styles.desc}`}>
                 We&apos;ve got courses for every professional exam
               </p>
+              {error && <p className={styles.error}>{error}</p>}
               <div className={styles.btnPC}>
-                <Link href="/student">
-                  <button className={`filled ${styles.btn}`}>
-                    <p>Get Started</p>
-                  </button>
-                </Link>
+                <button
+                  className={`filled ${styles.btn}`}
+                  onClick={handleSubmit}
+                  disabled={isSubmitting}
+                >
+                  <p>{isSubmitting ? <Loader /> : "Get Started"}</p>
+                </button>
               </div>
             </div>
             <PersonalizeForm />
             <div className={styles.btnMobile}>
-              <Link href="/student">
-                <button className={`filled ${styles.btn}`}>
-                  <p>Get Started</p>
-                </button>
-              </Link>
+              <button
+                className={`filled ${styles.btn}`}
+                onClick={handleSubmit}
+                disabled={isSubmitting}
+              >
+                <p>{isSubmitting ? <Loader /> : "Get Started"}</p>
+              </button>
             </div>
           </div>
         </div>

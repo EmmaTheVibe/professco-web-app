@@ -49,10 +49,10 @@ export default function HomeNav() {
 
     function handleClickOutside(event) {
       const clickedMobile = mobileMenuWrapperRef.current?.contains(
-        event.target
+        event.target,
       );
       const clickedDesktop = desktopMenuWrapperRef.current?.contains(
-        event.target
+        event.target,
       );
       if (!clickedMobile && !clickedDesktop) {
         setMenuOpen(false);
@@ -83,14 +83,10 @@ export default function HomeNav() {
   return (
     <nav>
       {!isAuthenticated && (
-        <Drawer
-          openDrawer={openDrawer}
-          setOpenDrawer={setOpenDrawer}
-        />
+        <Drawer openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
       )}
       <div className={`container ${styles.wrapper}`}>
         <div className={styles.homenav}>
-          {/* ===== Mobile (< 1000px) ===== */}
           <div className={styles.mobileNav}>
             <Link href="/">
               <img src="/images/logo.svg" alt="logo" className={styles.logo} />
@@ -116,7 +112,6 @@ export default function HomeNav() {
             )}
           </div>
 
-          {/* ===== Desktop (>= 1000px) ===== */}
           <div className={styles.desktopNav}>
             <div className={styles.frame}>
               {isAuthenticated ? (
@@ -173,7 +168,7 @@ export default function HomeNav() {
 
               {isAuthenticated ? (
                 <>
-                  <Link href="/checkout" className={styles.cartLink}>
+                  <Link href="/student/checkout" className={styles.cartLink}>
                     <img src="/images/nav-cart.svg" alt="cart" />
                     {cart.length > 0 && (
                       <span className={styles.cartBadge}>{cart.length}</span>
@@ -215,7 +210,7 @@ export default function HomeNav() {
                   </div>
                 </>
               ) : (
-                <>
+                <div className={styles.btnGroup}>
                   <Link href="/signup">
                     <button className="filled">
                       <p>Sign up</p>
@@ -226,7 +221,7 @@ export default function HomeNav() {
                       <p>Login</p>
                     </button>
                   </Link>
-                </>
+                </div>
               )}
             </div>
           </div>

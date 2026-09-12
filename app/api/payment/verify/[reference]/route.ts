@@ -1,0 +1,49 @@
+import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
+import { safeJson } from "@/app/_lib/http";
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+export async function GET(
+  request: Request,
+  { params }: { params: Promise<{ reference: string }> }
+): Promise<NextResponse> {
+  try {
+    const { reference } = await params;
+    const cookieStore = await cookies();
+    const token = cookieStore.get("token")?.value;
+
+    if (!token) {
+      return NextResponse.json(
+        { message: "Not authenticated" },
+        { status: 401 }
+      );
+    }
+
+    const response = await fetch(`${API_BASE_URL}/payment/verify/${reference}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const data = await safeJson(response);
+
+    if (!response.ok) {
+      return NextResponse.json(
+        { message: data.message || "Payment verification failed" },
+        { status: response.status }
+      );
+    }
+
+    return NextResponse.json(data);
+  } catch (error) {
+    console.error("Payment verify route error:", error);
+    return NextResponse.json(
+      { message: "Internal server error" },
+      { status: 500 }
+    );
+  }
+}

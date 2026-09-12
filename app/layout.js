@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 import "@/app/_styles/globals.css";
 import { ContextProvider } from "@/app/_utils/Contexts";
 import AuthSeeder from "@/app/_components/auth/AuthSeeder";
+import PersonalizationGuard from "@/app/_components/auth/PersonalizationGuard";
 import HomeNav from "@/app/_components/navigation/HomeNav/HomeNav";
 import { Providers } from "@/app/_components/layout/Providers";
 
@@ -42,6 +43,7 @@ export default async function RootLayout({ children }) {
           <Providers>
             <ContextProvider>
               <AuthSeeder initialAuth={initialAuth} />
+              <PersonalizationGuard />
               <HomeNav />
               {children}
             </ContextProvider>

@@ -5,7 +5,7 @@ export default function page() {
   return (
     <section className={styles.home}>
       <Explore />
-      <Footer />
+      <Footer showFull={false} />
     </section>
   );
 }

@@ -40,18 +40,22 @@ export default function SuggestedCourses() {
 
   return (
     <section className={styles.suggestedCourses}>
-      <div className="container">
-        <TabNav
-          tabs={suggestedCourseTabs}
-          paramName="exam"
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          hideBorder
-          resetPage={true}
-        />
+      <TabNav
+        tabs={suggestedCourseTabs}
+        paramName="exam"
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        hideBorder
+        resetPage={true}
+      />
 
-        {isSuggested ? <SuggestedRows /> : <RegularCourseGrid />}
-      </div>
+      {isSuggested ? (
+        <div className="container">
+          <SuggestedRows />
+        </div>
+      ) : (
+        <RegularCourseGrid />
+      )}
     </section>
   );
 }

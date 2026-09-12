@@ -1,0 +1,80 @@
+.form {
+  padding: 32px 0;
+  max-width: 480px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.sectionDesc {
+  color: var(--primary-grey-500, #6b7280);
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+.fieldGroup {
+  margin-bottom: 26px;
+}
+
+.label {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.label span {
+  color: var(--primary-error, #c00);
+}
+
+.form input {
+  border: 1.2px solid var(--primary-grey-300);
+  border-radius: 4px;
+  height: 48px;
+  width: 100%;
+  padding: 0 16px;
+  font-family: var(--font-noto-sans), sans-serif;
+}
+
+.form input:focus {
+  border-color: var(--primary-orange);
+}
+
+.inputGroup {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  position: absolute;
+  right: 16px;
+}
+
+.fieldError {
+  color: #c00;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.message {
+  padding: 12px 16px;
+  border-radius: 4px;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.errorMessage {
+  background: #fee;
+  color: #c00;
+}
+
+.successMessage {
+  background: #ecfdf3;
+  color: #067647;
+}
+
+.submit {
+  height: 48px;
+  min-width: 200px;
+}

@@ -88,7 +88,8 @@ export default function useCourses(): UseCoursesReturn {
 
   const rawLevels = searchParams.getAll("level").map((l) => l.toLowerCase());
   const levelValues = rawLevels.filter((l) => validLevels.includes(l));
-  const levelValuesKey = levelValues.sort().join(",");
+  const levelValuesKey = [...levelValues].sort().join(",");
+  const levelsParam = levelValuesKey || null;
 
   const rawSortBy = searchParams.get("sort_by")?.toLowerCase();
   const sortBy: string | null =
@@ -135,6 +136,7 @@ export default function useCourses(): UseCoursesReturn {
         minAmount: minAmountParam,
         maxAmount: maxAmountParam,
         minRating,
+        levels: levelsParam,
         sortBy,
         sortOrder,
         tag: backendTagParam,
@@ -153,14 +155,6 @@ export default function useCourses(): UseCoursesReturn {
       const isPaid = amount > 0;
       return (hasFree && isFree) || (hasPaid && isPaid);
     });
-  }
-
-  if (levelValues.length > 0) {
-    courses = courses.filter(
-      (course) =>
-        course.level &&
-        levelValues.includes(String(course.level).toLowerCase()),
-    );
   }
 
   const pageCount = Math.ceil(backendTotalCount / limit);
@@ -198,6 +192,7 @@ export default function useCourses(): UseCoursesReturn {
             minAmount: minAmountParam,
             maxAmount: maxAmountParam,
             minRating,
+            levels: levelsParam,
             sortBy,
             sortOrder,
             tag: backendTagParam,
@@ -231,6 +226,7 @@ export default function useCourses(): UseCoursesReturn {
             minAmount: minAmountParam,
             maxAmount: maxAmountParam,
             minRating,
+            levels: levelsParam,
             sortBy,
             sortOrder,
             tag: backendTagParam,
@@ -249,6 +245,7 @@ export default function useCourses(): UseCoursesReturn {
     minRating,
     applyPriceFilterFrontend,
     levelValuesKey,
+    levelsParam,
     sortBy,
     sortOrder,
     tagValue,

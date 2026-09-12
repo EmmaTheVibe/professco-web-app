@@ -22,6 +22,13 @@ export default function CourseCard({ courseItem }: Props) {
               alt="thumbnail"
               className={styles.thumbnail}
             />
+            <div className={styles.previewOverlay}>
+              <img
+                src="/images/play-btn-white.svg"
+                alt=""
+                className={styles.playBtn}
+              />
+            </div>
           </div>
           <div className={styles.courseInfo}>
             <p className={styles.courseTitle}>{courseItem.title}</p>

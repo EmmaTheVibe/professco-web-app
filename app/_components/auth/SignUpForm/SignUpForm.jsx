@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { register as registerUser, login as loginUser } from "@/app/_lib/auth-service";
 import useAuthStore from "@/app/_utils/auth-store";
 import { useRouter } from "next/navigation";
+import Loader from "@/app/_components/common/Loader/Loader";
 
 export default function SignUpForm() {
   const setUser = useAuthStore((state) => state.setUser);
@@ -232,7 +233,7 @@ export default function SignUpForm() {
           disabled={isSubmitting}
         >
           <p>
-            {isSubmitting ? "Creating Account..." : "Create Professco Account"}
+            {isSubmitting ? <Loader /> : "Create Professco Account"}
           </p>
         </button>
 

@@ -84,7 +84,7 @@ export default function TabNav({
   }
 
   return (
-    <div className={`${styles.nav} ${hideBorder ? styles.noBorder : ""}`}>
+    <section className={`${styles.nav} ${hideBorder ? styles.noBorder : ""}`}>
       <div className="container">
         <div className={styles.courseNav}>
           <div className={styles.tabsScroll}>
@@ -109,6 +109,6 @@ export default function TabNav({
           {actions && <div className={styles.actionsSlot}>{actions}</div>}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

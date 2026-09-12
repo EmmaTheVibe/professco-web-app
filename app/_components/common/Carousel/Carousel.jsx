@@ -10,6 +10,8 @@ import useMediaQuery from "@/app/_hooks/useMediaQuery";
 
 export default function Carousel() {
   const array = [...Array(13)];
+  const md = useMediaQuery("(min-width: 500px)");
+  const md2 = useMediaQuery("(min-width: 600px)");
   const lg = useMediaQuery("(min-width: 1000px)");
   const lg2 = useMediaQuery("(min-width: 1540px)");
   const [mounted, setMounted] = useState(false);
@@ -18,11 +20,13 @@ export default function Carousel() {
     setMounted(true);
   }, []);
 
+  const slidesToShow = lg2 ? 3 : lg ? 2 : md2 ? 1 : md ? 2 : 1;
+
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: lg2 ? 3 : lg ? 2 : 1,
+    slidesToShow,
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
@@ -66,6 +70,7 @@ export default function Carousel() {
                         fontSize: "12px",
                         lineHeight: "18px",
                         color: "#6B7280",
+                        marginBottom: "10px",
                       }}
                     >
                       ACCA certified expert (20 yrs)

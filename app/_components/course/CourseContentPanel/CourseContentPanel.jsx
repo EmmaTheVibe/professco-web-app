@@ -6,7 +6,6 @@ import { useVideoDuration } from "@/app/_components/course/ContentTab/hooks/useV
 import usePanelStore from "./panel-store";
 import styles from "./CourseContentPanel.module.css";
 
-// Simulated per-section progress until real progress tracking exists
 const SIMULATED_PROGRESS = [10, 50, 75, 10, 100, 10, 50, 100];
 
 export default function CourseContentPanel({ course, moduleId }) {
@@ -32,13 +31,13 @@ export default function CourseContentPanel({ course, moduleId }) {
   }, [course.modules]);
 
   const [openSections, setOpenSections] = useState(
-    sections.length > 0 ? { [sections[0].id]: true } : {}
+    sections.length > 0 ? { [sections[0].id]: true } : {},
   );
 
   useEffect(() => {
     if (moduleId) {
       const activeSection = sections.find((section) =>
-        section.modules.some((module) => module.id === Number(moduleId))
+        section.modules.some((module) => module.id === Number(moduleId)),
       );
       if (activeSection) {
         setOpenSections((prev) => ({ ...prev, [activeSection.id]: true }));

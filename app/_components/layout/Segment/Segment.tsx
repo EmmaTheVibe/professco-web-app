@@ -1,5 +1,13 @@
+"use client";
+
+import { motion } from "framer-motion";
 import Notifs from "@/app/_components/common/Notifs/Notifs";
 import styles from "./Segment.module.css";
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 56, scale: 0.96 },
+  visible: { opacity: 1, y: 0, scale: 1 },
+};
 
 export default function Segment() {
   return (
@@ -21,25 +29,63 @@ export default function Segment() {
               </p>
             </div>
 
-            <div className={styles.wrapper}>
-              <img
+            <motion.div
+              className={styles.wrapper}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.45 }}
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.14 } },
+              }}
+            >
+              <motion.img
                 src="/images/lecturer1.png"
                 alt="lecturer"
                 className={styles.lecturer1}
+                variants={{
+                  hidden: { opacity: 0, y: 34, scale: 0.96 },
+                  visible: { opacity: 1, y: 0, scale: 1 },
+                }}
+                transition={{ type: "spring", stiffness: 120, damping: 18 }}
               />
-              <img
+              <motion.img
                 src="/images/award.svg"
                 alt="award"
                 className={styles.award}
+                variants={{
+                  hidden: { opacity: 0, y: 30, rotate: -8, scale: 0.8 },
+                  visible: { opacity: 1, y: 0, rotate: 0, scale: 1 },
+                }}
+                transition={{ type: "spring", stiffness: 170, damping: 15 }}
               />
-              <div className={styles.notifBox}>
+              <motion.div
+                className={styles.notifBox}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: { opacity: 1 },
+                }}
+              >
                 <Notifs dark={false} />
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
-        <div className={styles.grid}>
-          <div className={styles.card}>
+        <motion.div
+          className={styles.grid}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.14 } },
+          }}
+        >
+          <motion.div
+            className={styles.card}
+            variants={cardVariants}
+            transition={{ type: "spring", stiffness: 120, damping: 18 }}
+          >
             <div className={`${styles.icon} ${styles.iconA}`}>
               <img src="/images/verified.svg" alt="verified" />
             </div>
@@ -48,8 +94,12 @@ export default function Segment() {
               All teaching professionals are verified and certified in their
               various fields.
             </p>
-          </div>
-          <div className={styles.card}>
+          </motion.div>
+          <motion.div
+            className={styles.card}
+            variants={cardVariants}
+            transition={{ type: "spring", stiffness: 120, damping: 18 }}
+          >
             <div className={`${styles.icon} ${styles.iconB}`}>
               <img src="/images/reliable.svg" alt="reliable" />
             </div>
@@ -57,8 +107,12 @@ export default function Segment() {
             <p className={styles.desc}>
               All learning materials are from relevant and reliable sources.
             </p>
-          </div>
-          <div className={styles.card}>
+          </motion.div>
+          <motion.div
+            className={styles.card}
+            variants={cardVariants}
+            transition={{ type: "spring", stiffness: 120, damping: 18 }}
+          >
             <div className={`${styles.icon} ${styles.iconC}`}>
               <img src="/images/flexible.svg" alt="flexible" />
             </div>
@@ -67,8 +121,8 @@ export default function Segment() {
               Learn at your pace and at your comfort, from anywhere and at
               anytime.
             </p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

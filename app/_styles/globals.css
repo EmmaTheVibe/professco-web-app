@@ -66,6 +66,20 @@
   --shadow-card: 0px 2px 8.5px 0px #6b6b6b0d;
   --badge-amber-50: #fffaeb;
   --badge-amber-100: #fef0c7;
+  --badge-amber-600: #f79009;
+  --badge-amber-700: #b54708;
+  --badge-green-50: #ecfdf3;
+  --badge-green-600: #12b76a;
+  --badge-green-700: #027a48;
+  --badge-red-50: #fef3f2;
+  --badge-red-600: #f04438;
+  --badge-red-700: #b42318;
+  --badge-gray-50: #f2f4f7;
+  --badge-gray-600: #667085;
+  --primary-black-200: #101828;
+  --icon-circle-green: #23a26d1f;
+  --icon-circle-amber: #f4cc3f1f;
+  --icon-circle-red: #e655391f;
 }
 
 * {
@@ -98,7 +112,8 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 12px 0px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   border-bottom: 1px solid var(--primary-nav-border);
   position: fixed;
   z-index: 1000;
@@ -112,10 +127,27 @@ section {
   align-items: center;
   position: relative;
 }
+
 .container {
   width: 100%;
-  max-width: 320px;
+  max-width: 2000px;
   margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media screen and (min-width: 600px) {
+  .container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .container {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
 }
 
 p {
@@ -211,7 +243,7 @@ input[type="radio"]:checked::after {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 8px; /* Size of the inner dot */
+  width: 8px;
   height: 8px;
   border-radius: 50%;
   background-color: var(--primary-orange);
@@ -297,15 +329,15 @@ button:disabled {
   color: var(--primary-white-50);
 }
 
-.filled:hover,
-.filledB:hover,
-.btn-dark:hover {
+.filled:hover:not(:disabled),
+.filledB:hover:not(:disabled),
+.btn-dark:hover:not(:disabled) {
   opacity: 0.9;
 }
 
-.outlined:hover,
-.bare:hover,
-.bareB:hover {
+.outlined:hover:not(:disabled),
+.bare:hover:not(:disabled),
+.bareB:hover:not(:disabled) {
   background-color: var(--primary-peach);
 }
 
@@ -330,53 +362,8 @@ button:disabled {
   transform: scale(1);
 }
 
-@media screen and (min-width: 400px) {
-  .container {
-    max-width: 340px;
-  }
-}
-
-@media screen and (min-width: 500px) {
-  .container {
-    max-width: 480px;
-  }
-}
-
-@media screen and (min-width: 600px) {
-  .container {
-    max-width: 590px;
-  }
-}
-
-@media screen and (min-width: 850px) {
-  .container {
-    max-width: 848px;
-  }
-}
-
-@media screen and (min-width: 1000px) {
-  .container {
-    max-width: 980px;
-  }
-}
-
 @media screen and (min-width: 1200px) {
-  .container {
-    max-width: 1180px;
-  }
   button {
     height: 56px;
-  }
-}
-
-@media screen and (min-width: 1400px) {
-  .container {
-    max-width: 1380px;
-  }
-}
-
-@media screen and (min-width: 1540px) {
-  .container {
-    max-width: 1519px;
   }
 }

@@ -83,14 +83,12 @@ export default async function Page({ params, searchParams }) {
                     <p>Purchase course</p>
                   </button>
                 </Link>
-                <AddToCartButton courseId={courseId} />
+                <div className={styles.addToCart}>
+                  <AddToCartButton courseId={courseId} />
+                </div>
               </div>
             </div>
-            {/* <img
-              src={course.cover_image}
-              alt="banner"
-              className={styles.banner}
-            /> */}
+
             <div className={styles.banner}>
               <Suspense fallback={<Spinner />}>
                 <ClientVideoWrapper
@@ -108,23 +106,9 @@ export default async function Page({ params, searchParams }) {
       <section className={styles.segB}>
         <TabSystemWrapper course={course} moduleId={actualModuleId} />
       </section>
-      <section className={styles.segC}>
-        <div className={`container ${styles.segCWrapper}`}>
-          <div className={styles.top}>
-            <h1 className="boldFont">Related courses</h1>
-            <p className={`lightFont ${styles.relatedInfo}`}>
-              Similar courses taken by others who are preparing for exams like
-              you
-            </p>
-          </div>
-
-          <div className={styles.bottom}>
-            <Suspense fallback={<Spinner />}>
-              <RelatedCourses courseId={courseId} courseType={courseType} />
-            </Suspense>
-          </div>
-        </div>
-      </section>
+      <Suspense fallback={<Spinner />}>
+        <RelatedCourses courseId={courseId} courseType={courseType} />
+      </Suspense>
       <Suspense fallback={<Spinner />}>
         <Explore />
       </Suspense>

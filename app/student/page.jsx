@@ -1,10 +1,12 @@
 import Explore from "../_components/layout/Explore/Explore";
 import Footer from "../_components/layout/Footer/Footer";
 import SuggestedCourses from "../_components/course/SuggestedCourses/SuggestedCourses";
+import DashboardUserLogger from "../_components/student/DashboardUserLogger/DashboardUserLogger";
 import styles from "./StudentPage.module.css";
 export default function page() {
   return (
     <section className={styles.home}>
+      <DashboardUserLogger />
       <div className="container">
         <div className={styles.hero}>
           <h1 className={`boldFont ${styles.title}`}>
@@ -19,7 +21,7 @@ export default function page() {
       </div>
       <SuggestedCourses />
       <Explore />
-      <Footer />
+      <Footer showFull={false} />
     </section>
   );
 }

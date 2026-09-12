@@ -3,23 +3,17 @@ import Faqs from "@/app/_components/common/Faqs/Faqs";
 import GuideCard from "@/app/_components/common/GuideCard/GuideCard";
 import ReviewCard from "@/app/_components/common/ReviewCard/ReviewCard";
 import Segment from "@/app/_components/layout/Segment/Segment";
-import { guideData } from "@/app/_utils/data";
+import { guideData, media } from "@/app/_utils/data";
 import Link from "next/link";
 import CourseSegment from "@/app/_components/course/CourseSegment/CourseSegment";
 import styles from "./HomePage.module.css";
 import Footer from "@/app/_components/layout/Footer/Footer";
 import { fetchData } from "./_lib/data-service";
+import AnimatedCounter from "@/app/_components/common/AnimatedCounter/AnimatedCounter";
+import PagesStack from "./_components/common/PagesStack/PagesStack";
 
 export default function Page() {
-  // async function exampleUsage() {
-  //   try {
-  //     const courseData = await fetchData("course");
-  //     console.log("Course data received:", courseData);
-  //   } catch (error) {
-  //     console.log("Failed to fetch data:", error.message);
-  //   }
-  // }
-  // exampleUsage();
+  const pages = [media.pagesthick3, media.pagesthick2, media.pagesthick1];
   return (
     <section className={styles.homepage}>
       <div className="container">
@@ -62,11 +56,12 @@ export default function Page() {
                 alt="medalbg"
                 className={styles.medalbg}
               />
-              <img
+              {/* <img
                 src="/images/pagesthick.png"
                 alt="pages"
                 className={styles.pagesthick}
-              />
+              /> */}
+              <PagesStack srcs={pages} />
             </div>
             <div className={styles.boxB}>
               <h1 className="boldFont">Become certified</h1>
@@ -104,7 +99,9 @@ export default function Page() {
           <div className={styles.segCFrame}>
             <img src="/images/avatargrp.png" alt="avatar group" />
             <div>
-              <h3 className="boldFont">5000+</h3>
+              <h3 className="boldFont">
+                <AnimatedCounter to={5000} suffix="+" />
+              </h3>
               <p>Professionals prepare with Professco</p>
             </div>
           </div>
@@ -148,12 +145,12 @@ export default function Page() {
             <div className={styles.reviewFrame}>
               <div className={styles.reviewGrid}>
                 {[...Array(2)].map((_, index) => (
-                  <ReviewCard key={index} />
+                  <ReviewCard key={index} index={index} />
                 ))}
               </div>
               <div className={styles.reviewGridB}>
                 {[...Array(2)].map((_, index) => (
-                  <ReviewCard key={index} />
+                  <ReviewCard key={index} index={index + 2} />
                 ))}
               </div>
               {/* {lg && (
@@ -252,7 +249,7 @@ export default function Page() {
 
             <div className={styles.guidesGrid}>
               {guideData.map((guide, index) => (
-                <GuideCard key={index} guide={guide} />
+                <GuideCard key={index} guide={guide} index={index} />
               ))}
             </div>
           </div>

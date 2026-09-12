@@ -1,0 +1,43 @@
+.loader {
+  --color-1: var(--primary-white-50);
+  --color-2: var(--primary-orange);
+  --size: 1px;
+
+  width: calc(16 * var(--size));
+  height: calc(16 * var(--size));
+  border-radius: 50%;
+  display: block;
+  position: relative;
+  background: var(--color-1);
+  box-shadow:
+    calc(-24 * var(--size)) 0 var(--color-1),
+    calc(24 * var(--size)) 0 var(--color-1);
+  box-sizing: border-box;
+  animation: shadowPulse 2s linear infinite;
+}
+
+.dark {
+  --color-1: var(--primary-orange);
+  --color-2: var(--primary-white-50);
+}
+
+@keyframes shadowPulse {
+  33% {
+    background: var(--color-1);
+    box-shadow:
+      calc(-24 * var(--size)) 0 var(--color-2),
+      calc(24 * var(--size)) 0 var(--color-1);
+  }
+  66% {
+    background: var(--color-2);
+    box-shadow:
+      calc(-24 * var(--size)) 0 var(--color-1),
+      calc(24 * var(--size)) 0 var(--color-1);
+  }
+  100% {
+    background: var(--color-1);
+    box-shadow:
+      calc(-24 * var(--size)) 0 var(--color-1),
+      calc(24 * var(--size)) 0 var(--color-2);
+  }
+}

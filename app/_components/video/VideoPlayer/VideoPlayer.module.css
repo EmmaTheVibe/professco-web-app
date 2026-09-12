@@ -31,14 +31,14 @@
   height: 100% !important;
 }
 
-.videoContainer .shaka-controls-container {
+.videoContainer :global(.shaka-controls-container) {
   width: 100% !important;
   height: 100% !important;
 }
 
 .videoContainer [data-shaka-player-container]:fullscreen {
   width: 100vw !important;
-  height: 100vh !important;
+  height: 100dvh !important;
 }
 
 .videoContainer [data-shaka-player-container]:fullscreen video {
@@ -49,7 +49,7 @@
 
 .videoContainer [data-shaka-player-container]:-webkit-full-screen {
   width: 100vw !important;
-  height: 100vh !important;
+  height: 100dvh !important;
 }
 
 .videoContainer [data-shaka-player-container]:-webkit-full-screen video {
@@ -435,36 +435,43 @@
   font-weight: 500;
 }
 
-.videoContainer .shaka-controls-container {
+.videoContainer :global(.shaka-controls-container) {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, transparent 50%);
 }
 
-.videoContainer .shaka-play-button {
-  background: rgba(255, 255, 255, 0.9) !important;
+.videoContainer :global(.shaka-play-button) {
+  background-color: rgba(255, 255, 255, 0.9) !important;
   border-radius: 50%;
   transition: all 0.2s ease;
+  padding: 7.5%;
 }
 
-.videoContainer .shaka-play-button:hover {
-  background: white !important;
+@media screen and (min-width: 1400px) {
+  .videoContainer :global(.shaka-play-button) {
+    padding: 5%;
+  }
+}
+
+.videoContainer :global(.shaka-play-button):hover {
+  background-color: white !important;
   transform: scale(1.1);
 }
 
-.videoContainer .shaka-seek-bar-container {
+.videoContainer :global(.shaka-seek-bar-container) {
   height: 6px;
 }
 
-.videoContainer .shaka-seek-bar {
+.videoContainer :global(.shaka-seek-bar) {
   background: rgba(255, 255, 255, 0.3);
   height: 100%;
 }
 
-.videoContainer .shaka-seek-bar-progress {
+.videoContainer :global(.shaka-seek-bar-progress) {
   background: #007bff;
   height: 100%;
 }
 
-.videoContainer .shaka-seek-bar-buffered {
+.videoContainer :global(.shaka-seek-bar-buffered) {
   background: rgba(255, 255, 255, 0.5);
   height: 100%;
 }

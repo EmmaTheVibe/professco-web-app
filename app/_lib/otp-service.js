@@ -31,9 +31,7 @@ export async function generateOTP(email) {
 
 export async function verifyOTP(email, otp, nonceKey) {
   try {
-    const url = `${API_BASE_URL}/auth/login-otp`;
-
-    const response = await fetch(url, {
+    const response = await fetch("/api/auth/verify-otp", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +50,6 @@ export async function verifyOTP(email, otp, nonceKey) {
       throw new Error(data.message || "OTP verification failed");
     }
 
-    console.log("Verify OTP response:", data);
     return data;
   } catch (error) {
     console.error("Verify OTP error:", error);

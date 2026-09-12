@@ -3,6 +3,8 @@ import type { User } from "@/app/_utils/types";
 
 export type { User };
 
+export const AUTH_LOGOUT_STORAGE_KEY = "auth:logout";
+
 interface AuthState {
   user: User | null;
   isAuthenticated: boolean;
@@ -20,11 +22,16 @@ const useAuthStore = create<AuthState>((set) => ({
       isAuthenticated: true,
     }),
 
-  clearUser: () =>
+  clearUser: () => {
     set({
       user: null,
       isAuthenticated: false,
-    }),
+    });
+
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(AUTH_LOGOUT_STORAGE_KEY, Date.now().toString());
+    }
+  },
 }));
 
 export default useAuthStore;

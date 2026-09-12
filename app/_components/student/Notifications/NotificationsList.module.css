@@ -1,0 +1,70 @@
+.card {
+  border: 1px solid var(--border-color-200);
+  border-radius: 8px;
+  margin-top: 40px;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-color-200);
+  flex-wrap: wrap;
+}
+
+.count {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  color: var(--primary-grey-500, #6b7280);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--primary-white-200, #f3f4f6);
+  font-size: 13px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--primary-grey-500, #6b7280);
+  cursor: pointer;
+}
+
+.checkboxLabel input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-grey-500, #6b7280);
+  padding: 4px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}

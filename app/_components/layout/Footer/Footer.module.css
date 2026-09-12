@@ -14,7 +14,6 @@
   margin-bottom: 126px;
   width: 249.11px;
   height: 165.73px;
-  /* width: fit-content; */
 }
 .notifbox {
   position: absolute;
@@ -32,10 +31,13 @@
   border: 1.2px solid var(--primary-grey-250);
   margin: 96px 0;
 }
-
+.logo {
+  width: 120px;
+}
 .txt {
   font-size: 14px;
   line-height: 16px;
+  margin: 16px 0 32px;
 }
 .row {
   display: flex;

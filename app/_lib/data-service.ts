@@ -16,6 +16,7 @@ interface GetSortedCoursesParams {
   minAmount?: number | null;
   maxAmount?: number | null;
   minRating?: number | null;
+  levels?: string | null;
   sortBy?: string | null;
   sortOrder?: string | null;
   tag?: string | null;
@@ -109,6 +110,7 @@ export async function getSortedCourses({
   minAmount = null,
   maxAmount = null,
   minRating = null,
+  levels = null,
   sortBy = null,
   sortOrder = null,
   tag = null,
@@ -122,6 +124,7 @@ export async function getSortedCourses({
     if (minAmount !== null) queryParams.min_amount = minAmount;
     if (maxAmount !== null) queryParams.max_amount = maxAmount;
     if (minRating !== null) queryParams.min_rating = minRating;
+    if (levels !== null) queryParams.levels = levels;
 
     queryParams.sort_by = sortBy || "amount";
     queryParams.sort_order = sortOrder || "desc";
@@ -145,6 +148,17 @@ export async function getCourseById(id: number | string): Promise<CourseDetail> 
     return await fetchData(`course/${id}`) as CourseDetail;
   } catch (error) {
     console.error(`Failed to fetch course with ID ${id}:`, error);
+    throw error;
+  }
+}
+
+export async function getStudentCourses(token: string): Promise<unknown> {
+  try {
+    return await fetchData("dashboard/courses", {}, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  } catch (error) {
+    console.error("Failed to fetch student's purchased courses:", error);
     throw error;
   }
 }

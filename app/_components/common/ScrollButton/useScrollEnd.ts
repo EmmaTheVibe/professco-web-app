@@ -1,6 +1,11 @@
 import { useState, useEffect, RefObject } from "react";
 
-export default function useScrollEnd(containerRef: RefObject<HTMLDivElement>): boolean {
+type Axis = "horizontal" | "vertical";
+
+export default function useScrollEnd(
+  containerRef: RefObject<HTMLDivElement>,
+  axis: Axis = "horizontal",
+): boolean {
   const [isAtEnd, setIsAtEnd] = useState(false);
 
   useEffect(() => {
@@ -8,25 +13,28 @@ export default function useScrollEnd(containerRef: RefObject<HTMLDivElement>): b
     if (!container) return;
 
     const checkIfAtEnd = () => {
-      const { scrollLeft, scrollWidth, clientWidth } = container;
-      // Add small threshold (5px) to account for sub-pixel rendering
-      const atEnd = scrollLeft + clientWidth >= scrollWidth - 5;
+      const atEnd =
+        axis === "vertical"
+          ? container.scrollTop + container.clientHeight >= container.scrollHeight - 5
+          : container.scrollLeft + container.clientWidth >= container.scrollWidth - 5;
       setIsAtEnd(atEnd);
     };
 
-    // Check initially
     checkIfAtEnd();
 
-    // Check on scroll
     container.addEventListener("scroll", checkIfAtEnd);
-    // Check on resize (in case content changes)
     window.addEventListener("resize", checkIfAtEnd);
+    const resizeObserver = new ResizeObserver(checkIfAtEnd);
+    if (container.firstElementChild) {
+      resizeObserver.observe(container.firstElementChild);
+    }
 
     return () => {
       container.removeEventListener("scroll", checkIfAtEnd);
       window.removeEventListener("resize", checkIfAtEnd);
+      resizeObserver.disconnect();
     };
-  }, [containerRef]);
+  }, [containerRef, axis]);
 
   return isAtEnd;
 }

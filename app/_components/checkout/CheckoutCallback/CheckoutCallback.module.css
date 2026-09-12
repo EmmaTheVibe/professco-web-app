@@ -1,0 +1,50 @@
+.card {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.iconCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+
+.circleGreen {
+  background: var(--icon-circle-green);
+}
+
+.circleRed {
+  background: var(--icon-circle-red);
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+}
+
+.heading {
+  font-size: 20px;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.desc {
+  font-size: 14px;
+  color: var(--badge-gray-600);
+  margin-bottom: 24px;
+}
+
+.card button {
+  width: fit-content;
+  padding: 0 32px;
+}

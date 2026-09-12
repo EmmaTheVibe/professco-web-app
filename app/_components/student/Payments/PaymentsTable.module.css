@@ -1,0 +1,73 @@
+.card {
+  background: var(--primary-white-50);
+  border: 1px solid var(--border-color-200);
+  border-radius: 8px;
+  margin-top: 40px;
+  overflow: hidden;
+}
+
+.tableScroll {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead tr {
+  background: var(--primary-white-150);
+  border-bottom: 1px solid var(--border-color-200);
+}
+
+.table th {
+  text-align: left;
+  padding: 16px 24px;
+  color: var(--badge-gray-600);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 16px 24px;
+  font-size: 14px;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--border-color-200);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.checkboxCell {
+  width: 40px;
+}
+
+.checkboxCell input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.orderId {
+  color: var(--primary-black-200);
+}
+
+.muted {
+  color: var(--badge-gray-600);
+}
+
+.amount {
+  color: var(--primary-orange);
+}
+
+.downloadButton {
+  background: var(--primary-white-150);
+  color: var(--primary-orange);
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  width: fit-content;
+  height: fit-content;
+}

@@ -3,6 +3,7 @@
 import { formatAmount } from "@/app/_lib/fns";
 import styles from "../Cart.module.css";
 import OTPModal from "@/app/_components/auth/OTPModal/OTPModal";
+import Loader from "@/app/_components/common/Loader/Loader";
 import { useState } from "react";
 import useAuthStore from "@/app/_utils/auth-store";
 import {
@@ -26,6 +27,7 @@ export default function Summary({ subtotal, courses }) {
   };
 
   const processPayment = async (guestEmail = null) => {
+    console.log("DEBUG processPayment called with guestEmail:", guestEmail);
     setIsProcessing(true);
 
     try {
@@ -37,6 +39,8 @@ export default function Summary({ subtotal, courses }) {
         const courseIds = courses.map((c) => c.id);
         response = await initiateMultiplePayment(courseIds, guestEmail);
       }
+
+      console.log("DEBUG processPayment response:", JSON.stringify(response));
 
       if (response.authorization_url) {
         window.location.href = response.authorization_url;
@@ -92,7 +96,7 @@ export default function Summary({ subtotal, courses }) {
         disabled={isProcessing}
       >
         <p className="semiboldFont">
-          {isProcessing ? "Processing..." : `Pay ₦${formatAmount(total)}`}
+          {isProcessing ? <Loader /> : `Pay ₦${formatAmount(total)}`}
         </p>
       </button>
       <p className={styles.note}>
@@ -104,9 +108,9 @@ export default function Summary({ subtotal, courses }) {
       <OTPModal
         isOpen={showOTPModal}
         onClose={() => setShowOTPModal(false)}
-        onVerified={(email) => {
+        onVerified={() => {
           setShowOTPModal(false);
-          processPayment(email);
+          processPayment();
         }}
       />
     </div>

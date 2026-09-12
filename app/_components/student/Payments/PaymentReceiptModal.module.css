@@ -1,0 +1,90 @@
+.modal {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  padding: 32px 24px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.iconCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+
+.circleGreen {
+  background: var(--icon-circle-green);
+}
+
+.circleAmber {
+  background: var(--icon-circle-amber);
+}
+
+.circleRed {
+  background: var(--icon-circle-red);
+}
+
+.statusIcon {
+  width: 32px;
+  height: 32px;
+}
+
+.heading {
+  font-size: 16px;
+  color: var(--badge-gray-600);
+  margin-bottom: 8px;
+}
+
+.amount {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.divider {
+  width: 100%;
+  border-top: 1px dashed var(--border-color-200);
+  margin: 8px 0;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-size: 14px;
+}
+
+.label {
+  color: var(--badge-gray-600);
+}
+
+.value {
+  color: var(--primary-black-200);
+}
+
+.downloadButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  margin-top: 16px;
+  background: var(--primary-white-150);
+  border: none;
+  border-radius: 6px;
+  color: var(--primary-black-200);
+  font-weight: 600;
+  cursor: pointer;
+}

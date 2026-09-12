@@ -8,10 +8,12 @@
 }
 .pic {
   margin-bottom: 22px;
+  height: 320px;
+  width: 100%;
 }
 .pic img {
-  width: 263px;
-  height: 256px;
+  width: 100%;
+  height: inherit;
 }
 
 @media screen and (min-width: 850px) {
@@ -49,5 +51,17 @@
   .pic img {
     width: 205px;
     height: 256px;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .guideCard {
+    padding-right: 20px;
+  }
+  .pic {
+    height: unset;
+    margin-right: 30px;
+  }
+  .pic img {
+    width: 100%;
   }
 }

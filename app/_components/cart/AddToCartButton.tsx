@@ -14,7 +14,7 @@ export default function AddToCartButton({ courseId }: Props) {
   return (
     <button
       className="outlined"
-      style={{ width: 201 }}
+      style={{ width: "100%" }}
       onClick={() => addToCart(courseId)}
       disabled={isInCart}
     >

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import TabNav from "@/app/_components/navigation/TabNav/TabNav";
-import MyCoursesEmptyState from "@/app/_components/student/MyCoursesEmptyState/MyCoursesEmptyState";
+import EmptyState from "@/app/_components/common/EmptyState/EmptyState";
 import MyCoursesGrid from "@/app/_components/student/MyCoursesGrid/MyCoursesGrid";
 
 const tabs = ["My courses", "Completed", "Saved"];
@@ -40,9 +40,11 @@ export default function MyCoursesContent() {
       {isMyCourses ? (
         <MyCoursesGrid />
       ) : (
-        <MyCoursesEmptyState
+        <EmptyState
+          illustration="/images/empty-student-courses.png"
           heading={copy.heading}
           description={copy.description}
+          cta={{ label: "Explore Professco", href: "/student" }}
         />
       )}
     </div>

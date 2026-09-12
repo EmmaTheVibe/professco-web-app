@@ -5,18 +5,17 @@ import CourseCard from "@/app/_components/course/CourseCard/CourseCard";
 import useFilterStore from "@/app/_utils/filter-store";
 import styles from "./CourseList.module.css";
 import useMediaQuery from "@/app/_hooks/useMediaQuery";
-import Link from "next/link";
 import Tags from "@/app/_components/common/Tags/Tags";
 import Spinner from "@/app/_components/layout/Spinner/Spinner";
 import Pagination from "@/app/_components/common/Pagination/Pagination";
 import Filter from "@/app/_components/common/Filter/Filter";
 import Overlay from "@/app/_components/common/Overlay/Overlay";
 import Skeleton from "@/app/_components/common/Skeleton/Skeleton";
-import ScrollButton from "@/app/_components/common/ScrollButton/ScrollButton";
 import useScrollEnd from "@/app/_components/common/ScrollButton/useScrollEnd";
+import MobileLayout from "./components/MobileLayout";
+import PCLayout from "./components/PCLayout";
 
-const MOBILE_PREVIEW_COUNT = 3;
-const DESKTOP_PREVIEW_COUNT = 5;
+const COURSE_PREVIEW_COUNT = 5;
 
 export default function CourseList({
   showAll,
@@ -31,20 +30,22 @@ export default function CourseList({
   const [open, setOpen] = useState(false);
   const sidebarRef = useRef(null);
   const filterButtonRef = useRef(null);
-  const gridWrapperRef = useRef(null);
-  const isAtEnd = useScrollEnd(gridWrapperRef);
+  const gridWrapperRefMobile = useRef(null);
+  const gridWrapperRefDesktop = useRef(null);
 
   const [mounted, setMounted] = useState(false);
-  const lg = useMediaQuery("(min-width: 1000px)");
+  const lg = useMediaQuery("(min-width: 400px)");
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   const isSlideMode = mounted && lg;
-  const previewCount = isSlideMode
-    ? DESKTOP_PREVIEW_COUNT
-    : MOBILE_PREVIEW_COUNT;
+  const isVerticalMode = mounted && !lg;
+  const scrollAxis = isVerticalMode ? "vertical" : "horizontal";
+  const isAtEndMobile = useScrollEnd(gridWrapperRefMobile, scrollAxis);
+  const isAtEndDesktop = useScrollEnd(gridWrapperRefDesktop, scrollAxis);
+  const previewCount = COURSE_PREVIEW_COUNT;
 
   const ratingFilters = [
     { value: 4, name: "4.0 stars & Up" },
@@ -107,72 +108,28 @@ export default function CourseList({
     <div className={styles.courseList}>
       {!showAll ? (
         <>
-          <div
-            className={`${styles.top} ${
-              searchedCourses.length === 0 ? styles.border : ""
-            }`}
-          >
-            <div className={styles.wrapper}>
-              <p>Courses</p>
-              <h1 className={styles.heading}>
-                {activeTab} courses from the very best
-              </h1>
-              <p className={`lightFont ${styles.moreInfo}`}>
-                Learn from vetted and certified chartered professionals with
-                proven track records
-              </p>
-
-              <Link href="/courses">
-                <div className={styles.btn}>
-                  <button className="filled">
-                    <p>View all</p>
-                  </button>
-                </div>
-              </Link>
-            </div>
-          </div>
-
-          <div
-            className={`${styles.bottom} ${
-              searchedCourses.length === 0 ? "" : styles.borderB
-            }`}
-          >
-            <div
-              className={`${styles.gridWrapper} ${isAtEnd ? styles.atEnd : ""} ${
-                isSlideMode ? styles.slideMode : ""
-              }`}
-              ref={gridWrapperRef}
-            >
-              {loading ? (
-                <div
-                  className={`${styles.courseGrid} ${
-                    isSlideMode ? styles.slideMode : ""
-                  }`}
-                >
-                  {Array.from({ length: previewCount }).map((_, index) => (
-                    <Skeleton key={index} />
-                  ))}
-                </div>
-              ) : (
-                <div
-                  className={`${styles.courseGrid} ${
-                    isSlideMode ? styles.slideMode : ""
-                  }`}
-                >
-                  {searchedCourses.map((course) => (
-                    <CourseCard courseItem={course} key={course.id} />
-                  ))}
-                </div>
-              )}
-            </div>
-            <div
-              className={`${styles.scrollButtonCarrier} ${
-                isSlideMode ? styles.slideMode : ""
-              }`}
-            >
-              <ScrollButton containerRef={gridWrapperRef} scrollAmount={318} />
-            </div>
-          </div>
+          <MobileLayout
+            activeTab={activeTab}
+            searchedCourses={searchedCourses}
+            loading={loading}
+            previewCount={previewCount}
+            isSlideMode={isSlideMode}
+            isVerticalMode={isVerticalMode}
+            isAtEnd={isAtEndMobile}
+            scrollAxis={scrollAxis}
+            gridWrapperRef={gridWrapperRefMobile}
+          />
+          <PCLayout
+            activeTab={activeTab}
+            searchedCourses={searchedCourses}
+            loading={loading}
+            previewCount={previewCount}
+            isSlideMode={isSlideMode}
+            isVerticalMode={isVerticalMode}
+            isAtEnd={isAtEndDesktop}
+            scrollAxis={scrollAxis}
+            gridWrapperRef={gridWrapperRefDesktop}
+          />
         </>
       ) : (
         <div className={`${styles.wrapperB} container`}>
@@ -232,11 +189,6 @@ export default function CourseList({
                   ))}
                 </div>
               )}
-              {/* <div className={styles.courseGridB}>
-                {Array.from({ length: 6 }).map((_, index) => (
-                  <Skeleton key={index} />
-                ))}
-              </div> */}
               <Pagination count={count} isFetching={isFetching} />
             </div>
           </div>

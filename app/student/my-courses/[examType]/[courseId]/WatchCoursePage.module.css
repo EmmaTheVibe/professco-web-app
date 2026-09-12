@@ -1,6 +1,13 @@
 .watchCourse {
   padding-top: 84px;
-  min-height: 100vh;
+  min-height: 100dvh;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.left {
+  flex: 1;
+  min-width: 0;
 }
 
 .layout {
@@ -38,12 +45,15 @@
 }
 
 @media screen and (min-width: 1200px) {
-  .watchCourse {
+  /* .watchCourse {
     padding-top: 98px;
-  }
-  .layout {
+  } */
+  /* .layout {
     flex-direction: row;
     align-items: flex-start;
+  } */
+  .videoWrapper {
+    aspect-ratio: 16 / 8;
   }
   .title {
     font-size: 24px;

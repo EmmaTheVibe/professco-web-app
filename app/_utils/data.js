@@ -19,7 +19,13 @@ const media = {
   chip: "/images/chip.svg",
   medalbg: "/images/medalbg.svg",
   pagesthick: "/images/pagesthick.png",
+  pagesthick1: "/images/pages-thick-1.png",
+  pagesthick2: "/images/pages-thick-2.png",
+  pagesthick3: "/images/pages-thick-3.png",
   pagesthin: "/images/pagesthin.png",
+  pagesthin1: "/images/pages-thin-1.png",
+  pagesthin2: "/images/pages-thin-2.png",
+  pagesthin3: "/images/pages-thin-3.png",
   plus: "/images/plus.svg",
   avatargrp: "/images/avatargrp.png",
   reviewavatar: "/images/reviewavatar.svg",
@@ -786,7 +792,7 @@ const exams = [
 
 const examTabs = [
   {
-    id: 0,
+    id: 1,
     name: "ICAN",
     logo: "/images/ican-logo.svg",
     description: "Insitute of Chartered Accountants of Nigeria",
@@ -799,7 +805,7 @@ const examTabs = [
     ],
   },
   {
-    id: 1,
+    id: 2,
     name: "ACCA",
     logo: "/images/acca-logo.svg",
     description: "Association of Chartered Certified Accountants",
@@ -812,7 +818,7 @@ const examTabs = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     name: "CFA",
     logo: "/images/cfa-logo.svg",
     description: "Chartered Financial Analysis",
@@ -825,7 +831,7 @@ const examTabs = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     name: "CIMA",
     logo: "/images/cima-logo.svg",
     description: "Chartered Institute of Management Accountants",
@@ -838,7 +844,7 @@ const examTabs = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     name: "CITN",
     logo: "/images/citn-logo.svg",
     description: "Chartered Institute of Taxation Nigeria",
@@ -851,7 +857,7 @@ const examTabs = [
     ],
   },
   {
-    id: 5,
+    id: 6,
     name: "CIS",
     logo: "/images/cis-logo.svg",
     description: "Chartered Institute of Stockbrokers",
@@ -864,7 +870,7 @@ const examTabs = [
     ],
   },
   {
-    id: 6,
+    id: 7,
     name: "ATS",
     logo: "/images/ican-logo.svg",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -877,7 +883,7 @@ const examTabs = [
     ],
   },
   {
-    id: 7,
+    id: 8,
     name: "CIPM",
     logo: "/images/cipm-logo.svg",
     description: "Cerificate in Investment Performance Measurement.",

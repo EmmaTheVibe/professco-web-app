@@ -2,7 +2,6 @@
   margin-bottom: 12px;
   display: flex;
   gap: 8px;
-  width: 320px;
   font-family: var(--font-noto-sans), sans-serif;
   font-weight: 500;
 }
@@ -36,33 +35,3 @@
   border-color: transparent;
   color: #2960ec;
 }
-
-@media screen and (min-width: 400px) {
-  .tagbox {
-    width: 340px;
-  }
-}
-
-@media screen and (min-width: 500px) {
-  .tagbox {
-    width: 480px;
-  }
-}
-
-@media screen and (min-width: 600px) {
-  .tagbox {
-    width: 590px;
-  }
-}
-
-@media screen and (min-width: 850px) {
-  .tagbox {
-    width: unset;
-  }
-}
-
-/* @media screen and (min-width: 1000px) {
-  .tagbox {
-    width: 100%;
-  }
-} */

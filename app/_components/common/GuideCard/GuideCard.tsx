@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import styles from "./GuideCard.module.css";
 
 interface Guide {
@@ -11,11 +14,23 @@ interface Guide {
 
 interface Props {
   guide: Guide;
+  index?: number;
 }
 
-export default function GuideCard({ guide }: Props) {
+export default function GuideCard({ guide, index = 0 }: Props) {
   return (
-    <div className={styles.guideCard}>
+    <motion.div
+      className={styles.guideCard}
+      initial={{ opacity: 0, y: 96 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.28 }}
+      transition={{
+        type: "spring",
+        stiffness: 120,
+        damping: 18,
+        delay: index * 0.12,
+      }}
+    >
       <div className={styles.pic}>
         <img src={guide.banner} alt="banner" />
       </div>
@@ -51,6 +66,6 @@ export default function GuideCard({ guide }: Props) {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

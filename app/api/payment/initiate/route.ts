@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
+import { safeJson } from "@/app/_lib/http";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -23,13 +24,16 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       body.email = email;
     }
 
+    console.log("DEBUG /api/payment/initiate outgoing body:", JSON.stringify(body), "hasToken:", Boolean(token));
+
     const response = await fetch(`${API_BASE_URL}/payment/initiate/${courseId}`, {
       method: "POST",
       headers,
       body: JSON.stringify(body),
     });
 
-    const data = await response.json();
+    const data = await safeJson(response);
+    console.log("DEBUG /api/payment/initiate backend response:", response.status, JSON.stringify(data));
 
     if (!response.ok) {
       return NextResponse.json(

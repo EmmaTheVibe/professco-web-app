@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import useCartStore from "@/app/_utils/cart-store";
 import { getCourseById } from "@/app/_lib/data-service";
+import EmptyState from "@/app/_components/common/EmptyState/EmptyState";
 import styles from "./Cart.module.css";
 import CartCard from "./components/CartCard";
 import Summary from "./components/Summary";
@@ -75,9 +76,12 @@ export default function Cart({ course }) {
 
   if (!course && cart.length === 0) {
     return (
-      <div className={styles.cart}>
-        <p>Your cart is empty.</p>
-      </div>
+      <EmptyState
+        illustration="/images/empty-student-courses.png"
+        heading="Your cart is empty"
+        description="You haven't added any courses to your cart yet"
+        cta={{ label: "Explore courses", href: "/courses" }}
+      />
     );
   }
 

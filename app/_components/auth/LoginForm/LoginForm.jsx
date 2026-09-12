@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { login as loginUser } from "@/app/_lib/auth-service";
 import useAuthStore from "@/app/_utils/auth-store";
+import Loader from "@/app/_components/common/Loader/Loader";
 
 export default function LoginForm() {
   const setUser = useAuthStore((state) => state.setUser);
@@ -39,9 +40,15 @@ export default function LoginForm() {
         password: data.password,
       });
 
+      console.log("Logged in user:", response.profile);
       setUser(response.profile);
+      console.log("Current user after login:", useAuthStore.getState().user);
 
-      router.push(redirectPath || "/student");
+      const hasExamBodies =
+        Array.isArray(response.profile?.exam_bodies) &&
+        response.profile.exam_bodies.length > 0;
+
+      router.push(hasExamBodies ? redirectPath || "/student" : "/personalize");
     } catch (err) {
       setError(err.message || "Login failed. Please try again.");
       setIsSubmitting(false);
@@ -134,6 +141,15 @@ export default function LoginForm() {
               {errors.password.message}
             </p>
           )}
+
+          <div className={styles.forgotPswLine}>
+            <p className={styles.forgotPsw}>
+              Forgot Password?{" "}
+              <Link href="/forgot-password">
+                <span>Click Here</span>
+              </Link>
+            </p>
+          </div>
         </div>
 
         <button
@@ -141,7 +157,7 @@ export default function LoginForm() {
           className={`filled ${styles.submit}`}
           disabled={isSubmitting}
         >
-          <p>{isSubmitting ? "Logging in..." : "Login"}</p>
+          <p>{isSubmitting ? <Loader /> : "Login"}</p>
         </button>
 
         <button className={styles.google} type="button">

@@ -1,13 +1,15 @@
 .signup {
-  min-height: 100vh;
+  min-height: 100dvh;
   background-color: var(--primary-white-100);
   position: relative;
   display: flex;
   flex-direction: column;
 }
 .main {
+  flex: 1;
   padding: 110px 0 0;
   margin-bottom: 96px;
+  justify-content: flex-start;
 }
 
 .frame {
@@ -21,7 +23,6 @@
 
 .boxB {
   width: 100%;
-  flex: 1;
   display: flex;
   justify-content: center;
 }

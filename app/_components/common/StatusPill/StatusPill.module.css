@@ -1,0 +1,30 @@
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.paid {
+  background: var(--badge-green-50);
+  color: var(--badge-green-700);
+}
+
+.pending {
+  background: var(--badge-amber-50);
+  color: var(--badge-amber-700);
+}
+
+.refunded {
+  background: var(--badge-gray-50);
+  color: var(--primary-black-150);
+}
+
+.failed {
+  background: var(--badge-red-50);
+  color: var(--badge-red-700);
+}

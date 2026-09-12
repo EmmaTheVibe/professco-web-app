@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { safeJson } from "@/app/_lib/http";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -15,7 +16,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       body: JSON.stringify({ first_name, last_name, email, password }),
     });
 
-    const data = await response.json();
+    const data = await safeJson(response);
 
     if (!response.ok) {
       return NextResponse.json(
