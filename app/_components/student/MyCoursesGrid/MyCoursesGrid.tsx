@@ -1,47 +1,45 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-import { getSortedCourses } from "@/app/_lib/data-service";
+import { useStudentCourses } from "@/app/_hooks/useStudentCourses";
 import MyCourseCard from "@/app/_components/student/MyCourseCard/MyCourseCard";
+import EmptyState from "@/app/_components/common/EmptyState/EmptyState";
 import Skeleton from "@/app/_components/common/Skeleton/Skeleton";
 import styles from "./MyCoursesGrid.module.css";
 
-const simulatedStates = [
-  { progress: 0, rating: null },
-  { progress: 75, rating: null },
-  { progress: 75, rating: 3 },
-  { progress: 100, rating: 5 },
-];
-
 export default function MyCoursesGrid() {
-  const { data, isLoading } = useQuery({
-    queryKey: ["my-courses-simulated", "ican"],
-    queryFn: () =>
-      getSortedCourses({ examValue: "ican", page: 1, limit: simulatedStates.length }),
-    staleTime: 5 * 60 * 1000,
-    gcTime: 10 * 60 * 1000,
-  });
+  const { data, isLoading } = useStudentCourses();
 
-  const courses = data?.courses || [];
+  const courses = data?.data || [];
 
   if (isLoading) {
     return (
       <div className={styles.grid}>
-        {simulatedStates.map((_, index) => (
+        {Array.from({ length: 4 }).map((_, index) => (
           <Skeleton key={index} />
         ))}
       </div>
     );
   }
 
+  if (courses.length === 0) {
+    return (
+      <EmptyState
+        illustration="/images/empty-student-courses.png"
+        heading="No courses yet"
+        description="You have not bought any courses yet"
+        cta={{ label: "Explore Professco", href: "/student" }}
+      />
+    );
+  }
+
   return (
     <div className={styles.grid}>
-      {courses.map((course, index) => (
+      {courses.map((course) => (
         <MyCourseCard
           key={course.id}
           course={course}
-          progress={simulatedStates[index]?.progress ?? 0}
-          rating={simulatedStates[index]?.rating ?? null}
+          progress={0}
+          rating={null}
         />
       ))}
     </div>

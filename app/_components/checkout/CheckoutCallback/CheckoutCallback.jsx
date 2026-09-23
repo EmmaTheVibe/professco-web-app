@@ -2,18 +2,24 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Loader from "@/app/_components/common/Loader/Loader";
 import useAuthStore from "@/app/_utils/auth-store";
 import { verifyPayment } from "@/app/_lib/payment-service";
 import styles from "./CheckoutCallback.module.css";
 
+const REDIRECT_SECONDS = 5;
+
 export default function CheckoutCallback() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const reference = searchParams.get("reference");
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 
   const [status, setStatus] = useState("loading");
+  const [countdown, setCountdown] = useState(REDIRECT_SECONDS);
+
+  const redirectHref = isAuthenticated ? "/student/my-courses" : "/login";
 
   useEffect(() => {
     if (!reference) {
@@ -39,6 +45,18 @@ export default function CheckoutCallback() {
     };
   }, [reference]);
 
+  useEffect(() => {
+    if (status !== "success") return;
+
+    if (countdown <= 0) {
+      router.push(redirectHref);
+      return;
+    }
+
+    const timer = setTimeout(() => setCountdown((prev) => prev - 1), 1000);
+    return () => clearTimeout(timer);
+  }, [status, countdown, router, redirectHref]);
+
   if (status === "loading") {
     return (
       <div className={styles.card}>
@@ -61,11 +79,14 @@ export default function CheckoutCallback() {
         <p className={styles.desc}>
           Your purchase is confirmed. You can start learning right away.
         </p>
-        <Link href={isAuthenticated ? "/student/my-courses" : "/login"}>
-          <button className="filled">
-            <p>{isAuthenticated ? "Go to My Courses" : "Log in to continue"}</p>
-          </button>
-        </Link>
+        <p className={styles.redirectNote}>
+          This page will redirect in {countdown}s...
+          <br />
+          Failed to redirect?{" "}
+          <Link href={redirectHref} className={styles.redirectLink}>
+            Click here
+          </Link>
+        </p>
       </div>
     );
   }

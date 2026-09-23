@@ -1,4 +1,3 @@
-import Footer from "@/app/_components/layout/Footer/Footer";
 import CheckoutCallback from "@/app/_components/checkout/CheckoutCallback/CheckoutCallback";
 import styles from "./CheckoutCallbackPage.module.css";
 
@@ -8,7 +7,6 @@ export default function page() {
       <div className="container">
         <CheckoutCallback />
       </div>
-      <Footer />
     </section>
   );
 }

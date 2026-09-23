@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import useRelatedCourses from "@/app/_hooks/useRelatedCourses";
+import { useOwnedCourseIds } from "@/app/_hooks/useOwnedCourseIds";
 import useScrollEnd from "@/app/_components/common/ScrollButton/useScrollEnd";
 import useMediaQuery from "@/app/_hooks/useMediaQuery";
 import MobileLayout from "./components/MobileLayout";
@@ -34,6 +35,7 @@ export default function RelatedCourses({ courseId, courseType }: Props) {
   const isAtEndDesktop = useScrollEnd(gridWrapperRefDesktop, scrollAxis);
 
   const { relatedCourses, isLoading } = useRelatedCourses(courseType);
+  const ownedCourseIds = useOwnedCourseIds();
 
   const courses = relatedCourses
     ? relatedCourses.filter((course) => course.id !== Number(courseId))
@@ -50,6 +52,7 @@ export default function RelatedCourses({ courseId, courseType }: Props) {
         isAtEnd={isAtEndMobile}
         scrollAxis={scrollAxis}
         gridWrapperRef={gridWrapperRefMobile}
+        ownedCourseIds={ownedCourseIds}
       />
       <PCLayout
         courses={courses}
@@ -60,6 +63,7 @@ export default function RelatedCourses({ courseId, courseType }: Props) {
         isAtEnd={isAtEndDesktop}
         scrollAxis={scrollAxis}
         gridWrapperRef={gridWrapperRefDesktop}
+        ownedCourseIds={ownedCourseIds}
       />
     </>
   );

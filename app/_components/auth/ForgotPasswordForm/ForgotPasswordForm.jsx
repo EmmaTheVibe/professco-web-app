@@ -2,13 +2,12 @@
 import styles from "./ForgotPasswordForm.module.css";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { forgotPassword } from "@/app/_lib/auth-service";
 import Loader from "@/app/_components/common/Loader/Loader";
 
 export default function ForgotPasswordForm({ onSuccess }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
 
   const {
     register,
@@ -20,13 +19,11 @@ export default function ForgotPasswordForm({ onSuccess }) {
   });
 
   const onSubmit = async (data) => {
-    setError("");
-    setSuccessMessage("");
     setIsSubmitting(true);
 
     try {
       const response = await forgotPassword({ email: data.email });
-      setSuccessMessage(
+      toast.success(
         response.message ||
           "Password reset link sent. Please check your email.",
       );
@@ -35,7 +32,7 @@ export default function ForgotPasswordForm({ onSuccess }) {
         onSuccess?.(data.email);
       }
     } catch (err) {
-      setError(err.message || "Failed to send reset link. Please try again.");
+      toast.error(err.message || "Failed to send reset link. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -44,35 +41,6 @@ export default function ForgotPasswordForm({ onSuccess }) {
   return (
     <div className={styles.formWrapper}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        {error && (
-          <div
-            style={{
-              padding: "12px",
-              marginBottom: "20px",
-              backgroundColor: "#fee",
-              color: "#c00",
-              borderRadius: "8px",
-              fontSize: "14px",
-            }}
-          >
-            {error}
-          </div>
-        )}
-        {successMessage && (
-          <div
-            style={{
-              padding: "12px",
-              marginBottom: "20px",
-              backgroundColor: "#ecfdf3",
-              color: "#067647",
-              borderRadius: "8px",
-              fontSize: "14px",
-            }}
-          >
-            {successMessage}
-          </div>
-        )}
-
         <div style={{ marginBottom: "26px" }}>
           <p className={styles.label}>
             Email <span>*</span>

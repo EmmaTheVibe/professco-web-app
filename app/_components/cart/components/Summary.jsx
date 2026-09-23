@@ -1,5 +1,6 @@
 "use client";
 
+import { toast } from "sonner";
 import { formatAmount } from "@/app/_lib/fns";
 import styles from "../Cart.module.css";
 import OTPModal from "@/app/_components/auth/OTPModal/OTPModal";
@@ -47,7 +48,7 @@ export default function Summary({ subtotal, courses }) {
       }
     } catch (error) {
       console.error("Payment failed:", error);
-      alert("Payment initiation failed. Please try again.");
+      toast.error(error.message || "Payment initiation failed. Please try again.");
     } finally {
       setIsProcessing(false);
     }

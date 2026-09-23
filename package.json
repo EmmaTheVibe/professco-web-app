@@ -21,6 +21,7 @@
     "react-slick": "^0.30.3",
     "shaka-player": "^4.15.9",
     "slick-carousel": "^1.8.1",
+    "sonner": "^2.0.8",
     "zustand": "^5.0.11"
   },
   "devDependencies": {

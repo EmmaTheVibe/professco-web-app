@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./LoginForm.module.css";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { login as loginUser } from "@/app/_lib/auth-service";
 import useAuthStore from "@/app/_utils/auth-store";
 import Loader from "@/app/_components/common/Loader/Loader";
@@ -16,7 +17,6 @@ export default function LoginForm() {
   const redirectPath = searchParams.get("redirect");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState("");
 
   const {
     register,
@@ -31,7 +31,6 @@ export default function LoginForm() {
   };
 
   const onSubmit = async (data) => {
-    setError("");
     setIsSubmitting(true);
 
     try {
@@ -50,7 +49,7 @@ export default function LoginForm() {
 
       router.push(hasExamBodies ? redirectPath || "/student" : "/personalize");
     } catch (err) {
-      setError(err.message || "Login failed. Please try again.");
+      toast.error(err.message || "Login failed. Please try again.");
       setIsSubmitting(false);
     }
   };
@@ -58,21 +57,6 @@ export default function LoginForm() {
   return (
     <div className={styles.formWrapper}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        {error && (
-          <div
-            style={{
-              padding: "12px",
-              marginBottom: "20px",
-              backgroundColor: "#fee",
-              color: "#c00",
-              borderRadius: "8px",
-              fontSize: "14px",
-            }}
-          >
-            {error}
-          </div>
-        )}
-
         <div style={{ marginBottom: "26px" }}>
           <p className={styles.label}>
             Email <span>*</span>

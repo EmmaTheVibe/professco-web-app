@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import Toggle from "@/app/_components/common/Toggle/Toggle";
 import {
   getNotificationPreferences,
@@ -34,7 +35,6 @@ const ROWS = [
 
 export default function NotificationsTab() {
   const [prefs, setPrefs] = useState(DEFAULT_PREFS);
-  const [error, setError] = useState("");
   const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
@@ -56,13 +56,15 @@ export default function NotificationsTab() {
   const handleToggle = async (key, checked) => {
     const next = { ...prefs, [key]: checked };
     setPrefs(next);
-    setError("");
     setIsSaving(true);
 
     try {
       await updateNotificationPreferences(next);
     } catch (err) {
-      setError(err.message || "Failed to update notification preferences.");
+      setPrefs(prefs);
+      toast.error(
+        err.message || "Failed to update notification preferences.",
+      );
     } finally {
       setIsSaving(false);
     }
@@ -70,8 +72,6 @@ export default function NotificationsTab() {
 
   return (
     <div className={styles.wrapper}>
-      {error && <div className={styles.errorMessage}>{error}</div>}
-
       {ROWS.map((row) => (
         <div key={row.key} className={styles.row}>
           <div>

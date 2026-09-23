@@ -48,3 +48,14 @@
   width: fit-content;
   padding: 0 32px;
 }
+
+.redirectNote {
+  font-size: 13px;
+  color: var(--badge-gray-600);
+  line-height: 20px;
+}
+
+.redirectLink {
+  color: var(--primary-orange);
+  font-weight: 600;
+}

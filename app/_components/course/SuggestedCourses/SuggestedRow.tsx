@@ -5,6 +5,7 @@ import CourseCard from "@/app/_components/course/CourseCard/CourseCard";
 import ScrollButton from "@/app/_components/common/ScrollButton/ScrollButton";
 import Skeleton from "@/app/_components/common/Skeleton/Skeleton";
 import useRelatedCourses from "@/app/_hooks/useRelatedCourses";
+import { useOwnedCourseIds } from "@/app/_hooks/useOwnedCourseIds";
 import styles from "./SuggestedRow.module.css";
 
 interface Props {
@@ -15,6 +16,7 @@ interface Props {
 export default function SuggestedRow({ label, examSlug }: Props) {
   const rowRef = useRef<HTMLDivElement>(null);
   const { relatedCourses, isLoading } = useRelatedCourses(examSlug);
+  const ownedCourseIds = useOwnedCourseIds();
   const courses = relatedCourses || [];
 
   useEffect(() => {
@@ -40,7 +42,10 @@ export default function SuggestedRow({ label, examSlug }: Props) {
               ))
             : courses.map((course) => (
                 <div className={styles.cardWrapper} key={course.id}>
-                  <CourseCard courseItem={course} />
+                  <CourseCard
+                    courseItem={course}
+                    isOwned={ownedCourseIds.has(course.id)}
+                  />
                 </div>
               ))}
         </div>

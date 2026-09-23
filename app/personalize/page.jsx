@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 import BottomBanner from "@/app/_components/layout/BottomBanner/BottomBanner";
 import Loader from "@/app/_components/common/Loader/Loader";
 import PersonalizeForm from "@/app/_components/auth/PersonalizeForm/PersonalizeForm";
@@ -16,15 +17,13 @@ export default function Personalize() {
   const setExamTypeList = useFilterStore((state) => state.setExamTypeList);
   const setUser = useAuthStore((state) => state.setUser);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState("");
 
   const handleSubmit = async () => {
     if (examBodyIds.length === 0) {
-      setError("Please select at least one exam body.");
+      toast.error("Please select at least one exam body.");
       return;
     }
 
-    setError("");
     setIsSubmitting(true);
 
     try {
@@ -43,7 +42,7 @@ export default function Personalize() {
       setExamTypeList([]);
       router.push("/student");
     } catch (err) {
-      setError(err.message || "Failed to save your exam preferences.");
+      toast.error(err.message || "Failed to save your exam preferences.");
     } finally {
       setIsSubmitting(false);
     }
@@ -62,7 +61,6 @@ export default function Personalize() {
               <p className={`lightFont ${styles.desc}`}>
                 We&apos;ve got courses for every professional exam
               </p>
-              {error && <p className={styles.error}>{error}</p>}
               <div className={styles.btnPC}>
                 <button
                   className={`filled ${styles.btn}`}

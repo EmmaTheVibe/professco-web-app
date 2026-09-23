@@ -4,6 +4,7 @@ import styles from "./ResetPasswordForm.module.css";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 import { resetPassword } from "@/app/_lib/auth-service";
 import Loader from "@/app/_components/common/Loader/Loader";
 
@@ -16,8 +17,6 @@ export default function ResetPasswordForm({
   const [passwordVisibleB, setPasswordVisibleB] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isCancelling, setIsCancelling] = useState(false);
-  const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
 
   const {
     register,
@@ -43,8 +42,6 @@ export default function ResetPasswordForm({
   const router = useRouter();
 
   const handleRequestNewOtp = async () => {
-    setError("");
-    setSuccessMessage("");
     setIsCancelling(true);
 
     try {
@@ -62,15 +59,13 @@ export default function ResetPasswordForm({
 
       onRequestNewOtp?.();
     } catch (err) {
-      setError(err.message || "Unable to request a new OTP. Please try again.");
+      toast.error(err.message || "Unable to request a new OTP. Please try again.");
     } finally {
       setIsCancelling(false);
     }
   };
 
   const onSubmit = async (data) => {
-    setError("");
-    setSuccessMessage("");
     setIsSubmitting(true);
 
     try {
@@ -80,14 +75,14 @@ export default function ResetPasswordForm({
         password: data.password,
       });
 
-      setSuccessMessage(response.message || "Password reset successfully.");
+      toast.success(response.message || "Password reset successfully.");
       reset();
       onSuccess?.();
       setTimeout(() => {
         router.push("/login");
       }, 1200);
     } catch (err) {
-      setError(err.message || "Failed to reset password. Please try again.");
+      toast.error(err.message || "Failed to reset password. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -96,17 +91,6 @@ export default function ResetPasswordForm({
   return (
     <div className={styles.formWrapper}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        {error && (
-          <div className={`${styles.message} ${styles.errorMessage}`}>
-            {error}
-          </div>
-        )}
-        {successMessage && (
-          <div className={`${styles.message} ${styles.successMessage}`}>
-            {successMessage}
-          </div>
-        )}
-
         <div className={styles.fieldGroup}>
           <p className={styles.label}>
             OTP <span>*</span>

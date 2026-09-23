@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { changePassword } from "@/app/_lib/auth-service";
 import Loader from "@/app/_components/common/Loader/Loader";
 import styles from "./SecuritySettingsTab.module.css";
@@ -11,8 +12,6 @@ export default function SecuritySettingsTab() {
   const [newVisible, setNewVisible] = useState(false);
   const [confirmVisible, setConfirmVisible] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
 
   const {
     register,
@@ -25,8 +24,6 @@ export default function SecuritySettingsTab() {
   const newPassword = watch("newPassword");
 
   const onSubmit = async (data) => {
-    setError("");
-    setSuccessMessage("");
     setIsSubmitting(true);
 
     try {
@@ -36,10 +33,10 @@ export default function SecuritySettingsTab() {
         new_password_confirmation: data.confirmPassword,
       });
 
-      setSuccessMessage(response.message || "Password updated successfully.");
+      toast.success(response.message || "Password updated successfully.");
       reset();
     } catch (err) {
-      setError(err.message || "Failed to update password. Please try again.");
+      toast.error(err.message || "Failed to update password. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -47,17 +44,6 @@ export default function SecuritySettingsTab() {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      {error && (
-        <div className={`${styles.message} ${styles.errorMessage}`}>
-          {error}
-        </div>
-      )}
-      {successMessage && (
-        <div className={`${styles.message} ${styles.successMessage}`}>
-          {successMessage}
-        </div>
-      )}
-
       <p className={`boldFont ${styles.sectionTitle}`}>Personal information</p>
       <p className={styles.sectionDesc}>
         You must enter at least 4 learning objectives or outcomes

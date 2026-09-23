@@ -152,11 +152,13 @@ export async function getCourseById(id: number | string): Promise<CourseDetail> 
   }
 }
 
-export async function getStudentCourses(token: string): Promise<unknown> {
+export async function getStudentCourses(
+  token: string,
+): Promise<{ data: Course[]; [key: string]: unknown }> {
   try {
-    return await fetchData("dashboard/courses", {}, {
+    return (await fetchData("dashboard/courses", {}, {
       headers: { Authorization: `Bearer ${token}` },
-    });
+    })) as { data: Course[]; [key: string]: unknown };
   } catch (error) {
     console.error("Failed to fetch student's purchased courses:", error);
     throw error;

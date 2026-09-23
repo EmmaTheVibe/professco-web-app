@@ -26,14 +26,20 @@ export default async function WatchCourse({ params, searchParams }) {
     redirect("/login");
   }
 
+  // Fail open on infrastructure errors so a backend hiccup doesn't lock out
+  // legitimate purchasers; only a definitive "not owned" result denies access.
+  let ownsCourse = true;
   try {
     const studentCourses = await getStudentCourses(token);
-    console.log(
-      "DEBUG dashboard/courses response for entitlement check:",
-      JSON.stringify(studentCourses),
+    ownsCourse = studentCourses.data.some(
+      (owned) => owned.id === Number(courseId),
     );
   } catch (error) {
     console.log("DEBUG dashboard/courses fetch failed:", error.message);
+  }
+
+  if (!ownsCourse) {
+    redirect("/student/my-courses");
   }
 
   const defaultModuleId = course.modules[0]?.id;

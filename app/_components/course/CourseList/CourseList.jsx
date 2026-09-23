@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import CourseCard from "@/app/_components/course/CourseCard/CourseCard";
 import useFilterStore from "@/app/_utils/filter-store";
+import { useOwnedCourseIds } from "@/app/_hooks/useOwnedCourseIds";
 import styles from "./CourseList.module.css";
 import useMediaQuery from "@/app/_hooks/useMediaQuery";
 import Tags from "@/app/_components/common/Tags/Tags";
@@ -25,6 +26,7 @@ export default function CourseList({
   isFetching,
 }) {
   const activeTab = useFilterStore((state) => state.activeTab);
+  const ownedCourseIds = useOwnedCourseIds();
   const [query, setQuery] = useState("");
 
   const [open, setOpen] = useState(false);
@@ -118,6 +120,7 @@ export default function CourseList({
             isAtEnd={isAtEndMobile}
             scrollAxis={scrollAxis}
             gridWrapperRef={gridWrapperRefMobile}
+            ownedCourseIds={ownedCourseIds}
           />
           <PCLayout
             activeTab={activeTab}
@@ -129,6 +132,7 @@ export default function CourseList({
             isAtEnd={isAtEndDesktop}
             scrollAxis={scrollAxis}
             gridWrapperRef={gridWrapperRefDesktop}
+            ownedCourseIds={ownedCourseIds}
           />
         </>
       ) : (
@@ -185,7 +189,11 @@ export default function CourseList({
               ) : (
                 <div className={styles.courseGridB}>
                   {searchedCourses.map((course) => (
-                    <CourseCard courseItem={course} key={course.id} />
+                    <CourseCard
+                      courseItem={course}
+                      isOwned={ownedCourseIds.has(course.id)}
+                      key={course.id}
+                    />
                   ))}
                 </div>
               )}

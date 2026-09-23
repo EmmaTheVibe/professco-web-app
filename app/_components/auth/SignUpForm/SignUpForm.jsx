@@ -3,6 +3,7 @@
 import styles from "./SignUpForm.module.css";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { register as registerUser, login as loginUser } from "@/app/_lib/auth-service";
 import useAuthStore from "@/app/_utils/auth-store";
 import { useRouter } from "next/navigation";
@@ -13,7 +14,6 @@ export default function SignUpForm() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordVisibleB, setPasswordVisibleB] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState("");
   const router = useRouter();
 
   const {
@@ -37,7 +37,6 @@ export default function SignUpForm() {
   };
 
   const onSubmit = async (data) => {
-    setError("");
     setIsSubmitting(true);
 
     try {
@@ -55,7 +54,7 @@ export default function SignUpForm() {
 
       router.push("/personalize");
     } catch (err) {
-      setError(err.message || "Registration failed. Please try again.");
+      toast.error(err.message || "Registration failed. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -64,21 +63,6 @@ export default function SignUpForm() {
   return (
     <div className={styles.formWrapper}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        {error && (
-          <div
-            style={{
-              padding: "12px",
-              marginBottom: "20px",
-              backgroundColor: "#fee",
-              color: "#c00",
-              borderRadius: "8px",
-              fontSize: "14px",
-            }}
-          >
-            {error}
-          </div>
-        )}
-
         <div style={{ marginBottom: "26px" }}>
           <p className={styles.label}>
             First name <span>*</span>

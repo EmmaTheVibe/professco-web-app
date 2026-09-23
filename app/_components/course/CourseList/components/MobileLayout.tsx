@@ -16,6 +16,7 @@ interface Props {
   isAtEnd: boolean;
   scrollAxis: "horizontal" | "vertical";
   gridWrapperRef: RefObject<HTMLDivElement>;
+  ownedCourseIds: Set<number>;
 }
 
 export default function MobileLayout({
@@ -28,6 +29,7 @@ export default function MobileLayout({
   isAtEnd,
   scrollAxis,
   gridWrapperRef,
+  ownedCourseIds,
 }: Props) {
   return (
     <>
@@ -96,7 +98,11 @@ export default function MobileLayout({
                   }`}
                 >
                   {searchedCourses.map((course) => (
-                    <CourseCard courseItem={course} key={course.id} />
+                    <CourseCard
+                      courseItem={course}
+                      isOwned={ownedCourseIds.has(course.id)}
+                      key={course.id}
+                    />
                   ))}
                 </div>
               )}

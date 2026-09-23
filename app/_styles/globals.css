@@ -170,9 +170,14 @@ input:focus {
   border: none;
   outline: none;
 }
-input:-webkit-autofill {
-  background-color: var(--primary-white-50) !important;
-  color: #0f172a !important;
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px var(--primary-white-50) inset !important;
+  box-shadow: 0 0 0px 1000px var(--primary-white-50) inset !important;
+  -webkit-text-fill-color: #0f172a !important;
+  caret-color: #0f172a;
   transition: background-color 5000s ease-in-out 0s;
 }
 input[type="checkbox"] {
@@ -260,9 +265,14 @@ textarea:focus {
   border: none;
   outline: none;
 }
-textarea:-webkit-autofill {
-  background-color: var(--primary-white-50) !important;
-  color: #0f172a !important;
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px var(--primary-white-50) inset !important;
+  box-shadow: 0 0 0px 1000px var(--primary-white-50) inset !important;
+  -webkit-text-fill-color: #0f172a !important;
+  caret-color: #0f172a;
   transition: background-color 5000s ease-in-out 0s;
 }
 

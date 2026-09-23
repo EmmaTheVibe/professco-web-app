@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import ExamCard from "@/app/_components/common/ExamCard/ExamCard";
 import Spinner from "@/app/_components/layout/Spinner/Spinner";
 import Loader from "@/app/_components/common/Loader/Loader";
@@ -21,8 +22,7 @@ export default function ProfileSettingsTab() {
   const [isLoadingExamBodies, setIsLoadingExamBodies] = useState(true);
   const [selectedExamIds, setSelectedExamIds] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+  const [loadError, setLoadError] = useState("");
 
   const {
     register,
@@ -56,7 +56,7 @@ export default function ProfileSettingsTab() {
         }
       } catch (err) {
         if (isMounted) {
-          setError(err.message || "Failed to load exam bodies.");
+          setLoadError(err.message || "Failed to load exam bodies.");
         }
       } finally {
         if (isMounted) {
@@ -81,8 +81,6 @@ export default function ProfileSettingsTab() {
   };
 
   const onSubmit = async (data) => {
-    setError("");
-    setSuccessMessage("");
     setIsSubmitting(true);
 
     try {
@@ -99,9 +97,9 @@ export default function ProfileSettingsTab() {
         setUser(profileResponse.profile);
       }
 
-      setSuccessMessage("Settings updated successfully.");
+      toast.success("Settings updated successfully.");
     } catch (err) {
-      setError(err.message || "Failed to update settings. Please try again.");
+      toast.error(err.message || "Failed to update settings. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -109,17 +107,6 @@ export default function ProfileSettingsTab() {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      {error && (
-        <div className={`${styles.message} ${styles.errorMessage}`}>
-          {error}
-        </div>
-      )}
-      {successMessage && (
-        <div className={`${styles.message} ${styles.successMessage}`}>
-          {successMessage}
-        </div>
-      )}
-
       <div className={styles.section}>
         <p className={`boldFont ${styles.sectionTitle}`}>
           Personal information
@@ -193,6 +180,10 @@ export default function ProfileSettingsTab() {
 
         {isLoadingExamBodies ? (
           <Spinner />
+        ) : loadError ? (
+          <div className={`${styles.message} ${styles.errorMessage}`}>
+            {loadError}
+          </div>
         ) : (
           <div className={styles.grid}>
             {examBodies.map((exam) => (

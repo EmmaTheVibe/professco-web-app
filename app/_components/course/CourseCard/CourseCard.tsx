@@ -5,16 +5,20 @@ import { Course } from "@/app/_utils/types";
 
 interface Props {
   courseItem: Course;
+  isOwned?: boolean;
 }
 
-export default function CourseCard({ courseItem }: Props) {
+export default function CourseCard({ courseItem, isOwned = false }: Props) {
+  const examSlug = String(courseItem.exam_body?.slug || "").toLowerCase();
+  const href = isOwned
+    ? `/student/my-courses/${examSlug}/${courseItem.id}`
+    : `/courses/${examSlug}/${encodeURIComponent(
+        courseItem.title?.toLowerCase().replace(/\s+/g, "-"),
+      )}/${courseItem.id}`;
+
   return (
     <div>
-      <Link
-        href={`/courses/${courseItem.exam_body?.slug.toLowerCase()}/${encodeURIComponent(
-          courseItem.title?.toLowerCase().replace(/\s+/g, "-"),
-        )}/${courseItem.id}`}
-      >
+      <Link href={href}>
         <div className={styles.courseCard}>
           <div className={styles.preview}>
             <img
@@ -69,9 +73,13 @@ export default function CourseCard({ courseItem }: Props) {
               ))}
             </div> */}
 
-            <button className={`outlined ${styles.btn}`}>
-              <p>Purchase course</p>
-              <img src="/images/cart.svg" alt="cart" className={styles.cart} />
+            <button
+              className={`${isOwned ? "filled" : "outlined"} ${styles.btn}`}
+            >
+              <p>{isOwned ? "Continue Learning" : "Purchase course"}</p>
+              {!isOwned && (
+                <img src="/images/cart.svg" alt="cart" className={styles.cart} />
+              )}
             </button>
           </div>
         </div>

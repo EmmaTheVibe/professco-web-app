@@ -9,7 +9,9 @@ interface Props {
 }
 
 export default function MyCourseCard({ course, progress, rating }: Props) {
-  const examSlug = String(course.exam_body?.slug || "").toLowerCase();
+  const examSlug = String(
+    course.exam_body?.slug || course.exam_body_id || "course",
+  ).toLowerCase();
   const href = `/student/my-courses/${examSlug}/${course.id}`;
 
   return (
@@ -25,9 +27,11 @@ export default function MyCourseCard({ course, progress, rating }: Props) {
       <div className={styles.info}>
         <div>
           <p className={`boldFont ${styles.title}`}>{course.title}</p>
-          <div className={styles.examTag}>
-            <p className="semiboldFont">{course.exam_body?.slug}</p>
-          </div>
+          {course.exam_body?.slug && (
+            <div className={styles.examTag}>
+              <p className="semiboldFont">{course.exam_body.slug}</p>
+            </div>
+          )}
           <p className={styles.desc}>
             <span className={styles.descLabel}>What you&apos;ll learn: </span>
             {course.description}
