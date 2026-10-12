@@ -81,6 +81,9 @@
   width: fit-content;
   height: fit-content;
   background: var(--primary-white-150);
+  margin-left: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
 .logout:hover {

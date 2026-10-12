@@ -25,7 +25,6 @@ interface ResetPasswordParams {
 interface UpdateProfileParams {
   first_name: string;
   last_name: string;
-  email: string;
 }
 
 interface ChangePasswordParams {
@@ -141,7 +140,7 @@ export async function updateProfile(
 ): Promise<{ profile?: User; message?: string }> {
   try {
     const response = await fetch("/api/auth/update-profile", {
-      method: "POST",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },

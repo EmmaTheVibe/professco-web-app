@@ -21,9 +21,32 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const siteTitle = "Professco";
+const siteDescription = "Pass your professional exams with ease the first time";
+const socialImage = {
+  url: "/images/socials.jpg",
+  width: 1200,
+  height: 630,
+  alt: "Professco",
+};
+
 export const metadata = {
-  title: "Professco",
-  description: "Pass your professional exams with ease the first time",
+  metadataBase: new URL("https://app.professco.ng"),
+  title: siteTitle,
+  description: siteDescription,
+  openGraph: {
+    type: "website",
+    siteName: siteTitle,
+    title: siteTitle,
+    description: siteDescription,
+    images: [socialImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: [socialImage.url],
+  },
 };
 
 async function getInitialAuth() {
