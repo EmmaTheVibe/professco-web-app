@@ -42,7 +42,7 @@ export default function ForgotPasswordForm({ onSuccess }) {
 
 
   return (
-    <div className={styles.formWrapper}>
+    <div>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <div style={{ marginBottom: "26px" }}>
           <p className={styles.label}>
@@ -89,7 +89,6 @@ export default function ForgotPasswordForm({ onSuccess }) {
         </button>
       </form>
 
-      <img src="/images/graduation.png" alt="grad" className={styles.grad} />
     </div>
   );
 }

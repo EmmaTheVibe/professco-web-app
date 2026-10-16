@@ -20,6 +20,7 @@ export default function SignUp() {
               </p>
             </div>
             <SignUpForm />
+            <img src="/images/graduation.png" alt="" className={styles.grad} />
           </div>
         </div>
       </section>

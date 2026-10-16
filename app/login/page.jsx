@@ -18,6 +18,7 @@ export default function Login() {
               </p>
             </div>
             <LoginForm />
+            <img src="/images/graduation.png" alt="" className={styles.grad} />
           </div>
         </div>
       </section>

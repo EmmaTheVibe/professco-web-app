@@ -89,7 +89,7 @@ export default function ResetPasswordForm({
   };
 
   return (
-    <div className={styles.formWrapper}>
+    <div>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.fieldGroup}>
           <p className={styles.label}>
@@ -200,7 +200,6 @@ export default function ResetPasswordForm({
         </button>
       </form>
 
-      <img src="/images/graduation.png" alt="grad" className={styles.grad} />
     </div>
   );
 }

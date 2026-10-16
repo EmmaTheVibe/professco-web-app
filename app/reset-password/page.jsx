@@ -14,6 +14,7 @@ export default function UpdatePassword() {
               <p className={`lightFont ${styles.desc}`}></p>
             </div>
             <ResetPasswordForm />
+            <img src="/images/graduation.png" alt="" className={styles.grad} />
           </div>
         </div>
       </section>

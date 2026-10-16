@@ -53,7 +53,7 @@ export default function LoginForm() {
   };
 
   return (
-    <div className={styles.formWrapper}>
+    <div>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <div style={{ marginBottom: "26px" }}>
           <p className={styles.label}>
@@ -159,7 +159,6 @@ export default function LoginForm() {
         </p>
       </form>
 
-      <img src="/images/graduation.png" alt="grad" className={styles.grad} />
     </div>
   );
 }

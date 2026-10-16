@@ -101,6 +101,7 @@ export default function ForgotPasswordClient() {
                 onRequestNewOtp={handleResetSuccess}
               />
             )}
+            <img src="/images/graduation.png" alt="" className={styles.grad} />
           </div>
         </div>
       </section>
