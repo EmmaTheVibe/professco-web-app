@@ -128,7 +128,10 @@ section {
   position: relative;
 }
 
-.container {
+/* :where() gives .container zero specificity, so a page's own class on the same
+   element (e.g. `container ${styles.wrapper}`) always wins. Without it the
+   winner depends on CSS load order, which differs between dev and production. */
+:where(.container) {
   width: 100%;
   max-width: 2000px;
   margin: 0 auto;
@@ -137,14 +140,14 @@ section {
 }
 
 @media screen and (min-width: 600px) {
-  .container {
+  :where(.container) {
     padding-left: 24px;
     padding-right: 24px;
   }
 }
 
 @media screen and (min-width: 1000px) {
-  .container {
+  :where(.container) {
     padding-left: 32px;
     padding-right: 32px;
   }

@@ -1,5 +1,7 @@
+/* Equal top and bottom padding so the card centres in the viewport, not just
+   in the space below the fixed navbar. */
 .home {
-  padding-top: 142px;
+  padding: 142px 0;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
