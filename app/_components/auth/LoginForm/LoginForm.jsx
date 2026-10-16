@@ -39,9 +39,7 @@ export default function LoginForm() {
         password: data.password,
       });
 
-      console.log("Logged in user:", response.profile);
       setUser(response.profile);
-      console.log("Current user after login:", useAuthStore.getState().user);
 
       const hasExamBodies =
         Array.isArray(response.profile?.exam_bodies) &&
@@ -113,7 +111,7 @@ export default function LoginForm() {
               disabled={isSubmitting}
             />
             <img
-              src="/images/form-icon-visibility-off.svg"
+              src={passwordVisible ? "/images/form-icon-visibility.svg" : "/images/form-icon-visibility-off.svg"}
               alt="icon"
               onClick={toggleVisibility}
               className={styles.icon}

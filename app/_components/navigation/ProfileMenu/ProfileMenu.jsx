@@ -13,7 +13,7 @@ const menuItems = [
   { label: "Notifications", href: "/student/notifications" },
   { label: "Account settings", href: "/student/account-settings" },
   { label: "Payment", href: "/student/payments" },
-  { label: "Help and Support", href: "/student/support" },
+  { label: "Help and Support", href: "/contact" },
 ];
 
 export default function ProfileMenu({

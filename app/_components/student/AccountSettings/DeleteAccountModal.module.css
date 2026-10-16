@@ -1,0 +1,82 @@
+.modal {
+  width: 400px;
+  padding: 24px;
+}
+
+.badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--badge-red-50);
+  color: var(--badge-red-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 18px;
+  line-height: 28px;
+  margin-bottom: 4px;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--primary-grey-50);
+  margin-bottom: 20px;
+}
+
+.inputGroup {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputGroup input {
+  border: 1.2px solid var(--primary-grey-300);
+  border-radius: 4px;
+  height: 48px;
+  width: 100%;
+  padding: 0 48px 0 16px;
+  font-family: var(--font-noto-sans), sans-serif;
+}
+
+.inputGroup input:focus {
+  border-color: var(--primary-orange);
+}
+
+.icon {
+  position: absolute;
+  right: 16px;
+  cursor: pointer;
+}
+
+.error {
+  color: var(--primary-error);
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.actions button {
+  flex: 1;
+}
+
+.cancelBtn {
+  background-color: var(--border-color-100);
+  color: var(--primary-orange);
+  border: none;
+}
+
+.deleteBtn {
+  background-color: var(--primary-error);
+  color: var(--primary-white-50);
+  border: none;
+}

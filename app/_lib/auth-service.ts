@@ -29,8 +29,7 @@ interface UpdateProfileParams {
 
 interface ChangePasswordParams {
   current_password: string;
-  new_password: string;
-  new_password_confirmation: string;
+  password: string;
 }
 
 interface LoginResponse {
@@ -96,7 +95,6 @@ export async function forgotPassword(
     });
 
     const data = await response.json();
-    console.log("Forgot password response:", data);
 
     if (!response.ok) {
       throw new Error(data.message || "Failed to send reset link");
@@ -122,7 +120,6 @@ export async function resetPassword(
     });
 
     const data = await response.json();
-    console.log("Reset password response:", data);
 
     if (!response.ok) {
       throw new Error(data.message || "Failed to reset password");
@@ -162,10 +159,10 @@ export async function updateProfile(
 
 export async function changePassword(
   params: ChangePasswordParams,
-): Promise<{ message?: string }> {
+): Promise<{ message?: string; signedOut?: boolean }> {
   try {
     const response = await fetch("/api/auth/change-password", {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -199,4 +196,70 @@ export async function logout(): Promise<{ success: boolean }> {
     console.error("Logout error:", error);
     throw error;
   }
+}
+
+async function postAccount(
+  path: string,
+  body: Record<string, string> | undefined,
+  fallbackMessage: string,
+): Promise<{ message?: string; user?: User; signedOut?: boolean }> {
+  const response = await fetch(path, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: body ? JSON.stringify(body) : undefined,
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || fallbackMessage);
+  }
+
+  return data;
+}
+
+export function requestOldEmailCode() {
+  return postAccount(
+    "/api/account/email/old/request",
+    undefined,
+    "Failed to send code to your current email",
+  );
+}
+
+export function verifyOldEmailCode(otp: string) {
+  return postAccount("/api/account/email/old/verify", { otp }, "Invalid code");
+}
+
+export function requestNewEmailCode(email: string) {
+  return postAccount(
+    "/api/account/email/request",
+    { email },
+    "Failed to send code to your new email",
+  );
+}
+
+export function confirmNewEmail(email: string, otp: string) {
+  return postAccount(
+    "/api/account/email/confirm",
+    { email, otp },
+    "Failed to confirm your new email",
+  );
+}
+
+export async function deleteAccount(
+  currentPassword: string,
+): Promise<{ message?: string }> {
+  const response = await fetch("/api/account", {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ current_password: currentPassword }),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Failed to delete account");
+  }
+
+  return data;
 }

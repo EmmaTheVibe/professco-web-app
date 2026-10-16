@@ -1,6 +1,5 @@
 export async function initiatePayment(courseId, email = null) {
   try {
-    console.log("DEBUG initiatePayment request:", JSON.stringify({ courseId, email }));
 
     const response = await fetch("/api/payment/initiate", {
       method: "POST",
@@ -11,7 +10,6 @@ export async function initiatePayment(courseId, email = null) {
     });
 
     const data = await response.json();
-    console.log("DEBUG initiatePayment response:", JSON.stringify(data));
 
     if (!response.ok) {
       throw new Error(data.message || "Payment initiation failed");
@@ -48,7 +46,6 @@ export async function verifyPayment(reference) {
 
 export async function initiateMultiplePayment(courseIds, email = null) {
   try {
-    console.log("DEBUG initiateMultiplePayment request:", JSON.stringify({ courseIds, email }));
 
     const response = await fetch("/api/payment/multiple", {
       method: "POST",
@@ -59,7 +56,6 @@ export async function initiateMultiplePayment(courseIds, email = null) {
     });
 
     const data = await response.json();
-    console.log("DEBUG initiateMultiplePayment response:", JSON.stringify(data));
 
     if (!response.ok) {
       throw new Error(data.message || "Payment initiation failed");

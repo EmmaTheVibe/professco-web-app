@@ -14,6 +14,34 @@ export async function safeJson(response: Response): Promise<any> {
   }
 }
 
+export async function setAuthCookie(token: string): Promise<void> {
+  (await cookies()).set("token", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    maxAge: 60 * 60 * 24 * 7,
+  });
+}
+
+// For endpoints that revoke every session and return a fresh token for this one:
+// store the new token (never forward it to the browser), or drop the dead cookie.
+export async function adoptRotatedToken(
+  response: NextResponse,
+): Promise<NextResponse> {
+  if (!response.ok) return response;
+
+  const { token, ...data } = await response.json();
+
+  if (token) {
+    await setAuthCookie(token);
+  } else {
+    (await cookies()).delete("token");
+  }
+
+  return NextResponse.json({ ...data, signedOut: !token });
+}
+
 interface ProxyOptions {
   method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
   body?: unknown;
@@ -44,7 +72,6 @@ export async function proxyAuthed(
     });
 
     const data = await safeJson(response);
-    console.log(`DEBUG ${method} ${path} response:`, response.status, JSON.stringify(data));
 
     if (!response.ok) {
       return NextResponse.json(

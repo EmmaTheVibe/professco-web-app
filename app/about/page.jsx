@@ -1,10 +1,54 @@
 import styles from "./About.module.css";
-import HomeNav from "@/app/_components/navigation/HomeNav/HomeNav";
 import Footer from "@/app/_components/layout/Footer/Footer";
 import Segment from "@/app/_components/layout/Segment/Segment";
-import AnimateUp from "@/app/_components/common/AnimateUp/AnimateUp";
-import AnimatedHeroTitle from "@/app/_components/common/AnimatedHeroTitle/AnimatedHeroTitle";
-import AnimateSlideIn from "@/app/_components/common/AnimateSlideIn/AnimateSlideIn";
+import SlideInImage from "@/app/_components/common/SlideInImage/SlideInImage";
+
+// Section 4 reuses image 2 until about-pc-4 / about-mobile-4 are exported from Figma.
+const features = [
+  {
+    title: "Tailored ICAN Courses:",
+    description:
+      "Access a library of expertly designed courses that align with ICAN requirements.",
+    points: [
+      "Every course meets ICAN standards.",
+      "Learn from top professionals and educators.",
+      "Built to help you pass with confidence.",
+    ],
+    image: { pc: "/images/about-pc-1.png", mobile: "/images/about-mobile-1.png" },
+  },
+  {
+    title: "Student-Centric Learning:",
+    description:
+      "Learn at your own pace with flexible modules, quizzes, and progress tracking.",
+    points: [
+      "Study anytime, anywhere at your pace.",
+      "Bite-sized lessons for easy understanding.",
+      "Stay motivated with clear milestones.",
+    ],
+    image: { pc: "/images/about-pc-2.png", mobile: "/images/about-mobile-2.png" },
+  },
+  {
+    title: "Lecturer Income Opportunities:",
+    description:
+      "Create, publish, and monetize your courses while reaching a broad audience of learners.",
+    points: [
+      "Build and publish your content seamlessly.",
+      "Expand your impact with a wide learner base.",
+      "Teach, manage, and grow in one place.",
+    ],
+    image: { pc: "/images/about-pc-3.png", mobile: "/images/about-mobile-3.png" },
+  },
+  {
+    title: "Affordable Learning Solutions:",
+    description: "Achieve your professional goals without breaking the bank.",
+    points: [
+      "Quality education at a low cost.",
+      "Maximize your investment in every lesson.",
+      "Advance your career without overspending.",
+    ],
+    image: { pc: "/images/about-pc-2.png", mobile: "/images/about-mobile-2.png" },
+  },
+];
 
 export default function Page() {
   return (
@@ -12,12 +56,10 @@ export default function Page() {
       <section className={styles.hero}>
         <div className={`container ${styles.wrapper}`}>
           <p className={`semiboldFont ${styles.tag}`}>About us</p>
-          <AnimatedHeroTitle className="semiboldFont">
+          <h1 className="semiboldFont">
             Empower Your ICAN Journey with Professco
-          </AnimatedHeroTitle>
-          <AnimatedHeroTitle as="p" className={styles.desc} from="above" delay={0.4}>
-            Making education accessible for all!
-          </AnimatedHeroTitle>
+          </h1>
+          <p className={styles.desc}>Making education accessible for all!</p>
           <div className={styles.btnPack}>
             <button className="filled">
               <p>For Student</p>
@@ -30,210 +72,64 @@ export default function Page() {
       </section>
       <section className={styles.seg}>
         <div className={`container ${styles.wrapperB}`}>
-          <AnimateUp as="h1" className="semiboldFont">
+          <h1 className="semiboldFont">
             Tailored ICAN courses and tools for students to succeed and
             lecturers to earn.
-          </AnimateUp>
-          <AnimatedHeroTitle as="p" from="above" delay={0.4} viewportTrigger>
+          </h1>
+          <p>
             Welcome to Professco, the ultimate web learning platform designed to
             help students excel in their ICAN exams and support lecturers in
             creating impactful courses. We provide tailored learning experiences
             that simplify complex concepts and guide you step-by-step towards
             your professional goals.
-          </AnimatedHeroTitle>
+          </p>
           <br />
-          <AnimatedHeroTitle as="p" from="above" delay={0.6} viewportTrigger>
+          <p>
             Professco bridges the gap between knowledge and opportunity by
             equipping students with the tools and resources they need to
             succeed. For lecturers, it’s a chance to share expertise, build a
             legacy, and earn income from their valuable insights.
-          </AnimatedHeroTitle>
+          </p>
         </div>
-      </section>
-      <section className={styles.frame}>
-        <div className={styles.infoBox}>
-          <div className={styles.circle}>
-            <div className={styles.innerCircle}>
-              <img src="/images/sparkles.svg" alt="sparkles" />
-            </div>
-          </div>
-          <AnimateUp as="h1" className="semiboldFont">
-            Tailored ICAN Courses:
-          </AnimateUp>
-          <AnimatedHeroTitle as="p" from="above" delay={0.4} viewportTrigger>
-            Access a library of expertly designed courses that align with ICAN
-            requirements.
-          </AnimatedHeroTitle>
-          <div className={styles.points}>
-            <div className={styles.line}>
-              <div className={styles.bullet}>
-                <img src="/images/about-tick.svg" alt="tick" />
-              </div>
-              <p>-</p>
-            </div>
-            <div className={styles.line}>
-              <div className={styles.bullet}>
-                <img src="/images/about-tick.svg" alt="tick" />
-              </div>
-              <p>-</p>
-            </div>
-            <div className={styles.line}>
-              <div className={styles.bullet}>
-                <img src="/images/about-tick.svg" alt="tick" />
-              </div>
-              <p>-</p>
-            </div>
-          </div>
-        </div>
-        <AnimateSlideIn direction="right">
-          <picture>
-            <source media="(min-width: 1000px)" srcSet="/images/about-pc-1.png" />
-            <img
-              src="/images/about-mobile-1.png"
-              alt="banner"
-              className={styles.banner}
-            />
-          </picture>
-        </AnimateSlideIn>
       </section>
 
-      <section className={`${styles.frame} ${styles.rev}`}>
-        <div className={styles.infoBox}>
-          <div className={styles.circle}>
-            <div className={styles.innerCircle}>
-              <img src="/images/sparkles.svg" alt="sparkles" />
+      <div className={`container ${styles.features}`}>
+        {features.map((feature, index) => (
+          <div
+            key={feature.title}
+            className={`${styles.card} ${index % 2 === 1 ? styles.rev : ""}`}
+          >
+            <div className={styles.textBox}>
+              <div className={styles.infoBox}>
+                <div className={styles.circle}>
+                  <img src="/images/sparkles.svg" alt="" />
+                </div>
+                <h1 className="semiboldFont">{feature.title}</h1>
+                <p>{feature.description}</p>
+                <div className={styles.points}>
+                  {feature.points.map((point) => (
+                    <div key={point} className={styles.line}>
+                      <div className={styles.bullet}>
+                        <img src="/images/about-tick.svg" alt="" />
+                      </div>
+                      <p>{point}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
+            <picture className={styles.picture}>
+              <source media="(min-width: 600px)" srcSet={feature.image.pc} />
+              <SlideInImage
+                src={feature.image.mobile}
+                alt=""
+                className={styles.banner}
+                from={index % 2 === 1 ? "left" : "right"}
+              />
+            </picture>
           </div>
-          <AnimateUp as="h1" className="semiboldFont">
-            Student-Centric Learning:
-          </AnimateUp>
-          <AnimatedHeroTitle as="p" from="above" delay={0.4} viewportTrigger>
-            Learn at your own pace with flexible modules, quizzes, and progress
-            tracking.
-          </AnimatedHeroTitle>
-          <div className={styles.points}>
-            <div className={styles.line}>
-              <div className={styles.bullet}>
-                <img src="/images/about-tick.svg" alt="tick" />
-              </div>
-              <p>-</p>
-            </div>
-            <div className={styles.line}>
-              <div className={styles.bullet}>
-                <img src="/images/about-tick.svg" alt="tick" />
-              </div>
-              <p>-</p>
-            </div>
-            <div className={styles.line}>
-              <div className={styles.bullet}>
-                <img src="/images/about-tick.svg" alt="tick" />
-              </div>
-              <p>-</p>
-            </div>
-          </div>
-        </div>
-        <AnimateSlideIn direction="left">
-          <picture>
-            <source media="(min-width: 1000px)" srcSet="/images/about-pc-2.png" />
-            <img
-              src="/images/about-mobile-2.png"
-              alt="banner"
-              className={styles.banner}
-            />
-          </picture>
-        </AnimateSlideIn>
-      </section>
-
-      <section className={styles.frame}>
-        <div className={styles.infoBox}>
-          <div className={styles.circle}>
-            <div className={styles.innerCircle}>
-              <img src="/images/sparkles.svg" alt="sparkles" />
-            </div>
-          </div>
-          <AnimateUp as="h1" className="semiboldFont">
-            Lecturer Income Opportunities:
-          </AnimateUp>
-          <AnimatedHeroTitle as="p" from="above" delay={0.4} viewportTrigger>
-            Create, publish, and monetize your courses while reaching a broad
-            audience of learners.
-          </AnimatedHeroTitle>
-          <div className={styles.points}>
-            <div className={styles.line}>
-              <div className={styles.bullet}>
-                <img src="/images/about-tick.svg" alt="tick" />
-              </div>
-              <p>-</p>
-            </div>
-            <div className={styles.line}>
-              <div className={styles.bullet}>
-                <img src="/images/about-tick.svg" alt="tick" />
-              </div>
-              <p>-</p>
-            </div>
-            <div className={styles.line}>
-              <div className={styles.bullet}>
-                <img src="/images/about-tick.svg" alt="tick" />
-              </div>
-              <p>-</p>
-            </div>
-          </div>
-        </div>
-        <AnimateSlideIn direction="right">
-          <picture>
-            <source media="(min-width: 1000px)" srcSet="/images/about-pc-3.png" />
-            <img
-              src="/images/about-mobile-3.png"
-              alt="banner"
-              className={styles.banner}
-            />
-          </picture>
-        </AnimateSlideIn>
-      </section>
-
-      <section className={`${styles.frame} ${styles.rev}`}>
-        <div className={styles.infoBox}>
-          <div className={styles.circle}>
-            <img src="/images/sparkles.svg" alt="sparkles" />
-          </div>
-          <AnimateUp as="h1" className="semiboldFont">
-            Affordable Learning Solutions:
-          </AnimateUp>
-          <AnimatedHeroTitle as="p" from="above" delay={0.4} viewportTrigger>
-            Achieve your professional goals without breaking the bank.
-          </AnimatedHeroTitle>
-          <div className={styles.points}>
-            <div className={styles.line}>
-              <div className={styles.bullet}>
-                <img src="/images/about-tick.svg" alt="tick" />
-              </div>
-              <p>-</p>
-            </div>
-            <div className={styles.line}>
-              <div className={styles.bullet}>
-                <img src="/images/about-tick.svg" alt="tick" />
-              </div>
-              <p>-</p>
-            </div>
-            <div className={styles.line}>
-              <div className={styles.bullet}>
-                <img src="/images/about-tick.svg" alt="tick" />
-              </div>
-              <p>-</p>
-            </div>
-          </div>
-        </div>
-        <AnimateSlideIn direction="left">
-          <picture>
-            <source media="(min-width: 1000px)" srcSet="/images/about-pc-2.png" />
-            <img
-              src="/images/about-mobile-2.png"
-              alt="banner"
-              className={`${styles.banner} ${styles.last}`}
-            />
-          </picture>
-        </AnimateSlideIn>
-      </section>
+        ))}
+      </div>
 
       <Segment />
       <Footer />

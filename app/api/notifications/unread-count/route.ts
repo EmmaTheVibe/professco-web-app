@@ -26,7 +26,6 @@ export async function GET(): Promise<NextResponse> {
     });
 
     const data = await safeJson(response);
-    console.log("DEBUG /api/notifications/unread-count response:", JSON.stringify(data));
 
     if (!response.ok) {
       return NextResponse.json(

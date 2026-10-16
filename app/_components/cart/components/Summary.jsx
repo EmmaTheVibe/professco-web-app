@@ -28,7 +28,6 @@ export default function Summary({ subtotal, courses }) {
   };
 
   const processPayment = async (guestEmail = null) => {
-    console.log("DEBUG processPayment called with guestEmail:", guestEmail);
     setIsProcessing(true);
 
     try {
@@ -40,8 +39,6 @@ export default function Summary({ subtotal, courses }) {
         const courseIds = courses.map((c) => c.id);
         response = await initiateMultiplePayment(courseIds, guestEmail);
       }
-
-      console.log("DEBUG processPayment response:", JSON.stringify(response));
 
       if (response.authorization_url) {
         window.location.href = response.authorization_url;

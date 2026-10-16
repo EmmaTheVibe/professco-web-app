@@ -6,7 +6,31 @@ import Spinner from "@/app/_components/layout/Spinner/Spinner";
 import useAuthStore from "@/app/_utils/auth-store";
 import { getExamBodies } from "@/app/_lib/account-setup-service";
 import UpdateProfileModal from "./UpdateProfileModal";
+import ChangeEmailModal from "./ChangeEmailModal";
+import DeleteAccountModal from "./DeleteAccountModal";
 import styles from "./ProfileSettingsTab.module.css";
+
+function EditButton({ label, onClick }) {
+  return (
+    <button
+      type="button"
+      className={styles.editButton}
+      onClick={onClick}
+      aria-label={label}
+      title={label}
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5Z"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </button>
+  );
+}
 
 export default function ProfileSettingsTab() {
   const user = useAuthStore((state) => state.user);
@@ -15,6 +39,8 @@ export default function ProfileSettingsTab() {
   const [isLoadingExamBodies, setIsLoadingExamBodies] = useState(true);
   const [loadError, setLoadError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -60,26 +86,38 @@ export default function ProfileSettingsTab() {
           <p className={styles.label}>
             First name <span>*</span>
           </p>
-          <input type="text" value={user?.first_name || ""} disabled readOnly />
+          <div className={styles.inputRow}>
+            <input type="text" value={user?.first_name || ""} disabled readOnly />
+            <EditButton label="Edit name" onClick={() => setIsModalOpen(true)} />
+          </div>
         </div>
 
         <div className={styles.fieldGroup}>
           <p className={styles.label}>
             Last name <span>*</span>
           </p>
-          <input type="text" value={user?.last_name || ""} disabled readOnly />
+          <div className={styles.inputRow}>
+            <input type="text" value={user?.last_name || ""} disabled readOnly />
+            <EditButton label="Edit name" onClick={() => setIsModalOpen(true)} />
+          </div>
         </div>
 
         <div className={styles.fieldGroup}>
           <p className={styles.label}>
             Email <span>*</span>
           </p>
-          <div className={styles.inputGroup}>
-            <input type="email" value={user?.email || ""} disabled readOnly />
-            <img
-              src="/images/form-icon-mail.svg"
-              alt="icon"
-              className={styles.icon}
+          <div className={styles.inputRow}>
+            <div className={styles.inputGroup}>
+              <input type="email" value={user?.email || ""} disabled readOnly />
+              <img
+                src="/images/form-icon-mail.svg"
+                alt="icon"
+                className={styles.icon}
+              />
+            </div>
+            <EditButton
+              label="Change email"
+              onClick={() => setIsEmailModalOpen(true)}
             />
           </div>
         </div>
@@ -106,17 +144,32 @@ export default function ProfileSettingsTab() {
         )}
       </div>
 
-      <button
-        type="button"
-        className={`outlined ${styles.submit}`}
-        onClick={() => setIsModalOpen(true)}
-      >
-        <p>Update settings</p>
-      </button>
+      <div className={styles.dangerZone}>
+        <p className={`boldFont ${styles.sectionTitle}`}>Delete account</p>
+        <p className={styles.sectionDesc}>
+          Permanently delete your Professco account and all of its data. This
+          can&apos;t be undone.
+        </p>
+        <button
+          type="button"
+          className={styles.deleteButton}
+          onClick={() => setIsDeleteModalOpen(true)}
+        >
+          <p>Delete account</p>
+        </button>
+      </div>
 
       <UpdateProfileModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+      />
+      <DeleteAccountModal
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+      />
+      <ChangeEmailModal
+        isOpen={isEmailModalOpen}
+        onClose={() => setIsEmailModalOpen(false)}
       />
     </div>
   );

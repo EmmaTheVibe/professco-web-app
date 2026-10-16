@@ -35,7 +35,7 @@ export default async function WatchCourse({ params, searchParams }) {
       (owned) => owned.id === Number(courseId),
     );
   } catch (error) {
-    console.log("DEBUG dashboard/courses fetch failed:", error.message);
+    console.error("dashboard/courses fetch failed:", error.message);
   }
 
   if (!ownsCourse) {

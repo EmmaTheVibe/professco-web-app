@@ -21,7 +21,6 @@ export async function generateOTP(email) {
       throw new Error(data.message || "Failed to generate OTP");
     }
 
-    console.log("Generate OTP response:", data);
     return data;
   } catch (error) {
     console.error("Generate OTP error:", error);

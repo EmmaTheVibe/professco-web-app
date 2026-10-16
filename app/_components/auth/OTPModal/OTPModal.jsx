@@ -41,7 +41,6 @@ export default function OTPModal({ isOpen, onClose, onVerified }) {
 
     try {
       const response = await generateOTP(email);
-      console.log("OTP generated successfully:", response);
 
       if (response.nonce_key) {
         setNonceKey(response.nonce_key);
@@ -134,7 +133,6 @@ export default function OTPModal({ isOpen, onClose, onVerified }) {
 
     try {
       const response = await generateOTP(email);
-      console.log("OTP resent successfully:", response);
 
       if (response.nonce_key) {
         setNonceKey(response.nonce_key);

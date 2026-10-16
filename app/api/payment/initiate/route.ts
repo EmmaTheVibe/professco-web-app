@@ -24,7 +24,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       body.email = email;
     }
 
-    console.log("DEBUG /api/payment/initiate outgoing body:", JSON.stringify(body), "hasToken:", Boolean(token));
 
     const response = await fetch(`${API_BASE_URL}/payment/initiate/${courseId}`, {
       method: "POST",
@@ -33,7 +32,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     });
 
     const data = await safeJson(response);
-    console.log("DEBUG /api/payment/initiate backend response:", response.status, JSON.stringify(data));
 
     if (!response.ok) {
       return NextResponse.json(

@@ -15,7 +15,7 @@ export async function GET(): Promise<NextResponse> {
       );
     }
 
-    const response = await fetch(`${API_BASE_URL}/user`, {
+    const response = await fetch(`${API_BASE_URL}/account`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -24,11 +24,21 @@ export async function GET(): Promise<NextResponse> {
       },
     });
 
-    if (!response.ok) {
+    // Only a 401 means the session is gone. Other failures (404, 5xx) are
+    // backend problems and must not log the user out.
+    if (response.status === 401) {
       cookieStore.delete("token");
       return NextResponse.json(
         { message: "Not authenticated" },
         { status: 401 }
+      );
+    }
+
+    if (!response.ok) {
+      console.error("Auth me: GET /account failed with", response.status);
+      return NextResponse.json(
+        { message: "Could not load account" },
+        { status: 502 }
       );
     }
 

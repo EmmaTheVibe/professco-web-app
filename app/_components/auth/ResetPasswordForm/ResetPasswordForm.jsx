@@ -140,7 +140,7 @@ export default function ResetPasswordForm({
               disabled={isSubmitting}
             />
             <img
-              src="/images/form-icon-visibility-off.svg"
+              src={passwordVisible ? "/images/form-icon-visibility.svg" : "/images/form-icon-visibility-off.svg"}
               alt="icon"
               onClick={toggleVisibility}
               className={styles.icon}
@@ -168,7 +168,7 @@ export default function ResetPasswordForm({
               disabled={isSubmitting}
             />
             <img
-              src="/images/form-icon-visibility-off.svg"
+              src={passwordVisibleB ? "/images/form-icon-visibility.svg" : "/images/form-icon-visibility-off.svg"}
               alt="icon"
               onClick={toggleVisibilityB}
               className={styles.icon}

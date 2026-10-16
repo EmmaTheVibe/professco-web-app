@@ -65,3 +65,22 @@
   height: 48px;
   margin-top: 16px;
 }
+
+.linkRow {
+  display: flex;
+  gap: 24px;
+}
+
+.linkButton {
+  width: auto;
+  height: auto;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--primary-orange);
+  font-size: 14px;
+}
+
+.linkButton:hover {
+  text-decoration: underline;
+}

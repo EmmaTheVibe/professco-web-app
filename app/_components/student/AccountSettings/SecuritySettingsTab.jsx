@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { changePassword } from "@/app/_lib/auth-service";
+import useAuthStore from "@/app/_utils/auth-store";
 import Loader from "@/app/_components/common/Loader/Loader";
 import styles from "./SecuritySettingsTab.module.css";
 
@@ -12,6 +14,8 @@ export default function SecuritySettingsTab() {
   const [newVisible, setNewVisible] = useState(false);
   const [confirmVisible, setConfirmVisible] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
+  const clearUser = useAuthStore((state) => state.clearUser);
 
   const {
     register,
@@ -29,11 +33,17 @@ export default function SecuritySettingsTab() {
     try {
       const response = await changePassword({
         current_password: data.currentPassword,
-        new_password: data.newPassword,
-        new_password_confirmation: data.confirmPassword,
+        password: data.newPassword,
       });
 
-      toast.success(response.message || "Password updated successfully.");
+      if (response.signedOut) {
+        toast.success("Password changed. Please log in again.");
+        clearUser();
+        router.replace("/login");
+        return;
+      }
+
+      toast.success(response.message || "Password changed successfully.");
       reset();
     } catch (err) {
       toast.error(err.message || "Failed to update password. Please try again.");
@@ -62,7 +72,7 @@ export default function SecuritySettingsTab() {
             disabled={isSubmitting}
           />
           <img
-            src="/images/form-icon-visibility-off.svg"
+            src={currentVisible ? "/images/form-icon-visibility.svg" : "/images/form-icon-visibility-off.svg"}
             alt="icon"
             onClick={() => setCurrentVisible((v) => !v)}
             className={styles.icon}
@@ -91,7 +101,7 @@ export default function SecuritySettingsTab() {
             disabled={isSubmitting}
           />
           <img
-            src="/images/form-icon-visibility-off.svg"
+            src={newVisible ? "/images/form-icon-visibility.svg" : "/images/form-icon-visibility-off.svg"}
             alt="icon"
             onClick={() => setNewVisible((v) => !v)}
             className={styles.icon}
@@ -118,7 +128,7 @@ export default function SecuritySettingsTab() {
             disabled={isSubmitting}
           />
           <img
-            src="/images/form-icon-visibility-off.svg"
+            src={confirmVisible ? "/images/form-icon-visibility.svg" : "/images/form-icon-visibility-off.svg"}
             alt="icon"
             onClick={() => setConfirmVisible((v) => !v)}
             className={styles.icon}

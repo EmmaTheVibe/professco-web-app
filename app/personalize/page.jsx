@@ -33,10 +33,7 @@ export default function Personalize() {
       const accountData = accountResponse.ok ? await accountResponse.json() : null;
 
       if (accountData?.profile) {
-        console.log("Account setup complete. Account info:", accountData.profile);
         setUser(accountData.profile);
-      } else {
-        console.log("Account setup complete. Account info unavailable.");
       }
 
       setExamTypeList([]);

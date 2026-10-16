@@ -50,10 +50,24 @@
   color: var(--primary-medium-grey);
 }
 
-.infoBox {
-  padding: 64px 0;
-  width: 320px;
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
 }
+
+/* Full-bleed on mobile: cancel the container's side padding. */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin: 0 -16px;
+  padding: 32px;
+  border-radius: 20px;
+  background-color: var(--primary-white-150);
+  overflow: hidden;
+}
+
 .circle {
   width: 60px;
   height: 60px;
@@ -72,26 +86,26 @@
   font-size: 36px;
   line-height: 44px;
   margin-bottom: 16px;
-  width: 100%;
 }
 .infoBox p {
   font-size: 20px;
   line-height: 30px;
   color: var(--primary-medium-grey);
   margin-bottom: 32px;
-  width: 320px;
 }
 
-.points {
-  padding: 0 16px;
-}
 .line {
   display: flex;
+  align-items: flex-start;
   margin-bottom: 20px;
+}
+.line:last-child {
+  margin-bottom: 0;
 }
 .bullet {
   width: 28px;
   height: 28px;
+  flex-shrink: 0;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -101,55 +115,24 @@
 }
 .line p {
   margin: 0;
-  width: unset;
+  color: var(--primary-medium-grey);
+}
+
+.picture {
+  display: block;
 }
 .banner {
+  display: block;
   width: 100%;
-  margin-bottom: 96px;
-}
-.last {
-  margin-bottom: 0;
-}
-
-@media screen and (min-width: 330px) {
-  .infoBox h1 {
-    width: 330px;
-  }
-}
-
-@media screen and (min-width: 400px) {
-  .infoBox {
-    width: 340px;
-  }
-}
-
-@media screen and (min-width: 500px) {
-  .infoBox {
-    width: 480px;
-  }
-  .infoBox h1 {
-    width: 100%;
-  }
-  .infoBox p {
-    width: 450px;
-  }
-  .line p {
-    width: unset;
-  }
-  .banner {
-    aspect-ratio: 4 / 3;
-  }
+  aspect-ratio: 296 / 560;
+  max-height: 560px;
+  object-fit: cover;
+  border-radius: 20px;
 }
 
 @media screen and (min-width: 600px) {
-  .infoBox {
-    width: 590px;
-  }
-}
-
-@media screen and (min-width: 850px) {
-  .infoBox {
-    width: 840px;
+  .card {
+    margin: 0 -24px;
   }
 }
 
@@ -167,52 +150,51 @@
   .wrapperB p {
     width: 900px;
   }
-  .frame {
-    flex-direction: row;
-    justify-content: end;
-    margin-bottom: 96px;
+
+  .features {
+    gap: 96px;
   }
-  .rev {
-    flex-direction: row-reverse;
-    justify-content: start;
+  .card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin: 0;
+  }
+  .rev .picture {
+    order: -1;
+  }
+  .textBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 32px;
   }
   .infoBox {
-    width: unset;
-    padding: 0;
+    width: 100%;
+    max-width: 520px;
   }
-  .infoBox h1 {
-    width: 450px;
+  /* The ::before sets an 832:560 minimum height; the grid row can stretch the
+     picture taller than that when the text is longer, and the image fills it. */
+  .picture {
+    position: relative;
   }
-  .infoBox p {
-    width: 400px;
-  }
-  .points {
-    width: fit-content;
-  }
-  .line p {
-    width: unset;
+  .picture::before {
+    content: "";
+    display: block;
+    padding-top: calc(560 / 832 * 100%);
   }
   .banner {
-    width: 480px;
-    height: 450px;
-    margin-bottom: 0;
-    aspect-ratio: unset;
-    margin: 0 0 0 50px;
-  }
-  .rev .banner {
-    margin: 0 50px 0 0;
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    max-height: none;
+    aspect-ratio: auto;
   }
 }
 
 @media screen and (min-width: 1200px) {
-  /* .infoBox {
-    width: 1180px;
-  } */
   .about button {
     height: 56px;
-  }
-  .banner {
-    width: 600px;
   }
 }
 
@@ -222,26 +204,5 @@
   }
   .wrapperB p {
     width: 1216px;
-  }
-  .infoBox h1,
-  .infoBox p {
-    width: 530px;
-  }
-  .banner {
-    width: 700px;
-  }
-}
-
-@media screen and (min-width: 1540px) {
-  .banner {
-    width: 800px;
-    height: 500px;
-  }
-}
-
-@media screen and (min-width: 1920px) {
-  .banner {
-    width: 950px;
-    height: 550px;
   }
 }

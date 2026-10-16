@@ -50,6 +50,34 @@
   align-items: center;
 }
 
+.inputRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.inputRow > input,
+.inputRow > .inputGroup {
+  flex: 1;
+  min-width: 0;
+}
+
+.editButton {
+  width: auto;
+  height: auto;
+  padding: 4px;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: var(--primary-grey-50);
+  transition: color 0.2s ease;
+}
+
+.editButton:hover,
+.editButton:focus-visible {
+  color: var(--primary-orange);
+}
+
 .icon {
   position: absolute;
   right: 16px;
@@ -103,7 +131,22 @@
   }
 }
 
-.submit {
+.dangerZone {
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border-color-200);
+}
+
+.deleteButton {
   height: 48px;
   max-width: 200px;
+  background: none;
+  border: 1.2px solid var(--primary-error);
+  color: var(--primary-error);
+  transition: all 0.2s ease;
+}
+
+.deleteButton:hover {
+  background-color: var(--primary-error);
+  color: var(--primary-white-50);
 }

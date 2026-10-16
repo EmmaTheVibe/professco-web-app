@@ -18,12 +18,18 @@ interface Props {
 async function revalidateAuth({ clearOnNetworkError }: { clearOnNetworkError: boolean }) {
   try {
     const res = await fetch("/api/auth/me");
-    const data = res.ok ? await res.json() : null;
 
+    if (res.status === 401) {
+      useAuthStore.setState({ isAuthenticated: false, user: null });
+      return;
+    }
+
+    // Any other failure is a backend problem; keep the current session state.
+    if (!res.ok) return;
+
+    const data = await res.json();
     if (data?.profile) {
       useAuthStore.getState().setUser(data.profile);
-    } else {
-      useAuthStore.setState({ isAuthenticated: false, user: null });
     }
   } catch {
     if (clearOnNetworkError) {

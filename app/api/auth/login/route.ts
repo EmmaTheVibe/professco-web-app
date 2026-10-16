@@ -1,6 +1,5 @@
-import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
-import { safeJson } from "@/app/_lib/http";
+import { safeJson, setAuthCookie } from "@/app/_lib/http";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -26,16 +25,9 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       );
     }
 
-    const cookieStore = await cookies();
-    cookieStore.set("token", data.token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      path: "/",
-      maxAge: 60 * 60 * 24 * 7,
-    });
+    await setAuthCookie(data.token);
 
-    const profileResponse = await fetch(`${API_BASE_URL}/user`, {
+    const profileResponse = await fetch(`${API_BASE_URL}/account`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
