@@ -2,6 +2,23 @@
   width: 560px;
 }
 
+.wideModal {
+  width: 720px;
+}
+
+.examGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+@media (min-width: 600px) {
+  .examGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .header {
   padding: 32px 32px 24px;
   border-bottom: 1px solid var(--border-color-150);

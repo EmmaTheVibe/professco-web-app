@@ -8,6 +8,7 @@ import { getExamBodies } from "@/app/_lib/account-setup-service";
 import UpdateProfileModal from "./UpdateProfileModal";
 import ChangeEmailModal from "./ChangeEmailModal";
 import DeleteAccountModal from "./DeleteAccountModal";
+import ExamBodiesModal from "./ExamBodiesModal";
 import styles from "./ProfileSettingsTab.module.css";
 
 function EditButton({ label, onClick }) {
@@ -41,6 +42,7 @@ export default function ProfileSettingsTab() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isExamModalOpen, setIsExamModalOpen] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -142,6 +144,15 @@ export default function ProfileSettingsTab() {
             ))}
           </div>
         )}
+
+        <button
+          type="button"
+          className={`outlined ${styles.addExamButton}`}
+          onClick={() => setIsExamModalOpen(true)}
+          disabled={isLoadingExamBodies || Boolean(loadError)}
+        >
+          <p>Update</p>
+        </button>
       </div>
 
       <div className={styles.dangerZone}>
@@ -162,6 +173,11 @@ export default function ProfileSettingsTab() {
       <UpdateProfileModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+      />
+      <ExamBodiesModal
+        isOpen={isExamModalOpen}
+        onClose={() => setIsExamModalOpen(false)}
+        examBodies={examBodies}
       />
       <DeleteAccountModal
         isOpen={isDeleteModalOpen}

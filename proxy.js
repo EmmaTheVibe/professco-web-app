@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
+import { isProtectedPath } from "./app/_utils/protected-routes";
 
-const protectedRoutes = ["/student", "/personalize"];
 const guestOnlyRoutes = ["/login", "/signup"];
 
 export function proxy(request) {
@@ -8,11 +8,7 @@ export function proxy(request) {
   const { pathname } = request.nextUrl;
 
   // Redirect to login if accessing protected route without auth
-  const isProtected = protectedRoutes.some(
-    (route) => pathname === route || pathname.startsWith(`${route}/`)
-  );
-
-  if (isProtected && !token) {
+  if (isProtectedPath(pathname) && !token) {
     const loginUrl = new URL("/login", request.url);
     loginUrl.searchParams.set("redirect", pathname);
     return NextResponse.redirect(loginUrl);

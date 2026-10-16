@@ -50,6 +50,11 @@
   align-items: center;
 }
 
+.inputGroup input {
+  padding-right: 48px;
+  text-overflow: ellipsis;
+}
+
 .inputRow {
   display: flex;
   align-items: center;
@@ -129,6 +134,12 @@
   .grid {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+.addExamButton {
+  height: 48px;
+  max-width: 200px;
+  margin-top: 24px;
 }
 
 .dangerZone {

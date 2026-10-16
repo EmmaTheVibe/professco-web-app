@@ -1,3 +1,5 @@
+import type { User } from "@/app/_utils/types";
+
 const logoBySlug: Record<string, string> = {
   ICAN: "/images/ican-logo.svg",
   ACCA: "/images/acca-logo.svg",
@@ -69,7 +71,7 @@ export async function getExamBodies(): Promise<ExamCardData[]> {
 
 export async function saveExamBodies(
   examBodyIds: number[]
-): Promise<unknown> {
+): Promise<{ message?: string; user?: User }> {
   try {
     const response = await fetch("/api/account-setup/exam-bodies", {
       method: "POST",
